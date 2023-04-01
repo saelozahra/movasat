@@ -1,0 +1,8 @@
+/staticfiles/
+/files/
+/Lib/
+/.idea/
+/Scripts/
+*/migrations/0001_initial.py
+*/migrations/
+*/migrations/*
