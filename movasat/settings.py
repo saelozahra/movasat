@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'location_field.apps.DefaultConfig',
     'account',
     'aghlam',
+    'harekat',
+    'Cities',
 ]
 
 MIDDLEWARE = [
