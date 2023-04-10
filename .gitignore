@@ -6,3 +6,5 @@
 */migrations/0001_initial.py
 */migrations/
 */migrations/*
+/.env
+/db.sqlite3
