@@ -1,5 +1,4 @@
 import lms.models
-from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -8,14 +7,12 @@ from django.views.generic import TemplateView
 
 class CoursePage(TemplateView):
     def get(self, request, **kwargs):
-        # chat_id = kwargs.get("chat_id")
         all_course = lms.models.Course.objects.order_by("CreatedDate")
-
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect('../../')
 
         context = {
-            'Cource': all_course,
+            'Course': all_course,
         }
 
         return render(request, 'course.html', context)
@@ -41,9 +38,9 @@ class CoursePage(TemplateView):
     #         return HttpResponse(NameError, status=status.HTTP_400_BAD_REQUEST)
 
 
-def lesson_view(request, slug):
+def course_view(request, slug):
 
     context = {
-        'ct_data': lms.models.Lesson.objects.filter(Q(slug__contains=slug)).get(),
+        'course': lms.models.Course.objects.filter(slug=slug).get(),
     }
     return render(request, 'lesson.html', context)
