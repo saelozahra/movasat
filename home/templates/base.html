@@ -46,7 +46,6 @@
             <canvas></canvas>
             <div class="container" style="position: relative;">
                 <div class="fr">
-                    <?php wp_nav_menu( array( 'theme_location' => 'sticky-header-menu' ) ); ?>
 
                     <div class="menu-%db%8c%d8%a7%d8%b2%d9%87%d8%b1%d8%a7-container">
                         <ul id="menu-%db%8c%d8%a7%d8%b2%d9%87%d8%b1%d8%a7" class="menu"><li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-7"><a href="https://hajghasem.ir/category/haj-ghasem">حاج قاسم</a></li>
@@ -104,29 +103,12 @@
                     <a href="{{ home_url }}/category/news/" class="NewsTickerTitle">اخبار تحولات منطقه</a>
 
                     <div class=" newsTicker owl-carousel" style="margin-top: 36px;margin-right: 14px;max-width: 421px;float: right;" >
-
-                        <?php
-                        $args = array(
-                            'post_status' => 'publish',
-                            'post_type' => 'post',
-                            'cat' => 734,
-                        );
-                            // The Query
-                            $the_query = new WP_Query( $args );
-
-                            if ( $the_query->have_posts() ) {
-                                while ( $the_query->have_posts() ) {
-                                    $the_query->the_post(); ?>
-                                    <a href="<?php the_permalink(); ?>">
-                                      <h4 class="row white-space"><?php the_title(); ?></h4>
-                                    </a>
-                                <?php
-                                }
-                                /* Restore original Post Data */
-                                wp_reset_postdata();
-                            } else {
-                                // no posts found
-                            }
+                        while ( $the_query->have_posts() ) {
+                            $the_query->the_post(); ?>
+                            <a href="<?php the_permalink(); ?>">
+                              <h4 class="row white-space"><?php the_title(); ?></h4>
+                            </a>
+                        }
                         ?>
                     </div>
                 </div><!--end newsTickerContainer-->
@@ -157,7 +139,7 @@
     </header>
 <main class="row">
 
-    {% block Content %}{% endblock Content %}
+    {% block content %}{% endblock content %}
 
 </main>
 
