@@ -75,18 +75,19 @@ class OTPValidate(TemplateView):
 
 
 class MadadJooHa(TemplateView):
-    def get(self, request, **kwargs):
-        # chat_id = kwargs.get("chat_id")
-        all_course = account.models.MadadJoo.objects.order_by("CreatedDate")
-
-        if not self.request.user.is_authenticated:
-            return HttpResponseRedirect('../../')
-
-        context = {
-            'Cource': all_course,
-        }
-
-        return render(request, 'course.html', context)
+    pass
+    # def get(self, request, **kwargs):
+    #     # chat_id = kwargs.get("chat_id")
+    #     all_course = account.models.MadadJoo.objects.order_by("CreatedDate")
+    #
+    #     if not self.request.user.is_authenticated:
+    #         return HttpResponseRedirect('../../')
+    #
+    #     context = {
+    #         'Cource': all_course,
+    #     }
+    #
+    #     return render(request, 'course.html', context)
 
 
 def list_madadjooha(request, slug):
