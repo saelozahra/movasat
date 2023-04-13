@@ -26,7 +26,7 @@ class TeacherAdmin(admin.ModelAdmin):
 
     def thumbnail_preview(self, obj):
         return obj.thumbnail_preview
-    thumbnail_preview.short_description = 'تصویر پروژه'
+    thumbnail_preview.short_description = 'تصویر استاد'
     thumbnail_preview.allow_tags = True
 
 

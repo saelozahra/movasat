@@ -11,7 +11,7 @@ from ckeditor.fields import RichTextField
 
 class Teacher(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False, verbose_name="نام استاد")
-    profile = models.ImageField(upload_to='avatar/teacher/', null=False, blank=False, verbose_name="تصویر استاد")
+    profile = models.ImageField(upload_to='files/avatar/teacher/', null=False, blank=False, verbose_name="تصویر استاد")
     birth = jmodels.jDateField(blank=True, verbose_name="تاریخ تولد")
     resume = RichTextField(blank=True, verbose_name="رزومه")
 
@@ -40,7 +40,7 @@ class Course(models.Model):
     title = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام کلاس")
     slug = models.SlugField(unique=True, null=True, blank=False, verbose_name="آدرس کلاس")
     content = RichTextField(null=False, blank=False, verbose_name="خلاصه توضیحات")
-    cover = models.ImageField(upload_to='course/', null=False, blank=False, verbose_name="تصویر کلاس")
+    cover = models.ImageField(upload_to='files/course/', null=False, blank=False, verbose_name="تصویر کلاس")
     ostad = models.ForeignKey(Teacher, null=False, blank=False, on_delete=models.CASCADE, verbose_name="استاد")
     #
     CreatedDate = jmodels.jDateTimeField(auto_now_add=True, verbose_name="زمان ساخت")
