@@ -1,0 +1,15 @@
+{
+  "name": "sahel-font",
+  "homepage": "https://github.com/rastikerdar/sahel-font",
+  "version": "3.4.0",
+  "_release": "3.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.4.0",
+    "commit": "81d1b05a2134e0e00f2162ca02e127f9c200d038"
+  },
+  "_source": "https://github.com/rastikerdar/sahel-font.git",
+  "_target": "^3.4.0",
+  "_originalSource": "sahel-font",
+  "_direct": true
+}

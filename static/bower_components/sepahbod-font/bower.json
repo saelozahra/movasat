@@ -1,0 +1,13 @@
+{
+  "name": "sepahbod-font",
+  "authors": [
+    "saelozahra <saelozahra14@gmail.com>"
+  ],
+  "description": "A Beauty Font For Haj Ghasem Soleimani",
+  "main": "sepahbod.css",
+  "keywords": [
+    "font"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/saelozahra/Sepahbod-font"
+}
