@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>کلاس ها</title>
-</head>
-<body>
-لیست کلاس ها
-{% for c in Cource %}
-    {{ c.title }}<br>
-{% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+    لیست کلاس ها
+    <br>
+    {% for c in Course %}
+        <a href="{{ c.get_absolute_url }}">
+            {{ c.title }}<br>
+        </a>
+    {% endfor %}
+
+{% endblock content %}
