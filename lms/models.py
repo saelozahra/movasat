@@ -1,4 +1,7 @@
+import home
 from django.db import models
+from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from django_jalali.db.models import jDateTimeField
 from django_jalali.db import models as jmodels
@@ -7,14 +10,25 @@ from ckeditor.fields import RichTextField
 
 
 class Teacher(models.Model):
-    name = models.CharField(max_length=200, null=False, blank=False, verbose_name="نام کلاس")
-    profile = models.ImageField(upload_to='avatar/teacher/', null=False, blank=False, verbose_name="تصویر کلاس")
-    birth = models.DateField(null=True, blank=True, verbose_name="تاریخ تولد")
-    resume = RichTextField(null=True, blank=True, verbose_name="رزومه")
+    name = models.CharField(max_length=200, null=False, blank=False, verbose_name="نام استاد")
+    profile = models.ImageField(upload_to='avatar/teacher/', null=False, blank=False, verbose_name="تصویر استاد")
+    birth = jmodels.jDateField(blank=True, verbose_name="تاریخ تولد")
+    resume = RichTextField(blank=True, verbose_name="رزومه")
 
     class Meta:
         verbose_name = "استاد"
         verbose_name_plural = "استاد"
+
+    def __str__(self):
+        return f" استاد {self.name}"
+
+    @property
+    def thumbnail_preview(self):
+        if self.profile:
+            return mark_safe(
+                '<img src="{}" style="object-fit:contain; height:auto; max-height:110px; " width="110" />'.format(
+                    self.profile.url))
+        return ""
 
 
 class Course(models.Model):
@@ -23,7 +37,7 @@ class Course(models.Model):
         ('1', 'یازدهم'),
         ('2', 'دوازدهم'),
     )
-    title = models.CharField(max_length=200, null=False, blank=False, verbose_name="نام کلاس")
+    title = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام کلاس")
     slug = models.SlugField(unique=True, null=True, blank=False, verbose_name="آدرس کلاس")
     content = RichTextField(null=False, blank=False, verbose_name="خلاصه توضیحات")
     cover = models.ImageField(upload_to='course/', null=False, blank=False, verbose_name="تصویر کلاس")
@@ -51,6 +65,10 @@ class Course(models.Model):
 
     def jpublish(self):
         return jDateTimeField(self.CreatedDate)
+
+    def get_absolute_url(self):
+        return f"course/lesson/{self.slug}"
+        # return reverse(f"course/lesson/{self.slug}")
 
 
 class Section(models.Model):
