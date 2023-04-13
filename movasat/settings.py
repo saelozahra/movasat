@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'aghlam',
     'harekat',
     'Cities',
+    'lms',
 ]
 
 MIDDLEWARE = [
