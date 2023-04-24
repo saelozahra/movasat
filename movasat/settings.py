@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'aghlam',
     'harekat',
     'Cities',
+    'Finance',
     'lms',
 ]
 

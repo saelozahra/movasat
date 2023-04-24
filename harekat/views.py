@@ -19,9 +19,9 @@ def harekat_main(request):
     harkat_data = []
     all_harkat = Harekat.objects.all()
     for hrkat in all_harkat:
-        mablaghe_jam_shode = 10000
+        mablaghe_jam_shode = hrkat.TotalAmount
         # @todo: annonate sum
-        print(hrkat.Title, percentage(hrkat.TotalAmount, mablaghe_jam_shode))
+
 
         harkat_data.append({
             'id': hrkat.id,
@@ -29,6 +29,7 @@ def harekat_main(request):
             'Slug': hrkat.Slug,
             'Picture': hrkat.Picture,
             'TotalAmount': hrkat.TotalAmount,
+            'Amount': hrkat.Amount,
             'Description': hrkat.Description,
             'MadadKar': hrkat.MadadKar,
         })
@@ -37,6 +38,9 @@ def harekat_main(request):
 
 
 def harekat_id(request, id):
-    data = Harekat.objects.filter(id=id).get()
-
+    harkatdata = Harekat.objects.filter(id=id).get()
+    data = {
+        "data": harkatdata,
+        "percent_amount": int(percentage(harkatdata.Amount, harkatdata.TotalAmount))
+    }
     return render(request, "harekat_data.html", context={"data": data})
