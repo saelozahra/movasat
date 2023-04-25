@@ -21,7 +21,6 @@ from movasat import settings
 urlpatterns = [
     path('madmin/', admin.site.urls),
     path('', include('home.urls')),
-    path('', include('harekat.urls')),
     path('', include('account.urls')),
     path('', include('lms.urls')),
     path('', include('aghlam.urls')),

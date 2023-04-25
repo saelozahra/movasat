@@ -47,10 +47,10 @@ INSTALLED_APPS = [
     'ckeditor',
     'account',
     'aghlam',
-    'harekat',
     'Cities',
     'Finance',
     'lms',
+    'ReliefOperation',
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class HarekatConfig(AppConfig):
+class ReliefoperationConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'harekat'
+    name = 'ReliefOperation'

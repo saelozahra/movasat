@@ -1,6 +1,5 @@
 from django.db import models
 from account.models import UserDetail
-from harekat.models import Harekat
 
 
 class HarekatPay(models.Model):
@@ -10,7 +9,7 @@ class HarekatPay(models.Model):
         N = 'پرداخت نشده'
         S = 'پرداخت شده'
 
-    harekat = models.ForeignKey(Harekat, on_delete=models.CASCADE, verbose_name="حرکت")
+    # harekat = models.ForeignKey(Harekat, on_delete=models.CASCADE, verbose_name="حرکت")
 
     Purchaser = models.ForeignKey(UserDetail, on_delete=models.CASCADE, verbose_name="خریدار")
 
@@ -31,6 +30,5 @@ class HarekatPay(models.Model):
     def __str__(self):
         return " حرکت " \
             + " : " \
-            + self.harekat.Title + \
-            " تاریخ واریز : " \
+            + " تاریخ واریز : " \
             + self.PurchaseTime
