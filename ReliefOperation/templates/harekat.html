@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>harekaaaaaat</title>
+</head>
+<body>
+{% for hrkt in harkat %}
+    <a href="harekat/{{ hrkt.id }}" style="width: 300px; height: fit-content; background-color: red; border-radius: 22px; padding: 5px; margin: 5px; display: inline-block; text-decoration: none; color: white; text-align: center">
+        <img style="width: 285px; height: 200px; object-fit: cover; border-radius: 22px; margin-top: 10px" src="{{ hrkt.Picture.url }}" alt="hi"/>
+        <div style="padding-inline: 2px">
+            <h3 style="text-align: center">{{ hrkt.Title }}</h3>
+            <div style="width: 280px; height: 30px; border-radius: 25px; border: 1px solid grey;">
+                {{ hrkt.MadadKar.get_GroupType_display }}
+                :
+                <span>{{ hrkt.MadadKar.Name }}</span>
+            </div>
+            <div style="width: 280px; height: 30px; margin-top: 10px; margin-bottom: 10px; border-radius: 25px; border: 1px solid grey;">
+                مبلغ کل
+                :
+                {{ hrkt.Amount }}
+            </div>
+        </div>
+    </a>
+{% endfor %}
+</body>
+</html>

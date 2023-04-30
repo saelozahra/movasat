@@ -47,9 +47,10 @@ INSTALLED_APPS = [
     'ckeditor',
     'account',
     'aghlam',
-    'harekat',
     'Cities',
+    'Finance',
     'lms',
+    'ReliefOperation',
 ]
 
 MIDDLEWARE = [
@@ -96,36 +97,35 @@ DATABASES = {
     }
 }
 
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'mongo',
-    }
-}
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'PGDB',
-            'USER': 'POSTGRESUsr',
-            'PASSWORD': 'passwordRAZ5224',
-            'HOST': 'localhost',
-            'PORT': '5434',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'PGDB',
-            'USER': 'POSTGRESUsr',
-            'PASSWORD': 'passwordRAZ5224',
-            'HOST': 'movasat_postgresql',
-            'PORT': '5432',
-        }
-    }
-'''
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'mongo',
+#     }
+# }
+# if DEBUG:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'PGDB',
+#             'USER': 'POSTGRESUsr',
+#             'PASSWORD': 'passwordRAZ5224',
+#             'HOST': 'localhost',
+#             'PORT': '5434',
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'PGDB',
+#             'USER': 'POSTGRESUsr',
+#             'PASSWORD': 'passwordRAZ5224',
+#             'HOST': 'movasat_postgresql',
+#             'PORT': '5432',
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

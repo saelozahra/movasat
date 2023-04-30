@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>{{ data.data.Title }}</title>
+    <link rel="stylesheet" href="/circle.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div style="display:inline-grid; width: 1420px; height: 700px; background-color: grey; border-radius: 25px; text-align: center">
+    <h1 style="display: inline-block; width: fit-content">{{ data.data.Title }}</h1>
+    <img class="borderfull" style="width: 250px;"  src="{{ data.data.Picture.url }}"/>
+    <h6> {{ data.data.Description }}</h6>
+    <div class="c100 p{{ data.percent_amount }}">
+        <span>{{ data.percent_amount }}%</span>
+        <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
