@@ -22,6 +22,7 @@ class MadadJoo(models.Model):
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام مددجو")
     tel = models.CharField(max_length=11, null=False, blank=False, verbose_name="شماره تماس")
     melli = models.CharField(max_length=10, unique=True, null=False, blank=False, verbose_name="کد ملی")
+    City = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="شهر")
     address = models.CharField(max_length=444, null=False, blank=False, verbose_name="نشانی منزل")
     postalcode = models.CharField(max_length=12, unique=True, null=False, blank=False, verbose_name="کد پستی")
     Location = PlainLocationField(default='29.5,52.5', zoom=4, blank=True, verbose_name='موقعیت مکانی')
