@@ -48,9 +48,8 @@ INSTALLED_APPS = [
     'account',
     'aghlam',
     'Cities',
-    'Finance',
     'lms',
-    'ReliefOperation',
+    'harkat',
 ]
 
 MIDDLEWARE = [

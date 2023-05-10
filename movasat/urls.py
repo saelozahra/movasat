@@ -17,7 +17,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from movasat import settings
-
 urlpatterns = [
     path('madmin/', admin.site.urls),
     path('', include('home.urls')),
@@ -26,9 +25,9 @@ urlpatterns = [
     path('', include('aghlam.urls')),
 ]
 
-# admin.site.site_header = ' آموزشگاه '
-# admin.site.site_title = ' آموزشگاه '
-# admin.site.index_title = 'پنل مدیریت'
+admin.site.site_header = ' پنل مدیریت '
+admin.site.site_title = ' پنل مدیریت '
+admin.site.index_title = 'پنل مدیریت'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
