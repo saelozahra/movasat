@@ -1,6 +1,6 @@
 import home
 from django.db import models
-from django.urls import reverse
+from inline_ordering.models import Orderable
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from django_jalali.db.models import jDateTimeField
@@ -71,23 +71,14 @@ class Course(models.Model):
         # return reverse(f"course/lesson/{self.slug}")
 
 
-class Section(models.Model):
-    Course = models.OneToOneField(Course, on_delete=models.CASCADE, verbose_name="کلاس درس")
-    name = models.CharField(max_length=200, null=False, blank=False, verbose_name="نام بخش")
-
-    class Meta:
-        verbose_name = "فصل درسی"
-        verbose_name_plural = "فصل درسی"
-
-
-class Lesson(models.Model):
-    title = models.CharField(max_length=200, null=False, blank=False, verbose_name="نام کلاس")
-    section = models.ForeignKey(Section, on_delete=models.CASCADE, null=False, blank=False, verbose_name="نام بخش")
+class Lesson(Orderable):
+    title = models.CharField(max_length=200, null=False, blank=False, verbose_name="نام درس")
     content = RichTextField(null=False, blank=False, verbose_name="خلاصه توضیحات")
     CreatedDate = models.DateTimeField(auto_now_add=True, verbose_name="زمان ثبت")
+    Course = models.ForeignKey(Course, null=False, blank=False, on_delete=models.CASCADE, verbose_name="کلاس")
     view_count = models.IntegerField(default=0, editable=False, verbose_name='بازدید ها')
     like_count = models.IntegerField(default=0, editable=False, verbose_name='پسند ها')
 
-    class Meta:
-        verbose_name = "دروس"
-        verbose_name_plural = "دروس"
+    class Meta(Orderable.Meta):
+        verbose_name = "درس"
+        verbose_name_plural = "درس"
