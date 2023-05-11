@@ -28,7 +28,7 @@ class MadadJoo(models.Model):
     Location = PlainLocationField(default='29.5,52.5', zoom=4, blank=True, verbose_name='موقعیت مکانی')
     khanevar = models.PositiveIntegerField(default=1, verbose_name="جمعیت خانوار")
     # aghlam = models.ForeignKey(AghlamKomaki, on_delete=models.CASCADE, verbose_name="اقلام کمکی")
-    operator = models.ForeignKey(UserDetail, on_delete=models.CASCADE, verbose_name="اهدا کننده")
+    # operator = models.ForeignKey(UserDetail, on_delete=models.CASCADE, verbose_name="اهدا کننده")
     moarefiNiazmand = models.BooleanField(default=False, verbose_name="معرفی به عنوان نیازمند")
     RegisterDate = jmodels.jDateTimeField(auto_created=True, verbose_name="تاریخ ثبت نام")
     submitbyapp = models.BooleanField(default=True, verbose_name="ثبت شده توسط اپلیکیشن")

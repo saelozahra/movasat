@@ -22,7 +22,8 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('account.urls')),
     path('', include('lms.urls')),
-    path('', include('aghlam.urls')),
+    path('', include('madadyar.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
 admin.site.site_header = ' پنل مدیریت '
