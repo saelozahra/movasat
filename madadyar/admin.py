@@ -1,4 +1,4 @@
-from aghlam.models import AghlamKomaki, Bohran
+from madadyar.models import AghlamKomaki, Bohran
 from django.contrib import admin
 
 # Register your models here.

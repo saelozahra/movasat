@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from madadyar import views
 urlpatterns = [
     # path('auth/otp', views.OTPStart.as_view(), name='OTPStart'),
-    # path('page/<slug>', views.page_view, name='page_view'),
+    path('aghlam/all/', views.AghlamAPI.as_view(), name='AghlamAPI'),
 ]
