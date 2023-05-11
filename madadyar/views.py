@@ -23,3 +23,20 @@ class AghlamAPI(APIView):
             return Response({"data": data}, status=status.HTTP_200_OK)
         except:
             return Response({"status": "error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class BohranAPI(APIView):
+    def get(self, request):
+        try:
+            bohran = Bohran.objects.all()
+            data = []
+            for b in bohran:
+                data.append(
+                    {
+                        "id": b.id,
+                        "name": b.name,
+                    }
+                )
+            return Response({"data": data}, status=status.HTTP_200_OK)
+        except:
+            return Response({"status": "error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
