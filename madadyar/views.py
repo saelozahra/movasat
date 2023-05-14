@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 class AghlamAPI(APIView):
     def get(self, request):
         try:
-            aghlam = AghlamKomaki.objects.all()
+            aghlam = Aghlam.objects.all()
             data = []
             for ghalam in aghlam:
                 data.append(

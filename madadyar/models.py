@@ -11,18 +11,24 @@ class Bohran(models.Model):
         verbose_name = "بحران"
         verbose_name_plural = "بحران"
 
+    def __str__(self):
+        return self.name
 
-class AghlamKomaki(models.Model):
+
+class Aghlam(models.Model):
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام اقلام")
 
     class Meta:
         verbose_name = "اقلام"
         verbose_name_plural = "اقلام"
 
+    def __str__(self):
+        return self.name
+
 
 class JahadActivity(models.Model):
     MadadKar = models.ForeignKey(MadadKar, on_delete=models.CASCADE, verbose_name="مددکار")
-    aghlam = models.ForeignKey(AghlamKomaki, on_delete=models.CASCADE, verbose_name="اقلام")
+    aghlam = models.ForeignKey(Aghlam, on_delete=models.CASCADE, verbose_name="اقلام")
     MadadJoo = models.ForeignKey(MadadJoo, on_delete=models.CASCADE, verbose_name="مددجو")
     Description = models.TextField(verbose_name="توضیحات")
     Amount = models.BigIntegerField(verbose_name="مبلغ")
