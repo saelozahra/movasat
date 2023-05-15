@@ -1,3 +1,4 @@
+import account.models
 from django.db import models
 
 
@@ -14,10 +15,11 @@ class Provinces(models.Model):
 
 class City(models.Model):
     Provinces = models.ForeignKey(Provinces, on_delete=models.CASCADE, verbose_name="استان")
-    Name = models.CharField(max_length=110, verbose_name="نام")
+    Name = models.CharField(max_length=110, verbose_name="نام شهر")
+    Namayande = models.ForeignKey(account.models.UserDetail, on_delete=models.CASCADE, verbose_name="نماینده شهرستان")
 
     class Meta:
-        verbose_name = "شهر"
+        verbose_name = "شهرستان"
         verbose_name_plural = "شهر ها"
 
     def __str__(self):
