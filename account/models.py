@@ -19,6 +19,7 @@ class UserDetail(models.Model):
 
 
 class MadadJoo(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام مددجو")
     tel = models.CharField(max_length=11, null=False, blank=False, verbose_name="شماره تماس")
     melli = models.CharField(max_length=10, unique=True, null=False, blank=False, verbose_name="کد ملی")
@@ -40,6 +41,7 @@ class MadadJoo(models.Model):
 
 
 class MadadKar(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     TYPE_CHOICES = (
         ('j', 'گروه جهادی'),
         ('k', 'موسسه خیریه'),
@@ -66,6 +68,5 @@ class MadadKar(models.Model):
         verbose_name_plural = "مددکار ها"
 
     def __str__(self):
-        return self.Name
-
-
+        name_val = dict(self.TYPE_CHOICES).get(self.GroupType)
+        return f"{name_val}  «{self.Name}»"
