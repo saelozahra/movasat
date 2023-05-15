@@ -51,8 +51,8 @@ class MadadKar(models.Model):
     Name = models.CharField(max_length=110, verbose_name="نام")
     RegisterCode = models.PositiveIntegerField(verbose_name="کد ثبت موسسه",
                     help_text="توجه کنید که تمامی حقوق مربوط به حرکت های ثبتی توسط شما متوجه این موسسه خواهد بود")
-    Cover = models.ImageField(verbose_name="کاور")
-    Avatar = models.ImageField(verbose_name="آواتار")
+    Cover = models.ImageField(upload_to="files/cover/", verbose_name="کاور")
+    Avatar = models.ImageField(upload_to="files/avatar/", verbose_name="آواتار")
     Bio = models.TextField(verbose_name="توضیحات")
     Url = models.URLField(verbose_name="وبسایت", blank=True)
     Number = models.CharField(max_length=11, verbose_name="شماره تلفن")
