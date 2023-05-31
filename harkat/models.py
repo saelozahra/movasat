@@ -39,7 +39,7 @@ class Harkat(models.Model):
     @property
     def total_amount(self):
         result_total_amount = sum([int(item.Amount) for item in Transaction.objects.filter(harkat=self).all()])
-        return f"{result_total_amount:,} تومان"
+        return result_total_amount
 
 
 class Transaction(models.Model):

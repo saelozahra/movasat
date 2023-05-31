@@ -1,12 +1,14 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 from harkat.models import *
+from harkat.views import percentage
 # Register your models here.
 from unfold.admin import ModelAdmin
 
 
 @admin.register(Harkat)
 class HarkatAdmin(ModelAdmin):
-    list_display = ("Title", "Amount", "pool", "MadadKar")
+    list_display = ("Title", "Amount", "pool", "percent", "MadadKar")
     list_editable = ("Amount", )
     # list_display_links = ("Title", "Slug")
     prepopulated_fields = {"Slug": ("Title",)}
@@ -15,9 +17,17 @@ class HarkatAdmin(ModelAdmin):
     )
 
     def pool(self, obj):
-        return obj.total_amount
+        return f"{obj.total_amount:,} تومان"
     pool.allow_tags = True
     pool.short_description = "مبلغ جمع شده"
+
+    @mark_safe
+    def percent(self, obj):
+        percent = percentage(obj.Amount, obj.total_amount)
+        amount = f" {percent}% <div style='width:100%; float:right; height: 10px;background-color: #c084fc;border-radius: 7px;border: 1px solid #581c87;'><span style='background-color:#7e22ce;height: 100%; width:{percent}%; float:left;'></span></div>"
+        return amount
+    pool.allow_tags = True
+    pool.short_description = "درصد تکمیل"
 
     fieldsets = (
         ('اطلاعات حرکت', {
