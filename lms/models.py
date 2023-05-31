@@ -74,6 +74,7 @@ class Course(models.Model):
 class Lesson(Orderable):
     title = models.CharField(max_length=200, null=False, blank=False, verbose_name="نام درس")
     content = RichTextField(null=False, blank=False, verbose_name="خلاصه توضیحات")
+    file = models.FileField(upload_to='files/lesson/', null=False, blank=False, verbose_name="فایل درسی")
     CreatedDate = models.DateTimeField(auto_now_add=True, verbose_name="زمان ثبت")
     Course = models.ForeignKey(Course, null=False, blank=False, on_delete=models.CASCADE, verbose_name="کلاس")
     view_count = models.IntegerField(default=0, editable=False, verbose_name='بازدید ها')
