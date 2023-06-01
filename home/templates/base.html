@@ -135,49 +135,19 @@
     </header>
 <main class="row">
 
-    {% block content %}
-        awdad
-    {% endblock content %}
+    {% block content %}{% endblock content %}
 
 </main>
 
 <footer class="row">
     <div class="container">
-        <div class="fl columns-sixteen hide-xs padding">
-
-            <div class="primary-sidebar widget-area fr columns-two padding" role="complementary">
-                <?php dynamic_sidebar( 'footer1' ); ?>
-            </div><!-- #primary-sidebar -->
-
-            <div class="primary-sidebar widget-area fr columns-two padding" role="complementary">
-                <?php dynamic_sidebar( 'footer2' ); ?>
-            </div><!-- #primary-sidebar -->
-
-            <div class="hadisBox">
-                شادی روح  <span style="color:red;"> شهید </span> سلیمانی ، <b>صلوات</b>
-            </div>
-        </div>
-        <div class="fr columns-fourteen padding">
-            <label class="row widgettitle" style="margin-top: 10px;">مرکز نشر آثار حاج قاسم سلیمانی</label>
-            <div class="row taj">
-				<?php dynamic_sidebar( 'about' ); ?>
-            </div>
-            <br>
-            <nav class="row">
-                <a class="effect-shine" href="https://twitter.com/rahpouyancom" title="twitter"><i class="mdi mdi-twitter"></i></a>
-                <a class="effect-shine" href="https://wa.me/989333546818" title="whatsapp"><i class="mdi mdi-whatsapp"></i></a>
-                <a class="effect-shine" href="https://instagram.com/rahpouyancom" title="instagram"><i class="mdi mdi-instagram"></i></a>
-                <a class="effect-shine" href="https://facebook.com/rahpouyancom" title="facebook"><i class="mdi mdi-facebook"></i></a>
-                <a class="effect-shine" href="https://t.me/rahpouyancom" title="telegram"><i class="mdi mdi-telegram"></i></a>
-                <a class="effect-shine" href="<?php echo home_url('/feed'); ?>" title="rss"><i class="mdi mdi-rss"></i></a>
-            </nav>
-        </div>
-        <hr class="row" style="border: 1px solid #70707033;margin-bottom: 13px;" >
+        <br style="clear:both;">
+        <hr class="row" style="border: 1px solid var(--color-very-light);margin-bottom: 13px;" >
         <div id="footer2" class="row">
             <div class="fr">شادی روح سردار سرافراز اسلام، <span style="color:red;">شهید</span> حاج قاسم سلیمانی <span style="color:darkgreen">صلوات</span></div>
-            <a href="<?php echo home_url('/about'); ?>" class="fl hide-xs"> درباره ما </a>
+            <a href="http://hajghasem.ir/about" class="fl hide-xs"> درباره ما </a>
             <a class="fl hide-xs" style="padding:0 1%;"> | </a>
-            <a href="<?php echo home_url('/contact'); ?>" class="fl hide-xs"> ارسال آثار مرتبط با حاج قاسم</a>
+            <a href="http://hajghasem.ir/contact" class="fl hide-xs"> ارسال آثار مرتبط با حاج قاسم</a>
         </div>
     </div>
 </footer>
@@ -191,8 +161,6 @@
 <script src="/static/bower_components/granim/dist/granim.min.js"></script>
 
 <script src="/static/scripts/script.js"></script>
-
-<?php wp_footer(); ?>
 
 <link rel="stylesheet" href="/static/css/MaterialDesign-Webfont-master/css/materialdesignicons.min.css">
 

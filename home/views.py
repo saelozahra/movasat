@@ -9,6 +9,7 @@ from django.shortcuts import render
 def home_view(request):
 
     context = {
+        'harkat': Harkat.objects.all(),
         'course': Course.objects.all(),
         'statistics': {
             'lms': f"{Course.objects.all().count():,}",

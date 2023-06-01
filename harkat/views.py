@@ -17,32 +17,10 @@ def percentage(kol, jozea):
         return int(jozea) * 100 / int(kol)
 
 
-# def harekat_main(request):
-#     harkat_data = []
-#     all_harkat = Harekat.objects.all()
-#     for hrkat in all_harkat:
-#         mablaghe_jam_shode = hrkat.TotalAmount
-#         # @todo: annonate sum
-#
-#
-#         harkat_data.append({
-#             'id': hrkat.id,
-#             'Title': hrkat.Title,
-#             'Slug': hrkat.Slug,
-#             'Picture': hrkat.Picture,
-#             'TotalAmount': hrkat.TotalAmount,
-#             'Amount': hrkat.Amount,
-#             'Description': hrkat.Description,
-#             'MadadKar': hrkat.MadadKar,
-#         })
-#
-#     return render(request, "harekat.html", context={'harkat': harkat_data})
-
-
-def harkat_single(request, id):
-    harkatdata = Harkat.objects.filter(id=id).get()
+def harkat_single(request, jahadi, slug):
+    harkatdata = Harkat.objects.filter(slug=slug).get()
     data = {
         "data": harkatdata,
         "percent_amount": int(percentage(harkatdata.Amount, harkatdata.TotalAmount))
     }
-    return render(request, "harekat_data.html", context={"data": data})
+    return render(request, "harkat_page.html", context={"data": data})
