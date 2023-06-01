@@ -10,7 +10,6 @@ Text Domain: شادی روح شهدای مدافع حرم و فرمانده شه
 */
 
 @charset "utf-8";
-/*@import url("bower_components/sepahbod-font/sepahbod.css");*/
 @import url(css/stylised.css);
 
 @import url(bower_components/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css);
@@ -32,6 +31,18 @@ Text Domain: شادی روح شهدای مدافع حرم و فرمانده شه
 }
 
 @font-face {
+  font-family: "YekiFaNumBold";
+  src: url("./css/YekiFaNum/YekiFaNum-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "YekiFaNumHeavy";
+  src: url("./css/YekiFaNum/YekiFaNum-Heavy.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
   font-family: "YekiFaNum";
   src: url("./css/YekiFaNum/YekiFaNum-Light.ttf") format("truetype");
   font-weight: light;
@@ -48,12 +59,12 @@ Text Domain: شادی روح شهدای مدافع حرم و فرمانده شه
 *{
 	box-sizing: border-box;
 }
-html,body,form,input,button,textarea,div{
-	font-family: YekiFaNum,sepahbod;
+html,body,form,input,button,textarea,div,h5,h6{
+	font-family: YekiFaNum;
 }
 
-b,strong,h1,h2,h3,h4,h5,h6{
-	font-family: YekiFaNum,sepahbod;
+b,strong,h1,h2,h3,h4{
+	font-family: YekiFaNumHeavy;
 }
 
 
@@ -114,7 +125,7 @@ figure{margin: auto;}
 }
 
 body,input,button,textarea,select,option,pre{
-    font-family: YekiFaNum,sepahbod,vazir;
+    font-family: YekiFaNum, vazir;
 }
 
 html{
@@ -233,7 +244,7 @@ p{margin: 4px auto;}
 
 
 body {
-  font-family: YekiFaNum,sepahbod,vazir;
+  font-family: YekiFaNum,vazir;
   margin: auto;
   text-align: center;
   background-color: #fff;
@@ -335,6 +346,8 @@ body {
 .tal{text-align: left;}
 .tac{text-align: center;}
 .taj{text-align: justify;}
+.tc{ color: var(--color);}
+.bc{ background-color: var(--color);}
 
 
 

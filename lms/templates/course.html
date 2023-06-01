@@ -75,7 +75,7 @@
 
 <br style="clear: both">
 <br style="clear: both">
-<div class="row">
+<div class="row all_course">
     <div class="faraTitle container">
         <div class="title">دوره های آموزشی اشتغال زایی</div>
     </div>
@@ -135,24 +135,44 @@
         background-color: #f8f8f8;
         text-align: right;
         padding: 1px;
-        margin: 1rem;
+        margin: .4rem;
+        width: 100%;
+        overflow: hidden;
     }
     .course_item img {
         width: 100%;
-        max-height: 313px;
+        max-height: 404px;
         object-fit: cover;
+        float: right;
+        border-radius: 4px;
     }
     .course_item .course_text {
         line-height: 2;
-        padding: 12px;
+        padding: 2px 12px 13px;
+        position: relative;
+    }
+    .course_item .course_text::before {
+        width: 118%;
+        position: absolute;
+        content: " ";
+        box-shadow: -17px -30px 32px inset white;
+        height: 60px;
+        left: -5%;
+        top: -60px;
     }
     .course_item .course_foot {
-        text-align: justify;
-    }
-    .course_item .course_foot i {
-        color: var(--color-light);
+        border-top: 1px solid var(--color-very-light);
+        margin: auto;
+        display: flex;
+        padding-top: 4px;
+        font-size: 90%;
     }
     .course_item .course_foot li {
-        display: inline-block;
+        margin: auto;
+        display: inline;
+    }
+    .course_item .course_foot li i {
+        color: var(--color-light);
+        font-size: 133%;
     }
 </style>

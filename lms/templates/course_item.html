@@ -1,12 +1,12 @@
 <a href="{{ c.get_absolute_url }}" title="{{ c.title }}" class="course_item">
     <img src="{{ c.cover.url }}" alt="{{ c.title }}">
-    <div class="course_text">
+    <div class="course_text row">
         <strong><h3> {{ c.title }} </h3></strong>
-        <h6>مدرس: {{ c.ostad }} </h6>
-        <ul class="course_foot">
-            <li><i class="mdi mdi-video-minus-outline"></i>10 هفته</li>
-            <li><i class="mdi mdi-eye-outline"></i>1000 بازدید</li>
-            <li><i class="mdi mdi-folder-heart-outline"></i>250 پسند</li>
-        </ul>
+        <h6><i class="mdi mdi-face-agent tc"></i>مدرس: {{ c.ostad }} </h6>
     </div>
+    <ul class="course_foot container taj">
+        <li><i class="mdi mdi-video-minus-outline"></i>10 هفته</li>
+        <li><i class="mdi mdi-eye-outline"></i>1000 بازدید</li>
+        <li><i class="mdi mdi-folder-heart-outline"></i>250 پسند</li>
+    </ul>
 </a>
