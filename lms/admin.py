@@ -20,7 +20,7 @@ class CourseAdmin(admin.ModelAdmin):
             'description': 'اطلاعات کلاس',
         }),
         ('جزئیات کلاس', {
-            'fields': ('paye', 'day', 'ClassLength', ),
+            'fields': ('day', 'ClassLength', ),
             'description': 'اطلاعات بیشتر و جزئیات کلاس',
             'classes': ('collapse', ),
         }),

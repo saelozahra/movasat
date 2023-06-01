@@ -1,12 +1,158 @@
-{% extends "base.html" %}
-{% block content %}
+<div class="row" id="course_search">
+    <div class="container">
+        <b>جستجو در</b>
+        <br>
+        <small>حرکت‌ها، آموزش‌ها و مشاغل ...</small>
+    </div>
+    <div class="searchBoxWrap container" >
+        <form class="searchBox tr" method="get" action="../search" >
+            <input class="" autocomplete="off" name="q" type="search" placeholder="دنبال چی میگردی؟">
+            <button class="submit"><i class="mdi mdi-layers-search"></i></button>
+        </form>
 
-    لیست کلاس ها
-    <br>
-    {% for c in Course %}
-        <a href="{{ c.get_absolute_url }}">
-            {{ c.title }}<br>
-        </a>
-    {% endfor %}
+    </div>
+    <div class="container site_statistics">
+        <div class="li"><img src="/static/assets/lms/minutes.png" alt=""><h6>{{ statistics.harkat }}</h6> <small>حرکت جهادی</small> </div>
+        <div class="li"><img src="/static/assets/lms/registered.png" alt=""><h6>{{ statistics.lms }}</h6> <small>کلاس آموزشی</small></div>
+        <div class="li"><img src="/static/assets/lms/courses.png" alt=""><h6>{{ statistics.madadyar }}</h6> <small>کار جهادی</small></div>
+    </div>
+</div>
 
-{% endblock content %}
+<style>
+    #course_search {
+        background-image: url('/static/assets/lms/new-mainpage1-min.jpg');
+        margin: 2rem auto;
+        padding: 3rem;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    #course_search .container{
+        color: white;
+        font-size: 202%;
+    }
+
+    #course_search .searchBoxWrap {
+        margin: 3rem auto 2rem;
+    }
+    #course_search input[type="search"] {
+        font-size: 88%;
+        max-width: 62%;
+        width: 888px;
+        border: 0;
+        padding: 8px;
+        border-radius: 3px;
+    }
+    #course_search input[type="search"]:focus {
+        text-indent: 12px;
+    }
+    #course_search button {
+        font-size: 88%;
+        border: 0;
+        background-color: var(--color);
+        color: white;
+        transform: translate(62px, 4px);
+        border-radius: 3px;
+        padding: 12px 17px 5px;
+        cursor: pointer;
+    }
+    #course_search button:hover {
+        background-color: var(--color-dark);
+    }
+
+    .site_statistics {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+    }
+
+    .site_statistics img {
+        height: 72px;
+    }
+
+</style>
+
+
+<br style="clear: both">
+<br style="clear: both">
+<div class="row">
+    <div class="faraTitle container">
+        <div class="title">دوره های آموزشی اشتغال زایی</div>
+    </div>
+    <br style="clear: both">
+    <div class="container four-col">
+        {% for ci in course %}
+            {% include "course_item.html" with c=ci %}
+        {% endfor %}
+        {% for ci in course %}
+            {% include "course_item.html" with c=ci %}
+        {% endfor %}
+        {% for ci in course %}
+            {% include "course_item.html" with c=ci %}
+        {% endfor %}
+        {% for ci in course %}
+            {% include "course_item.html" with c=ci %}
+        {% endfor %}
+        {% for ci in course %}
+            {% include "course_item.html" with c=ci %}
+        {% endfor %}
+        {% for ci in course %}
+            {% include "course_item.html" with c=ci %}
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .faraTitle {
+        border-top: 1px solid var(--color);
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin: 64px auto;
+    }
+    .faraTitle .title {
+        padding: 10px 20px;
+        color: white;
+        font-size: 23px;
+        font-weight: 900;
+        line-height: 36px;
+        background-color: var(--color);
+        margin-top: -28px;
+        border-radius: 3px;
+    }
+    .course_item {
+        border: 2px solid var(--color-light);
+        display: inline-block;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        text-align: right;
+        padding: 1px;
+        margin: 1rem;
+    }
+    .course_item img {
+        width: 100%;
+        max-height: 313px;
+        object-fit: cover;
+    }
+    .course_item .course_text {
+        line-height: 2;
+        padding: 12px;
+    }
+    .course_item .course_foot {
+        text-align: justify;
+    }
+    .course_item .course_foot i {
+        color: var(--color-light);
+    }
+    .course_item .course_foot li {
+        display: inline-block;
+    }
+</style>

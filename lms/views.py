@@ -15,7 +15,7 @@ class CoursePage(TemplateView):
             'Course': all_course,
         }
 
-        return render(request, 'course.html', context)
+        return render(request, 'course_page.html', context)
 
     # def post(self, request, **kwargs):
     #     chat_id = kwargs.get("chat_id")
