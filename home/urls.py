@@ -1,6 +1,6 @@
 from django.urls import path
-from lms import views
+from . import views
 
 urlpatterns = [
-    path(r'', views.CoursePage.as_view(), name="index"),
+    path(r'', views.home_view, name="index"),
 ]

@@ -57,7 +57,7 @@
                 </div>
                 <div class="fl">
 
-                    <a href="../gallery/" class="liveBtn fl hide-xs"> آلبوم تصاویر و دل‌نوشته ها <i class="mdi mdi-18px mdi-television-classic"></i></a>
+                    <a href="{{ home_url }}/gallery/" class="liveBtn fl hide-xs"> آلبوم تصاویر و دل‌نوشته ها <i class="mdi mdi-18px mdi-television-classic"></i></a>
 
                     <nav class="header-social hide-xs fl" style="padding:3px 12px 0 12px;">
                         <a href="https://t.me/Mantaghe_Tahavolat" class="effect-shine" title="Telegram"><i class="mdi mdi-telegram"></i></a>
@@ -80,22 +80,10 @@
             <div class="container">
                 <div class="fr" style="position: relative;z-index: 9;margin-left: 133px;">
                     <a class="logo hide-xs" href="{{ home_url }}">
-                        <?php
-                        $custom_logo_id = get_theme_mod( 'custom_logo' );
-                        $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-
-                        if ( has_custom_logo() ) {
-                            echo '<img class="fr tr" src="' . esc_url($image[0]) . '" alt="' . get_bloginfo( 'name' ) . '">';
-                        } else {
-                            ?>
-                            <img class="fr tr" src="/static/assets/logo.svg#svg_logo" alt="{{ site_name }}">
-                            <?php
-                        }
-                        ?>
-
-                        <div class="fr" style="margin-top: 27px;margin-right: 5px;">
-                            <strong><?php bloginfo('name');?></strong>
-                            <div class="enAddress">HajGhasem.IR</div>
+                        <img class="fr tr" src="/static/assets/logo.svg#svg_logo" alt="{{ site_name }}">
+                        <div class="fr tar" style="margin-top: 27px;margin-right: 5px;">
+                            <strong>سامانه مواسات</strong>
+                            <div class="enAddress">قرارگاه جهادی شهید حاج قاسم سلیمانی</div>
                         </div>
                     </a>
                 </div>
@@ -103,13 +91,15 @@
                     <a href="{{ home_url }}/category/news/" class="NewsTickerTitle">اخبار تحولات منطقه</a>
 
                     <div class=" newsTicker owl-carousel" style="margin-top: 36px;margin-right: 14px;max-width: 421px;float: right;" >
-                        while ( $the_query->have_posts() ) {
-                            $the_query->the_post(); ?>
-                            <a href="<?php the_permalink(); ?>">
-                              <h4 class="row white-space"><?php the_title(); ?></h4>
-                            </a>
-                        }
-                        ?>
+                        <a href="<?php the_permalink(); ?>">
+                          <h4 class="row white-space">سلام</h4>
+                        </a>
+                        <a href="<?php the_permalink(); ?>">
+                          <h4 class="row white-space">سلام</h4>
+                        </a>
+                        <a href="<?php the_permalink(); ?>">
+                          <h4 class="row white-space">سلام</h4>
+                        </a>
                     </div>
                 </div><!--end newsTickerContainer-->
             </div>
@@ -119,7 +109,13 @@
             <div class="NavHeader container tr">
 
                 <div class="fr">
-                    <?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
+                    <ul class="menu">
+                        <li class="menu-item"><a href="https://hajghasem.ir">صفحه اصلی</a></li>
+                        <li class="menu-item"><a href="{{ home_url }}/course">کلاس درس</a></li>
+                        <li class="menu-item"><a href="{{ home_url }}/jahad">حرکت های جهادی</a></li>
+                        <li class="menu-item"><a href="https://hajghasem.ir/category/haj-ghasem">حاج قاسم</a></li>
+                        <li class="menu-item"><a href="https://hajghasem.ir/category/news">اخبار منطقه</a></li>
+                    </ul>
                 </div>
 
                 <div class="fl searchbox hide-xs">
@@ -139,7 +135,9 @@
     </header>
 <main class="row">
 
-    {% block content %}{% endblock content %}
+    {% block content %}
+        awdad
+    {% endblock content %}
 
 </main>
 
