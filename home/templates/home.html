@@ -1,5 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
     {% include "course.html" %}
+    
+    <section id="ghasem_vid" class="row">
+        <video class="simple" onplay="this.volume = 0.05;" autoplay loop src="/static/assets/emad.mp4"></video>
+    </section>
+    <style>
+        #ghasem_vid {
+            height: 500px;
+            margin: 5rem auto 2rem;
+            background-color: var(--color-very-light);
+            border-top: 5px dotted white;
+            border-bottom: 5px dotted white;
+            padding: 3px 0;
+            outline: 5px dotted var(--color-very-light);
+            /* background-image: url("/static/assets/brown-hashor.png"); */
+            position: relative;
+        }
+        #ghasem_vid::after {
+            content: " ";
+            background-image: url("/static/assets/brown-hashor.png");
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+        #ghasem_vid video {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            border-radius: 0;
+            opacity: 0.9;
+        }
+    </style>
     {% include "harkat.html" %}
+    
 {% endblock content %}
