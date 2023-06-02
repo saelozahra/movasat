@@ -22,8 +22,8 @@ class Harkat(models.Model):
     State = models.CharField(choices=StateChoices, default="I", max_length=20, verbose_name="وضعیت")
 
     class Meta:
-        verbose_name = "عملیات های کمک رسانی"
-        verbose_name_plural = "عملیات کمک رسانی"
+        verbose_name = "تامین مالی حرکت"
+        verbose_name_plural = "تامین مالی حرکت"
 
     def __str__(self):
         return f"تامین {self.Amount:,} تومان ، برای {self.Title} توسط {self.MadadKar}"
@@ -34,12 +34,30 @@ class Harkat(models.Model):
         return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse("harkat", kwargs={"slug": self.Slug, "jahadi": self.MadadKar.user.username, })
+        return reverse("harkat_single", kwargs={"slug": self.Slug, "jahadi": self.MadadKar.user.username, })
 
     @property
     def total_amount(self):
         result_total_amount = sum([int(item.Amount) for item in Transaction.objects.filter(harkat=self).all()])
         return result_total_amount
+
+    @property
+    def percent(self):
+        kol = self.Amount
+        jozea = self.total_amount
+        if kol == 0:
+            return 0
+        elif kol == jozea:
+            return 100
+        else:
+            return int(int(jozea) * 100 / int(kol))
+
+    @property
+    def percent_html(self):
+        percent_html = f" <b>{self.percent}% </b> <div class='percent'>" \
+                       f"<span class='its_ok' style=' width:{self.percent}%;'></span>" \
+                       f"</div>"
+        return percent_html
 
 
 class Transaction(models.Model):

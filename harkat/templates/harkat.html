@@ -3,7 +3,7 @@
         <h2 class="title_line"><span class="tc">حرکت‌های جهادی</span></h2>
         <div class="row" >
             <div class="columns-two">
-                <div class="column-105" style="font-size: 122%">
+                <div class="row taj" style="font-size: 122%">
                     <p style="text-align: justify;">حرکت راهکار دیگه‌ی مدد تو زمینه دریافت کمک‌های مالی مبتنی‌بر رویکرد crowdfunding یا تامین مالی جمعی هست اما با این تفاوت که حرکت مختص موارد و پروژه‌های مصداقیه با مبلغ مورد نیاز مشخص هست، پس مبلغ هم خرد میشه و به تعدای سهم تقسیم میشه و اینجا خبری از مبلغ دلخواه نیست، تو حرکت هرکس به تعداد سهم دلخواهش به خیریه کمک میکنه.</p>
                     <p style="text-align: justify;">کارکرد اصلی بازوی حرکت، توسعه‌ی مشارکت مالی مردمی تو به سرانجام رسیدن نیازمندی‌های خیریه از طریق سهم‌بندی مبلغ مورد نیاز و سپردن اون به انبوه مردم برای سهیم شدن هست.</p>
                     <p style="text-align: justify;">پس حرکت‌های بزرگ تبدیل می‌شن به سهم‌های کوچیک تا هر مددرسان، با هر توان مالی توانایی مشارکت رو داشته باشه و همه مردم تو کار خیر شریک باشن، آخه تو مدد یه رسم و قرار داریم، اونم اینکه تو کار خیر، تک خوری ممنوعه...</p>
@@ -29,3 +29,71 @@
         border-left: 1px dashed;
     }
 </style>
+
+
+<br style="clear: both">
+<br style="clear: both">
+<div class="row crowd_funding">
+    <div class="container two-col">
+        {% for hi in harkat %}
+            {% include "harkat_item.html" with h=hi %}
+        {% endfor %}
+        {% for hi in harkat %}
+            {% include "harkat_item.html" with h=hi %}
+        {% endfor %}
+    </div>
+</div>
+
+
+<style>
+.harkat_item {
+	background-color: #f9f9f9;
+	padding: 0.5rem;
+	box-shadow: 0 0 9px #ddd;
+	margin: 1rem auto;
+}
+
+.harkat_item img {
+	float: right;
+	width: 222px;
+	height: 313px;
+	object-fit: cover;
+	border: 2px dashed var(--color-very-light);
+}
+.harkat_item .harkat_left {
+	width: calc(100% - 234px);
+	float: left;
+}
+.harkat_item .harkat_left figcaption {
+	color: var(--color-dark);
+	margin: 7px auto;
+}
+.harkat_item .harkat_left a {
+	color: var(--color-dark);
+	font-weight: bold;
+	margin-bottom: auto;
+}
+.harkat_item .harkat_left .harkat_field_box {
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid var(--color-very-light);
+	padding: 2% 3% 1%;
+	margin: 0.2rem auto;
+	font-size: 118%;
+}
+.harkat_item .harkat_left .percent {
+	width: 88%;
+	float: left;
+	height: 16px;
+	background-color: var(--color-very-light);
+	border-radius: 4px;
+	border: 1px solid var(--color-light);
+}
+.harkat_item .harkat_left .percent .its_ok {
+	background-color: var(--color-light);
+	height: 100%;
+	float: left;
+	background-image: url("/static/assets/loading.gif");
+}
+</style>
+

@@ -1,24 +1,41 @@
-<!DOCTYPE html>
-<html >
-<head>
-    <title>{{ data.data.Title }}</title>
-    <link rel="stylesheet" href="/circle.css">
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-
-<div style="display:inline-grid; width: 1420px; height: 700px; background-color: grey; border-radius: 25px; text-align: center">
-    <h1 style="display: inline-block; width: fit-content">{{ data.data.Title }}</h1>
-    <img class="borderfull" style="width: 250px;"  src="{{ data.data.Picture.url }}"/>
-    <h6> {{ data.data.Description }}</h6>
-    <div class="c100 p{{ data.percent_amount }}">
-        <span>{{ data.percent_amount }}%</span>
-        <div class="slice">
-            <div class="bar"></div>
-            <div class="fill"></div>
-        </div>
+{% load my_filters %}
+<figure class="harkat_item row br4 tooltip" title="{{ h.Description|safe|striptags }}">
+    <img class="img br4" src="{{ h.Picture.url }}"  alt="{{ h.Title }}"/>
+    <div class="harkat_left tar">
+        <a href="{{ h.get_absolute_url }}" title="{{ h.Title }}">
+            <h2>
+                <figcaption class="white-space">{{ h.Title }}</figcaption>
+            </h2>
+        </a>
+        <h6 class="harkat_field_box row br4">
+            <div class="harkat_field_title">
+                <i class="mdi mdi-hand-heart"></i>
+                مددکار:
+            </div>
+            <a href="{{ h.MadadKar.get_absolute_url }}" title="{{ h.MadadKar }}">
+                {{ h.MadadKar }}
+            </a>
+        </h6>
+        <h6 class="harkat_field_box row br4">
+            <div class="harkat_field_title">
+              <i class="mdi mdi-cash-multiple"></i>
+                کل مبلغ مورد نیاز:
+            </div>
+            {{ h.Amount|currency }}
+        </h6>
+        <h6 class="harkat_field_box row br4">
+            <div class="harkat_field_title">
+                <i class="mdi mdi-hand-peace"></i>
+                مبلغ تامین شده:
+            </div>
+            {{ h.total_amount|currency }}
+        </h6>
+        <h6 class="harkat_field_box row br4">
+            {{ h.percent_html|safe }}
+        </h6>
+        <a class="btn br4 btn-default row" href="{{ h.get_absolute_url }}">
+            کمک به تامین این پروژه
+            <i class="mdi mdi-charity"></i>
+        </a>
     </div>
-</div>
-
-</body>
-</html>
+</figure>

@@ -86,7 +86,6 @@ a:hover{color: #000;}
     max-width: 100%;
     border-radius: 3px;
 }
-.br4{border-radius: 4px}
 .hr {
 	background-image: url(./assets/separator.png);
 	border: 0;
@@ -118,6 +117,7 @@ figure{margin: auto;}
 	display: inline-block;
 }
 
+.br4{border-radius: 4px}
 .stylised-play, .stylised-pause {
 	background: transparent radial-gradient(closest-side at 28% 50%, var(--color-light) 0%, var(--color) 100%) 0% 0% no-repeat padding-box;
 	box-shadow: 0px 4px 8px var(--color-dark);
@@ -351,6 +351,7 @@ body {
 .tac{text-align: center;}
 .taj{text-align: justify;}
 .tc{ color: var(--color);}
+.tcd{ color: var(--color-dark);}
 .bc{ background-color: var(--color);}
 
 
