@@ -5,9 +5,24 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django_jalali.db import models as jmodels
 # Create your models here.
+from location_field.models.plain import PlainLocationField
 
 
-class Harkat(models.Model):
+class CrowdCat(models.Model):
+    Title = models.CharField(max_length=202, verbose_name="عنوان دسته بندی")
+
+    class Meta:
+        verbose_name = "دسته بندی"
+        verbose_name_plural = "دسته‌بندی کمک‌ها"
+
+    def __str__(self):
+        return self.Title
+
+    def get_absolute_url(self):
+        return reverse("harkat_cat", kwargs={"cid": self.id, })
+
+
+class CrowdFunding(models.Model):
     StateChoices = (
         ('I', 'در حال جمع آوری کمک'),
         ('E', 'به نتیجه رسیده'),
@@ -17,13 +32,15 @@ class Harkat(models.Model):
     Slug = models.SlugField(unique=True, verbose_name="لینک")
     Picture = models.ImageField(upload_to="files/jahad_activity/", verbose_name="تصویر")
     Description = RichTextField(null=False, blank=False, verbose_name="توضیحات")
+    Location = PlainLocationField(based_fields=['Slug'], zoom=9, blank=True, verbose_name='موقعیت مکانی')
+    Category = models.ForeignKey(CrowdCat, on_delete=models.CASCADE, blank=True, null=True, verbose_name="دسته بندی")
     MadadKar = models.ForeignKey(MadadKar, on_delete=models.CASCADE, verbose_name="مددکار")
     Amount = models.BigIntegerField(verbose_name="کل مبلغ مورد نیاز")
     State = models.CharField(choices=StateChoices, default="I", max_length=20, verbose_name="وضعیت")
 
     class Meta:
-        verbose_name = "تامین مالی حرکت"
-        verbose_name_plural = "تامین مالی حرکت"
+        verbose_name = "تامین مالی حرکت جهادی"
+        verbose_name_plural = "تامین مالی حرکت جهادی"
 
     def __str__(self):
         return f"تامین {self.Amount:,} تومان ، برای {self.Title} توسط {self.MadadKar}"
@@ -67,7 +84,7 @@ class Transaction(models.Model):
         ('S', 'پرداخت شده'),
     )
 
-    harkat = models.ForeignKey(Harkat, on_delete=models.CASCADE, verbose_name="حرکت")
+    harkat = models.ForeignKey(CrowdFunding, on_delete=models.CASCADE, verbose_name="حرکت")
 
     # Purchaser = models.ForeignKey(UserDetail, on_delete=models.CASCADE, verbose_name="خریدار")
 

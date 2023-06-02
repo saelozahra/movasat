@@ -5,7 +5,7 @@ from harkat.models import *
 from unfold.admin import ModelAdmin
 
 
-@admin.register(Harkat)
+@admin.register(CrowdFunding)
 class HarkatAdmin(ModelAdmin):
     list_display = ("Title", "Amount", "pool", "percent", "MadadKar")
     list_editable = ("Amount", )
@@ -31,11 +31,11 @@ class HarkatAdmin(ModelAdmin):
 
     fieldsets = (
         ('اطلاعات حرکت', {
-            'fields': ('Title', 'Slug', 'Picture', 'Description', ),
-            'description': 'اطلاعات کلاس',
+            'fields': ('Title', 'Slug', 'Category', 'Picture', 'Description', ),
+            'description': 'مشخصات پروژه را وارد کنید',
         }),
         ('جزئیات حرکت', {
-            'fields': ('MadadKar', 'Amount', 'State', ),
+            'fields': ('MadadKar', 'Location', 'Amount', 'State', ),
             'description': 'اطلاعات بیشتر و جزئیات حرکت',
             # 'classes': ('collapse', ),
         }),
@@ -43,3 +43,4 @@ class HarkatAdmin(ModelAdmin):
 
 
 admin.site.register(Transaction)
+admin.site.register(CrowdCat)
