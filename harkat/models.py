@@ -4,8 +4,8 @@ from account.models import MadadKar, UserDetail
 from django.urls import reverse
 from django.utils.text import slugify
 from django_jalali.db import models as jmodels
-# Create your models here.
 from location_field.models.plain import PlainLocationField
+# Create your models here.
 
 
 class CrowdCat(models.Model):

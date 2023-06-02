@@ -11,5 +11,5 @@ def harkat_page(request):
 
 
 def harkat_single(request, jahadi, slug):
-    data = CrowdFunding.objects.filter(slug=slug).get()
-    return render(request, "harkat_item.html", context={"harkat": data})
+    data = CrowdFunding.objects.filter(Slug=slug).get()
+    return render(request, "harkat_item.html", context={"h": data})

@@ -7,7 +7,13 @@ register = template.Library()
 @mark_safe
 def currency(dollars):
     # dollars = round(float(dollars), 2)
-    return f"<b>{dollars:,}</b> تومان"
+    print("dollars>", dollars)
+
+    try:
+        dollars = float(dollars)
+        return f"<b>{dollars:,}</b> تومان"
+    except ValueError:
+        return f"<b>{dollars}</b> تومان"
 
 
 register.filter('currency', currency)
