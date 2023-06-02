@@ -21,6 +21,11 @@ class CrowdCat(models.Model):
     def get_absolute_url(self):
         return reverse("harkat_cat", kwargs={"cid": self.id, })
 
+    @property
+    def statistics(self):
+        result_total_count = CrowdFunding.objects.filter(Category_id=self.id).count()
+        return result_total_count
+
 
 class CrowdFunding(models.Model):
     StateChoices = (
