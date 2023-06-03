@@ -70,7 +70,7 @@
                     <hr>
                     <hr style="transform: rotate(180deg);margin-top: -10px;">
                     {% for tr in t %}
-                        <li class="tooltip tr" title="{{ tr }}">
+                        <li class="tooltip tr" title="{{ tr }}" id="pay{{ tr.id }}">
                             <h5>{{ tr.id }}</h5>
                             <h5>{{ tr.Purchaser }}</h5>
                             <h5>{{ tr.Amount|currency }}</h5>
@@ -83,4 +83,10 @@
 
         </div>
     </div>
+
+    {% if "payment=success" in request.get_full_path %}
+        <script>
+            alert("پرداخت با موفقیت انجام شد");
+        </script>
+    {% endif %}
 {% endblock content %}

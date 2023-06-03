@@ -54,7 +54,7 @@ def send_pay_request(request):
         "Amount": mablagh,
         "Description": f"{Desc}   {new_tr}",
         "Phone": ptel,
-        "CallbackURL": f'{settings.HOMEURL}/harkat/pardakht/{new_tr.id}',
+        "CallbackURL": f'{settings.HOMEURL}/harkat/pardakht/verify/{new_tr.id}',
     }
     data = json.dumps(data)
     # set content length by data
@@ -71,7 +71,6 @@ def send_pay_request(request):
                 return JsonResponse({'status': False, 'code': str(json_response['Status'])})
         return JsonResponse(response)
 
-
     except requests.exceptions.Timeout:
         return {'status': False, 'code': 'timeout'}
     except requests.exceptions.ConnectionError:
@@ -79,21 +78,33 @@ def send_pay_request(request):
 
 
 def verify(authority, tid):
+
     tr = Transaction.objects.filter(id=tid).get()
+
+    query_params = authority.GET.copy()
+    authority_value = query_params.get('Authority', '')
+
+
     data = {
         "MerchantID": settings.MERCHANT,
         "Amount": tr.Amount,
-        "Authority": authority,
+        "Authority": authority_value,
     }
     data = json.dumps(data)
-    # set content length by data
     headers = {'content-type': 'application/json', 'content-length': str(len(data))}
     response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
 
     if response.status_code == 200:
-        response = response.json()
-        if response['Status'] == 100:
-            return {'status': True, 'RefID': response['RefID']}
+        response_json = response.json()
+        if response_json['Status'] == 100:
+            Transaction.objects.filter(id=tid).update(
+                Status="S",
+                PurchaseID=authority_value,
+            )
         else:
-            return {'status': False, 'code': str(response['Status'])}
-    return response
+            Transaction.objects.filter(id=tid).update(
+                Status="X",
+                PurchaseID=authority_value,
+            )
+    return redirect(f"{tr.harkat.get_absolute_url()}?payment=success#pay{tr.id}")
+

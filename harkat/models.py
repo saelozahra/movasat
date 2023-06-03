@@ -90,9 +90,9 @@ class CrowdFunding(models.Model):
 
 class Transaction(models.Model):
     StatusChoices = (
-        ('X', 'نا موفق'),
-        ('N', 'پرداخت نشده'),
-        ('S', 'پرداخت شده'),
+        ('X', 'نا موفق 🚫'),
+        ('N', 'پرداخت نشده 🔄'),
+        ('S', 'پرداخت شده ✅'),
     )
 
     harkat = models.ForeignKey(CrowdFunding, on_delete=models.CASCADE, verbose_name="حرکت")
