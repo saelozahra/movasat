@@ -27,7 +27,7 @@ def currency(dollars):
             '</svg>'
     try:
         dollar = int(dollars)
-        return f"<b>{dollar:,}</b> {toman}"
+        return f"<b class='tcd'>{dollar:,}</b> {toman}"
     except ValueError:
         return f"<b>{dollars}</b> {toman}"
 
