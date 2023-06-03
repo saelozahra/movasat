@@ -99,7 +99,7 @@ class Transaction(models.Model):
 
     PurchaserIP = models.CharField(max_length=16, editable=False, verbose_name="آیپی خریدار")
 
-    PurchaseID = models.CharField(max_length=202, verbose_name="شناسه واریز")
+    PurchaseID = models.CharField(unique=True, max_length=202, verbose_name="شناسه واریز")
 
     PurchaseTime = jmodels.jDateTimeField(auto_now_add=True, verbose_name="تاریخ واریز")
 
@@ -110,6 +110,11 @@ class Transaction(models.Model):
     class Meta:
         verbose_name = "مشارکت"
         verbose_name_plural = "مشارکت"
+
+    @property
+    def status_name(self):
+        name_val = dict(self.StatusChoices).get(self.Status)
+        return name_val
 
     def __str__(self):
         return f"واریز {self.Amount} « برای {self.harkat}»"

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load saelozahra_tag %}
+{% block content %}
+    <div class="row all_course single">
+        <br style="clear: both">
+        <div class="container ">
+            {% include "harkat_item.html" %}
+
+            <div class="harkat_desc row br4 taj">
+                {{ h.Description|safe }}
+{#                <img class="img br4 fl" src="{{ h.Picture.url }}"  alt="{{ h.Title }}"/>#}
+            </div>
+
+        </div>
+    </div>
+{% endblock content %}

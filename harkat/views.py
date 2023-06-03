@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from harkat.models import CrowdFunding
+from harkat.models import CrowdFunding, Transaction
 
 # Create your views here.
 
@@ -11,5 +11,5 @@ def harkat_page(request):
 
 
 def harkat_single(request, jahadi, slug):
-    data = CrowdFunding.objects.filter(Slug=slug).get()
-    return render(request, "harkat_item.html", context={"h": data})
+    cf = CrowdFunding.objects.filter(Slug=slug).get()
+    return render(request, "harkat_single.html", context={"h": cf, "t": tr, })

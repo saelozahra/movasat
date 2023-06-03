@@ -2277,11 +2277,17 @@ figure.content{
 
 
 
-.harkat_item {
+.harkat_item, .harkat_desc {
 	background-color: #f9f9f9;
 	padding: 0.5rem;
 	box-shadow: 0 0 9px #ddd;
 	margin: 1rem auto;
+}
+
+.harkat_desc.taj {
+	font-size: 162%;
+	padding: 2rem;
+	line-height: 2;
 }
 
 .harkat_item img {
@@ -2291,9 +2297,16 @@ figure.content{
 	object-fit: cover;
 	border: 2px dashed var(--color-very-light);
 }
+.single .harkat_item img {
+	width: 444px;
+	height: auto;
+}
 .harkat_item .harkat_left {
 	width: calc(100% - 234px);
 	float: left;
+}
+.single .harkat_item .harkat_left {
+	width: calc(100% - 456px);
 }
 .harkat_item .harkat_left figcaption {
 	color: var(--color-dark);
@@ -2311,6 +2324,12 @@ figure.content{
 	padding: 2% 3% 1%;
 	margin: 0.2rem auto;
 	font-size: 118%;
+}
+.harkat_item .harkat_left .harkat_field_box.show_single {
+	display: none;
+}
+.single .harkat_item .harkat_left .harkat_field_box.show_single {
+	display: flex;
 }
 .harkat_item .harkat_left .percent {
 	width: 88%;
@@ -2333,16 +2352,38 @@ figure.content{
 .harkat_item .harkat_left .btn_percent {
 	position: absolute;
 	right: -2%;
-	top: -15%;
-	height: 140%;
+	top: -25%;
+	height: 202%;
 	background-color: var(--color);
 	z-index: 0;
 	opacity: 0.2;
 	transform: rotate(4deg);
 }
 
+.harkat_desc hr {
+	width: 95%;
+	margin-right: 0;
+	margin-left: 0;
+	background-image: url("/static/assets/loading.gif");
+	color: transparent;
+    filter: blur(1px) sepia(1);
+}
+.harkat_desc ol li, .harkat_desc ol .head {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 5px;
+	margin: 5px auto;
+}
+.harkat_desc ol li:hover{
+	background-color: var(--color-very-light);
+}
 
-
+.harkat_desc ol h3, .harkat_desc ol h5 {
+	text-align: center;
+	margin: 0.5rem 0.3rem;
+	width: 100%;
+	font-size: 110%;
+}
 
 
 /*End Harkat*/

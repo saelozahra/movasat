@@ -30,6 +30,13 @@
             </div>
             {{ h.total_amount|currency }}
         </h6>
+        <a href="{{ h.Category.get_absolute_url }}" class="harkat_field_box row br4 show_single">
+            <div class="harkat_field_title">
+                <i class="mdi mdi-folder-heart"></i>
+                دسته بندی:
+            </div>
+            {{ h.Category }}
+        </a>
         <h6 class="harkat_field_box row br4">
             {{ h.percent_html|safe }}
         </h6>
