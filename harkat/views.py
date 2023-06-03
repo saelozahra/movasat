@@ -80,3 +80,24 @@ def send_pay_request(request):
         return {'status': False, 'code': 'timeout'}
     except requests.exceptions.ConnectionError:
         return {'status': False, 'code': 'connection error'}
+
+
+def verify(authority, tid):
+    tr = Transaction.objects.filter(id=tid).get()
+    data = {
+        "MerchantID": settings.MERCHANT,
+        "Amount": tr.Amount,
+        "Authority": authority,
+    }
+    data = json.dumps(data)
+    # set content length by data
+    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
+    response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
+
+    if response.status_code == 200:
+        response = response.json()
+        if response['Status'] == 100:
+            return {'status': True, 'RefID': response['RefID']}
+        else:
+            return {'status': False, 'code': str(response['Status'])}
+    return response
