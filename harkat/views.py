@@ -2,17 +2,13 @@ from django.shortcuts import render
 from harkat.models import CrowdFunding, Transaction
 from django.conf import settings
 import json
+from django.http import JsonResponse
+from django.shortcuts import redirect
 import requests
 
-# ? sandbox merchant
-if settings.SANDBOX:
-    sandbox = 'sandbox'
-else:
-    sandbox = 'www'
-
-ZP_API_REQUEST = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
-ZP_API_VERIFY = f"https://{sandbox}.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
-ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
+ZP_API_REQUEST = f"https://www.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
+ZP_API_VERIFY = f"https://www.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
+ZP_API_STARTPAY = f"https://www.zarinpal.com/pg/StartPay/"
 
 
 # Create your views here.
@@ -39,22 +35,26 @@ def harkat_single(request, jahadi, slug):
 
 def send_pay_request(request):
     Desc = request.POST['description']
+    mablagh = request.POST['amount']
+    hid = request.POST['hid']
+    pname = request.POST['name']
+    ptel = request.POST['tel']
     new_tr = Transaction.objects.create(
-        harkat_id=request.POST['hid'],
-        Purchaser=request.POST['name'],
-        PurchaserTel=request.POST['tel'],
+        harkat_id=hid,
+        Purchaser=pname,
+        PurchaserTel=ptel,
         PurchaserIP=get_client_ip(request),
         Description=Desc,
-        Amount=request.POST['amount'],
+        Amount=mablagh,
         Status="N",
     )
-
+    print(f'{settings.HOMEURL}/verify/{new_tr.id}    {mablagh}')
     data = {
         "MerchantID": settings.MERCHANT,
-        "Amount": request.POST['amount'],
+        "Amount": mablagh,
         "Description": f"{Desc}   {new_tr}",
-        "Phone": request.POST['tel'],
-        "CallbackURL": f'{settings.HOMEURL}/verify/{new_tr.id}',
+        "Phone": ptel,
+        "CallbackURL": f'{settings.HOMEURL}/harkat/pardakht/{new_tr.id}',
     }
     data = json.dumps(data)
     # set content length by data
@@ -62,19 +62,15 @@ def send_pay_request(request):
     try:
         response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
 
-        print(response.status_code)
         if response.status_code == 200:
-            print(2)
-            response = response.json()
-            if response['Status'] == 100:
-                print(3)
-                return {'status': True, 'url': ZP_API_STARTPAY + str(response['Authority']),
-                        'authority': response['Authority']}
+            json_response = response.json()
+            if json_response['Status'] == 100:
+                redirect_url = ZP_API_STARTPAY + str(json_response['Authority'])
+                return redirect(redirect_url)
             else:
-                print(4)
-                return {'status': False, 'code': str(response['Status'])}
-        print(5)
-        return response
+                return JsonResponse({'status': False, 'code': str(json_response['Status'])})
+        return JsonResponse(response)
+
 
     except requests.exceptions.Timeout:
         return {'status': False, 'code': 'timeout'}

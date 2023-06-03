@@ -36,7 +36,7 @@
                                 <div class="row padding">
                                     <label class="row br">
                                         <i class="mdi mdi-tag-heart"></i>
-                                        <input type="number" required name="amount" placeholder="مبلغ واریز" max="{{ h.Amount|subtract:h.total_amount }}">
+                                        <input type="number" required name="amount" placeholder="مبلغ واریز" min="1000" max="{{ h.Amount|subtract:h.total_amount }}">
                                     </label>
                                 </div>
                             </div>

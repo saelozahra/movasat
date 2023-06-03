@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ["*"]
 
 HOMEURL = "http://jahadi.hajghasem.ir"
 MERCHANT = "952e3a82-85fe-11ea-8257-000c295eb8fc"
-SANDBOX = False
 
 # Application definition
 
