@@ -2105,7 +2105,37 @@ figure.content{
 
 
 
-/*start LMS*/
+/*start ghasem_vid*/
+/*start ghasem_vid*/
+
+#ghasem_vid {
+    height: 720px;
+    margin: 5rem auto 2rem;
+    background-color: var(--color-very-light);
+    border-top: 5px dotted white;
+    border-bottom: 5px dotted white;
+    padding: 3px 0;
+    outline: 5px dotted var(--color-very-light);
+    /* background-image: url("/static/assets/brown-hashor.png"); */
+    position: relative;
+}
+#ghasem_vid::after {
+    content: " ";
+    background-image: url("/static/assets/brown-hashor.png");
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+#ghasem_vid video {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    opacity: 0.9;
+}
+/*end ghasem_vid*/
 /*start LMS*/
 /*start LMS*/
 
@@ -2368,12 +2398,46 @@ figure.content{
 	color: transparent;
     filter: blur(1px) sepia(1);
 }
-.harkat_desc ol li, .harkat_desc ol .head {
+.harkat_desc ol li, .harkat_desc ol .head, .harkat_desc form {
 	display: flex;
 	justify-content: space-between;
 	padding-top: 5px;
 	margin: 5px auto;
 }
+.harkat_desc form {
+	padding: 2rem 0;
+	width: 94%;
+	margin-right: 0;
+}
+
+.harkat_desc form label {
+	border: 1px solid var(--color-light);
+	background-color: white;
+}
+.harkat_desc form label input, .harkat_desc form label textarea {
+	border: none;
+	outline: none;
+	background-color: transparent;
+	padding: 12px 0;
+	float: right;
+	text-align: right;
+	width: 88%;
+}
+.harkat_desc form label textarea {
+	width: 100%;
+	height: 100px;
+	margin-top: -30px;
+	text-indent: 44px;
+}
+.harkat_desc form label i {
+	color: var(--color-dark);
+	float: right;
+	margin-top: 10px;
+	margin-right: 7px;
+	width: 30px;
+}
+
+
 .harkat_desc ol li:hover{
 	background-color: var(--color-very-light);
 }

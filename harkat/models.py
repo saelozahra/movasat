@@ -9,10 +9,10 @@ from location_field.models.plain import PlainLocationField
 
 
 class CrowdCat(models.Model):
-    Title = models.CharField(max_length=202, verbose_name="عنوان دسته بندی")
+    Title = models.CharField(max_length=202, verbose_name="عنوان دسته‌بندی")
 
     class Meta:
-        verbose_name = "دسته بندی"
+        verbose_name = "دسته‌بندی"
         verbose_name_plural = "دسته‌بندی کمک‌ها"
 
     def __str__(self):
@@ -60,7 +60,9 @@ class CrowdFunding(models.Model):
 
     @property
     def total_amount(self):
-        result_total_amount = sum([int(item.Amount) for item in Transaction.objects.filter(harkat=self).all()])
+        result_total_amount = sum(
+            [int(item.Amount) for item in Transaction.objects.filter(harkat=self, Status="S").all()]
+        )
         return result_total_amount
 
     @property
@@ -72,7 +74,11 @@ class CrowdFunding(models.Model):
         elif kol == jozea:
             return 100
         else:
-            return int(int(jozea) * 100 / int(kol))
+            value = int(int(jozea) * 100 / int(kol))
+            if value < 101:
+                return value
+            else:
+                return 100
 
     @property
     def percent_html(self):
@@ -99,11 +105,13 @@ class Transaction(models.Model):
 
     PurchaserIP = models.CharField(max_length=16, editable=False, verbose_name="آیپی خریدار")
 
-    PurchaseID = models.CharField(unique=True, max_length=202, verbose_name="شناسه واریز")
+    PurchaseID = models.CharField(blank=True, max_length=202, verbose_name="شناسه واریز")
 
     PurchaseTime = jmodels.jDateTimeField(auto_now_add=True, verbose_name="تاریخ واریز")
 
-    Amount = models.CharField(max_length=200, verbose_name="مبلغ")
+    Amount = models.CharField(max_length=202, verbose_name="مبلغ")
+
+    Description = models.TextField(blank=True, verbose_name="توضیحات")
 
     Status = models.CharField(max_length=33, choices=StatusChoices, verbose_name="وضعیت")
 
