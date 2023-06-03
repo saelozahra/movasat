@@ -35,3 +35,48 @@ def harkat_single(request, jahadi, slug):
     cf = CrowdFunding.objects.filter(Slug=slug).get()
     tr = Transaction.objects.filter(harkat__Slug=slug).all()
     return render(request, "harkat_single.html", context={"h": cf, "t": tr, })
+
+
+def send_pay_request(request):
+    Desc = request.POST['description']
+    new_tr = Transaction.objects.create(
+        harkat_id=request.POST['hid'],
+        Purchaser=request.POST['name'],
+        PurchaserTel=request.POST['tel'],
+        PurchaserIP=get_client_ip(request),
+        Description=Desc,
+        Amount=request.POST['amount'],
+        Status="N",
+    )
+
+    data = {
+        "MerchantID": settings.MERCHANT,
+        "Amount": request.POST['amount'],
+        "Description": f"{Desc}   {new_tr}",
+        "Phone": request.POST['tel'],
+        "CallbackURL": f'{settings.HOMEURL}/verify/{new_tr.id}',
+    }
+    data = json.dumps(data)
+    # set content length by data
+    headers = {'content-type': 'application/json', 'content-length': str(len(data))}
+    try:
+        response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
+
+        print(response.status_code)
+        if response.status_code == 200:
+            print(2)
+            response = response.json()
+            if response['Status'] == 100:
+                print(3)
+                return {'status': True, 'url': ZP_API_STARTPAY + str(response['Authority']),
+                        'authority': response['Authority']}
+            else:
+                print(4)
+                return {'status': False, 'code': str(response['Status'])}
+        print(5)
+        return response
+
+    except requests.exceptions.Timeout:
+        return {'status': False, 'code': 'timeout'}
+    except requests.exceptions.ConnectionError:
+        return {'status': False, 'code': 'connection error'}
