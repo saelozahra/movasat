@@ -1,4 +1,4 @@
-from harkat.models import Harkat
+from harkat.models import CrowdFunding
 from lms.models import Course
 from madadyar.models import JahadActivity
 from django.shortcuts import render
@@ -9,11 +9,11 @@ from django.shortcuts import render
 def home_view(request):
 
     context = {
-        'harkat': Harkat.objects.all(),
+        'harkat': CrowdFunding.objects.all(),
         'course': Course.objects.all(),
         'statistics': {
             'lms': f"{Course.objects.all().count():,}",
-            'harkat': f"{Harkat.objects.all().count():,}",
+            'harkat': f"{CrowdFunding.objects.all().count():,}",
             'madadyar': f"{JahadActivity.objects.all().count():,}",
         },
     }

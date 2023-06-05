@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load saelozahra_tag %}
+{% block content %}
+    <div class="row all_course single">
+        <br style="clear: both">
+        <div class="container ">
+            {% include "harkat_item.html" %}
+
+            <div class="harkat_desc row br4 taj">
+                {{ h.Description|safe }}
+{#                <img class="img br4 fl" src="{{ h.Picture.url }}"  alt="{{ h.Title }}"/>#}
+            </div>
+
+            <div class="harkat_desc row br4">
+                <br style="clear: both;">
+                <br style="clear: both;">
+                <div class="row">
+                    <div class="container">
+                        <h2 class="title_line"><span class="tc" style="background-color: #f9f9f9">مشارکت در این جهاد</span></h2>
+                        <form method="post" class="row" action="/harkat/pardakht/">
+                            {% csrf_token %}
+                            <input type="hidden" name="hid" value="{{ h.id }}">
+                            <div class="columns-two">
+                                <div class="row padding">
+                                    <label class="row br">
+                                        <i class="mdi mdi-account-heart"></i>
+                                        <input name="name" type="text" placeholder="نام خود را وارد کنید">
+                                    </label>
+                                </div>
+                                <div class="row padding">
+                                    <label class="row br">
+                                        <i class="mdi mdi-hand-heart"></i>
+                                        <input name="tel" required type="tel" placeholder="شماره تماس خود را وارد کنید">
+                                    </label>
+                                </div>
+                                <div class="row padding">
+                                    <label class="row br">
+                                        <i class="mdi mdi-tag-heart"></i>
+                                        <input type="number" required name="amount" placeholder="مبلغ واریز" min="1000" max="{{ h.Amount|subtract:h.total_amount }}">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="columns-two">
+                                <div class="row padding">
+                                    <label class="row br">
+                                        <i class="mdi mdi-hand-heart"></i>
+                                        <textarea name="description" class="row" placeholder="پیامتون برای ما چیه؟"></textarea>
+                                    </label>
+                                </div>
+
+                                <button class="btn row br4" style="margin-right: 2%;width: 96%;">
+                                    <i class="mdi mdi-heart-box-outline"></i>
+                                    واریز کن
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="harkat_desc row br4">
+                <ol>
+                    <div class="head tcd" style="position: sticky;top: 30px;background-color: #f9f9f9;">
+                        <h3>شماره</h3>
+                        <h3>واریز کننده</h3>
+                        <h3>مبلغ</h3>
+                        <h3>زمان</h3>
+                        <h3>وضعیت</h3>
+                    </div>
+                    <hr>
+                    <hr style="transform: rotate(180deg);margin-top: -10px;">
+                    {% for tr in t %}
+                        <li class="tooltip tr" title="{{ tr }}" id="pay{{ tr.id }}">
+                            <h5>{{ tr.id }}</h5>
+                            <h5>{{ tr.Purchaser }}</h5>
+                            <h5>{{ tr.Amount|currency }}</h5>
+                            <h5>ساعت  <b class="tcd">{{ tr.PurchaseTime.time }}</b>  روز <b class="tcd">{{ tr.PurchaseTime.date|rplc }}</b></h5>
+                            <h5>{{ tr.status_name }}</h5>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+        </div>
+    </div>
+
+    {% if "payment=success" in request.get_full_path %}
+        <script>
+            alert("پرداخت با موفقیت انجام شد");
+        </script>
+    {% endif %}
+{% endblock content %}

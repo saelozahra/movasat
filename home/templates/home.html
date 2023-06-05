@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
     {% include "course.html" %}
+    
+    <section id="ghasem_vid" class="row">
+        <video class="simple" onplay="this.volume = 0.05;" autoplay loop src="/static/assets/emad.mp4"></video>
+    </section>
     {% include "harkat.html" %}
+    
 {% endblock content %}

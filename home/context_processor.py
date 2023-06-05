@@ -2,6 +2,6 @@
 def site(request):
     context = {
         "site_name": "قرارگاه جهادی شهید حاج قاسم سلیمانی",
-        "home_url": "http://hajghasem.ir",
+        "home_url": "http://jahadi.hajghasem.ir",
     }
     return context

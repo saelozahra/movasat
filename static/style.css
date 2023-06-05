@@ -117,6 +117,7 @@ figure{margin: auto;}
 	display: inline-block;
 }
 
+.br4{border-radius: 4px}
 .stylised-play, .stylised-pause {
 	background: transparent radial-gradient(closest-side at 28% 50%, var(--color-light) 0%, var(--color) 100%) 0% 0% no-repeat padding-box;
 	box-shadow: 0px 4px 8px var(--color-dark);
@@ -350,6 +351,7 @@ body {
 .tac{text-align: center;}
 .taj{text-align: justify;}
 .tc{ color: var(--color);}
+.tcd{ color: var(--color-dark);}
 .bc{ background-color: var(--color);}
 
 
@@ -2094,6 +2096,370 @@ figure.content{
 	width: 100%;
 }
 /*End Archive*/
+
+
+
+
+
+
+
+
+
+/*start ghasem_vid*/
+/*start ghasem_vid*/
+
+#ghasem_vid {
+    height: 720px;
+    margin: 5rem auto 2rem;
+    background-color: var(--color-very-light);
+    border-top: 5px dotted white;
+    border-bottom: 5px dotted white;
+    padding: 3px 0;
+    outline: 5px dotted var(--color-very-light);
+    /* background-image: url("/static/assets/brown-hashor.png"); */
+    position: relative;
+}
+#ghasem_vid::after {
+    content: " ";
+    background-image: url("/static/assets/brown-hashor.png");
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+#ghasem_vid video {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    opacity: 0.9;
+}
+/*end ghasem_vid*/
+/*start LMS*/
+/*start LMS*/
+
+
+
+
+
+
+#course_search {
+    background-image: url('/static/assets/lms/new-mainpage1-min.jpg');
+    margin: 2rem auto;
+    padding: 3rem;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#course_search .container{
+    color: white;
+    font-size: 202%;
+}
+
+#course_search .searchBoxWrap {
+    margin: 3rem auto 2rem;
+}
+#course_search input[type="search"] {
+    font-size: 88%;
+    max-width: 62%;
+    width: 888px;
+    border: 0;
+    padding: 8px;
+    border-radius: 3px;
+}
+#course_search input[type="search"]:focus {
+    text-indent: 12px;
+}
+#course_search button {
+    font-size: 88%;
+    border: 0;
+    background-color: var(--color);
+    color: white;
+    transform: translate(62px, 4px);
+    border-radius: 3px;
+    padding: 12px 17px 5px;
+    cursor: pointer;
+}
+#course_search button:hover {
+    background-color: var(--color-dark);
+}
+
+.site_statistics {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+.site_statistics img {
+    height: 72px;
+}
+
+
+
+
+
+
+
+
+
+.faraTitle {
+    border-top: 1px solid var(--color);
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 64px auto;
+}
+.faraTitle .title {
+    padding: 10px 20px;
+    color: white;
+    font-size: 23px;
+    font-weight: 900;
+    line-height: 36px;
+    background-color: var(--color);
+    margin-top: -28px;
+    border-radius: 3px;
+}
+.course_item {
+    border: 2px solid var(--color-light);
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    text-align: right;
+    padding: 1px;
+    margin: .4rem;
+    width: 100%;
+    overflow: hidden;
+}
+.course_item img {
+    width: 100%;
+    max-height: 404px;
+    object-fit: cover;
+    float: right;
+    border-radius: 4px;
+}
+.course_item .course_text {
+    line-height: 2;
+    padding: 2px 12px 13px;
+    position: relative;
+}
+.course_item .course_text::before {
+    width: 118%;
+    position: absolute;
+    content: " ";
+    box-shadow: -17px -30px 32px inset white;
+    height: 60px;
+    left: -5%;
+    top: -60px;
+}
+.course_item .course_foot {
+    border-top: 1px solid var(--color-very-light);
+    margin: auto;
+    display: flex;
+    padding-top: 4px;
+    font-size: 90%;
+}
+.course_item .course_foot li {
+    margin: auto;
+    display: inline;
+}
+.course_item .course_foot li i {
+    color: var(--color-light);
+    font-size: 133%;
+}
+/*End LMS*/
+/*End LMS*/
+/*End LMS*/
+
+
+
+/*start Harkat*/
+/*start Harkat*/
+/*start Harkat*/
+
+
+.title_line{
+    border-top: 1px solid var(--color-light);
+}
+.title_line .tc{
+    transform: translateY(-20px);
+    display: inline-block;
+    background-color: white;
+    padding: 0px 14px;
+    border-right: 1px dashed;
+    border-left: 1px dashed;
+}
+
+
+
+
+
+
+
+
+
+
+.harkat_item, .harkat_desc {
+	background-color: #f9f9f9;
+	padding: 0.5rem;
+	box-shadow: 0 0 9px #ddd;
+	margin: 1rem auto;
+}
+
+.harkat_desc.taj {
+	font-size: 162%;
+	padding: 2rem;
+	line-height: 2;
+}
+
+.harkat_item img {
+	float: right;
+	width: 222px;
+	height: 313px;
+	object-fit: cover;
+	border: 2px dashed var(--color-very-light);
+}
+.single .harkat_item img {
+	width: 444px;
+	height: auto;
+}
+.harkat_item .harkat_left {
+	width: calc(100% - 234px);
+	float: left;
+}
+.single .harkat_item .harkat_left {
+	width: calc(100% - 456px);
+}
+.harkat_item .harkat_left figcaption {
+	color: var(--color-dark);
+	margin: 7px auto;
+}
+.harkat_item .harkat_left a {
+	color: var(--color-dark);
+	font-weight: bold;
+	margin-bottom: auto;
+}
+.harkat_item .harkat_left .harkat_field_box {
+	display: flex;
+	justify-content: space-between;
+	border: 1px solid var(--color-very-light);
+	padding: 2% 3% 1%;
+	margin: 0.2rem auto;
+	font-size: 118%;
+}
+.harkat_item .harkat_left .harkat_field_box.show_single {
+	display: none;
+}
+.single .harkat_item .harkat_left .harkat_field_box.show_single {
+	display: flex;
+}
+.harkat_item .harkat_left .percent {
+	width: 88%;
+	float: left;
+	height: 24px;
+	background-color: var(--color-very-light);
+	border-radius: 4px;
+	border: 1px solid var(--color-light);
+}
+.harkat_item .harkat_left .percent .its_ok {
+	background-color: var(--color-light);
+	height: 100%;
+	float: left;
+    background-size: 313px;
+	background-image: url("/static/assets/loading.gif");
+}
+.harkat_item .harkat_left .btn {
+	overflow: hidden;
+}
+.harkat_item .harkat_left .btn_percent {
+	position: absolute;
+	right: -2%;
+	top: -25%;
+	height: 202%;
+	background-color: var(--color);
+	z-index: 0;
+	opacity: 0.2;
+	transform: rotate(4deg);
+}
+
+.harkat_desc hr {
+	width: 95%;
+	margin-right: 0;
+	margin-left: 0;
+	background-image: url("/static/assets/loading.gif");
+	color: transparent;
+    filter: blur(1px) sepia(1);
+}
+.harkat_desc ol li, .harkat_desc ol .head, .harkat_desc form {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 5px;
+	margin: 5px auto;
+}
+.harkat_desc form {
+	padding: 2rem 0;
+	width: 94%;
+	margin-right: 0;
+}
+
+.harkat_desc form label {
+	border: 1px solid var(--color-light);
+	background-color: white;
+}
+.harkat_desc form label input, .harkat_desc form label textarea {
+	border: none;
+	outline: none;
+	background-color: transparent;
+	padding: 12px 0;
+	float: right;
+	text-align: right;
+	width: 88%;
+}
+.harkat_desc form label textarea {
+	width: 100%;
+	height: 100px;
+	margin-top: -30px;
+	text-indent: 44px;
+}
+.harkat_desc form label i {
+	color: var(--color-dark);
+	float: right;
+	margin-top: 10px;
+	margin-right: 7px;
+	width: 30px;
+}
+
+
+.harkat_desc ol li:hover{
+	background-color: var(--color-very-light);
+}
+
+.harkat_desc ol h3, .harkat_desc ol h5 {
+	text-align: center;
+	margin: 0.5rem 0.3rem;
+	width: 100%;
+	font-size: 110%;
+}
+
+
+/*End Harkat*/
+/*End Harkat*/
+/*End Harkat*/
+
+
+
+
+
+
+
 /*Start Responsive*/
 
 

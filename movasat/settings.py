@@ -14,6 +14,8 @@ import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import home.context_processor
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -28,6 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+HOMEURL = "http://jahadi.hajghasem.ir"
+MERCHANT = "952e3a82-85fe-11ea-8257-000c295eb8fc"
 
 # Application definition
 
