@@ -3,19 +3,19 @@ from django.contrib.auth.models import User
 from django_jalali.db import models as jmodels
 from location_field.models.plain import PlainLocationField
 from Cities.models import *
-
-
-class UserDetail(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    otp = models.SmallIntegerField(default=0, editable=False)
-    phone = models.CharField(max_length=11, verbose_name="شماره تماس")
-    birth = jmodels.jDateField(blank=True, null=True, verbose_name="تاریخ تولد")
-    father = models.CharField(max_length=110, blank=True, verbose_name="نام پدر")
-    parent_tel = models.CharField(max_length=11, blank=True, verbose_name="شماره تماس والدین")
-
-    class Meta:
-        verbose_name = "اطلاعات کاربری"
-        verbose_name_plural = "اطلاعات کاربری"
+#
+#
+# class UserDetail(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     otp = models.SmallIntegerField(default=0, editable=False)
+#     phone = models.CharField(max_length=11, verbose_name="شماره تماس")
+#     birth = jmodels.jDateField(blank=True, null=True, verbose_name="تاریخ تولد")
+#     father = models.CharField(max_length=110, blank=True, verbose_name="نام پدر")
+#     parent_tel = models.CharField(max_length=11, blank=True, verbose_name="شماره تماس والدین")
+#
+#     class Meta:
+#         verbose_name = "اطلاعات کاربری"
+#         verbose_name_plural = "اطلاعات کاربری"
 
 
 class MadadJoo(models.Model):

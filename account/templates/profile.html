@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if model == "j" %}
+    {% elif model == "k" %}
+        {% include "partial/madadkar_profile.html" with data=data %}
+    {% endif %}
+{% endblock content %}

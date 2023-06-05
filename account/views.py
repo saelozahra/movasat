@@ -8,6 +8,10 @@ from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
+
+from account.models import *
+
+
 # Create your views here.
 
 
@@ -97,3 +101,16 @@ def list_madadjooha(request, slug):
         'madadjooha': account.models.MadadJoo.objects.all(),
     }
     return render(request, 'lesson.html', context)
+
+
+def get_profile(request, user):
+    data = []
+    model = ""
+    if MadadJoo.objects.filter(user__username=user).exists():
+        model = "j"
+        data = MadadJoo.objects.filter(user__username=user).get()
+    elif MadadKar.objects.filter(user__username=user).exists():
+        model = "k"
+        data = MadadKar.objects.filter(user__username=user).get()
+
+    return render(request, 'profile.html', context={'data': data, 'model': model})

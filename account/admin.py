@@ -13,20 +13,20 @@ class CustomAdminClass(ModelAdmin):
 
 
 # which acts a bit like a singleton
-class UserDetailInline(admin.StackedInline):
-
-    model = UserDetail
-    can_delete = False
-    verbose_name_plural = 'کاربر'
+# class UserDetailInline(admin.StackedInline):
+#
+#     model = UserDetail
+#     can_delete = False
+#     verbose_name_plural = 'کاربر'
 
 
 # Define a new User admin
-class UserAdmin(BaseUserAdmin):
-    inlines = (UserDetailInline,)
+# class UserAdmin(BaseUserAdmin):
+    # inlines = (UserDetailInline,)
 
 
 # Re-register UserAdmin
-admin.site.register(UserDetail)
+# admin.site.register(UserDetail)
 admin.site.register(MadadKar)
 admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+admin.site.register(User)

@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.db import models
-from account.models import MadadKar, UserDetail
+from account.models import MadadKar
 from django.urls import reverse
 from django.utils.text import slugify
 from django_jalali.db import models as jmodels
