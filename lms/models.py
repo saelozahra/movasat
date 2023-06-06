@@ -34,7 +34,7 @@ class Teacher(models.Model):
 class Course(models.Model):
     title = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام کلاس")
     slug = models.SlugField(unique=True, null=True, blank=False, verbose_name="آدرس کلاس")
-    content = RichTextField(null=False, blank=False, verbose_name="خلاصه توضیحات")
+    content = RichTextField(null=False, blank=False, verbose_name="توضیحات کلاس")
     cover = models.ImageField(upload_to='files/course/%Y/%m/', null=False, blank=False, verbose_name="تصویر کلاس")
     ostad = models.ForeignKey(Teacher, null=False, blank=False, on_delete=models.CASCADE, verbose_name="استاد")
     #
@@ -44,6 +44,10 @@ class Course(models.Model):
     #
     view_count = models.IntegerField(default=0, editable=False, verbose_name='بازدید ها')
     like_count = models.IntegerField(default=0, editable=False, verbose_name='پسند ها')
+
+    @property
+    def lesson_count(self):
+        return Lesson.objects.filter(Course_id=self.id).count()
 
     class Meta:
         verbose_name = "کلاس درس"
