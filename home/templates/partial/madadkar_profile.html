@@ -14,9 +14,36 @@
             <p class="paragraph-light">
                 {{ data.Bio|safe }}
             </p>
+
+            <br style="clear: both">
+            <br style="clear: both">
+            <div class="row crowd_funding">
+                <br style="clear: both">
+                <br style="clear: both">
+                <h2 class="title_line"><span class="tc">حرکت‌های جهادی</span></h2>
+                <br style="clear: both">
+                <br style="clear: both">
+                <br style="clear: both">
+                <br style="clear: both">
+                <div class="container two-col">
+                    {% for hi in harkat %}
+                        {% include "harkat_item.html" with h=hi %}
+                    {% endfor %}
+                </div>
+            </div>
+
+
         </div>
     </div>
-    <div class="divider">
+    <div class="container">
+
+        <br style="clear: both">
+        <br style="clear: both">
+        <h2 class="title_line"><span class="tc">عملکرد گروه جهادی</span></h2>
+        <br style="clear: both">
+        <br style="clear: both">
+        <br style="clear: both">
+
 
     </div>
 </div>
