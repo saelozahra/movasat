@@ -35,7 +35,7 @@ class CrowdFunding(models.Model):
     )
     Title = models.CharField(max_length=110, verbose_name="عنوان حرکت")
     Slug = models.SlugField(unique=True, verbose_name="لینک")
-    Picture = models.ImageField(upload_to="files/jahad_activity/", verbose_name="تصویر")
+    Picture = models.ImageField(upload_to="files/jahad_activity/%Y/%m/", verbose_name="تصویر")
     Description = RichTextField(null=False, blank=False, verbose_name="توضیحات")
     Location = PlainLocationField(based_fields=['Slug'], zoom=9, blank=True, verbose_name='موقعیت مکانی')
     Category = models.ForeignKey(CrowdCat, on_delete=models.CASCADE, blank=True, null=True, verbose_name="دسته بندی")
