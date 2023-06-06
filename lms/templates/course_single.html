@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="columns-four padding" style="padding-right: 0">
+            <div class="row box">
+                <img src="{{ course.ostad.profile.url }}" alt="{{ course.ostad }}">
+                <br style="clear: both">
+            </div>
+        </div>
+        <div class="columns-75 padding" style="padding-left: 0">
+            <div class="row box">
+                {{ course.lesson_count }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -43,4 +43,4 @@ def course_view(request, slug):
     context = {
         'course': lms.models.Course.objects.filter(slug=slug).get(),
     }
-    return render(request, 'lesson.html', context)
+    return render(request, 'course_single.html', context)
