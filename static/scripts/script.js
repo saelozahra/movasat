@@ -265,7 +265,7 @@ jQuery(document).ready(function(){
 	
     
     jQuery(window).scroll(function() {
-        if (jQuery(document).scrollTop() > 700) {
+        if (jQuery(document).scrollTop() > 313) {
             jQuery("header").addClass("fixed");
         } else {
             jQuery("header").removeClass("fixed");
