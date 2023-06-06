@@ -1683,6 +1683,15 @@ figure.content{
 	margin-right: 20px;
 }
 
+.tpd-background{
+    backdrop-filter: blur(10px);
+    background-color: var(--color-very-light) !important;
+}
+.tpd-content{
+    padding: 40px 30px !important;
+    color: #333 !important;
+}
+
 .CopyTooltip {
 	position: relative;
 	display: inline-block;
