@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django_jalali.db import models as jmodels
 from location_field.models.plain import PlainLocationField
 from Cities.models import *
@@ -70,3 +71,6 @@ class MadadKar(models.Model):
     def __str__(self):
         name_val = dict(self.TYPE_CHOICES).get(self.GroupType)
         return f"{name_val}  «{self.Name}»"
+
+    def get_absolute_url(self):
+        return reverse("get_profile", kwargs={"user": self.user.username, })

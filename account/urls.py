@@ -5,5 +5,5 @@ urlpatterns = [
     path('auth/otp/validate', OTPValidate.as_view(), name='OTPValidate'),
     # path(r'', views.MainPage.as_view(), name="index"),
     # path('page/<slug>', views.page_view, name='page_view'),
-    path('profile/<user>', get_profile)
+    path('profile/<user>', get_profile, name='get_profile')
 ]

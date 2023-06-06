@@ -32,19 +32,13 @@ class Teacher(models.Model):
 
 
 class Course(models.Model):
-    # PayeChoices = (
-    #     ('0', 'دهم'),
-    #     ('1', 'یازدهم'),
-    #     ('2', 'دوازدهم'),
-    # )
     title = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام کلاس")
     slug = models.SlugField(unique=True, null=True, blank=False, verbose_name="آدرس کلاس")
     content = RichTextField(null=False, blank=False, verbose_name="خلاصه توضیحات")
-    cover = models.ImageField(upload_to='files/course/', null=False, blank=False, verbose_name="تصویر کلاس")
+    cover = models.ImageField(upload_to='files/course/%Y/%m/', null=False, blank=False, verbose_name="تصویر کلاس")
     ostad = models.ForeignKey(Teacher, null=False, blank=False, on_delete=models.CASCADE, verbose_name="استاد")
     #
     CreatedDate = jmodels.jDateTimeField(auto_now_add=True, verbose_name="زمان ساخت")
-    # paye = models.CharField(max_length=1, choices=PayeChoices, null=True, blank=True, verbose_name="پایه کلاس")
     day = models.CharField(max_length=202, null=True, blank=True, verbose_name="روز کلاس")
     ClassLength = models.CharField(max_length=110, default="10 هفته", null=True, blank=True, verbose_name="طول کلاس")
     #
