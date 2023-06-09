@@ -1,7 +1,7 @@
 {% load saelozahra_tag %}
 <div id="tooltip{{ h.id }}" style="display: none; width: 555px;height: 202px;float: left" >
     <div class="taj fl" style="width: 70%; padding-right:14px ">
-        <h3>{{ h.Title }}</h3>
+        <h3 class="white-space">{{ h.Title }}</h3>
         {{ h.Description|safe|truncatechars_html:313 }}
     </div>
     <img src="{{ h.Picture.url }}" alt="" class="br fr" style="width: 30%;max-height: 100%;">

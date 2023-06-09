@@ -359,6 +359,7 @@ body {
 .tac{text-align: center;}
 .taj{text-align: justify;}
 .tc{ color: var(--color);}
+.tcl{ color: var(--color-light);}
 .tcd{ color: var(--color-dark);}
 .bc{ background-color: var(--color);}
 

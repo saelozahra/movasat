@@ -1,31 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="container">
+
         <nav id="bread-crumb" class="row tar box padding">
             <div class="fr" style="position: relative">
                 <a class="effect-underline" href="{{ home_url }}">صفحه اصلی</a>
             </div>
-            <div class="fr">|</div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
             <div class="fr" style="position: relative">
                 <a class="effect-underline" href="{{ home_url }}/course">آموزش ها</a>
             </div>
-            <div class="fr">|</div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
             <div class="fr" style="position: relative">
                 <a class="effect-underline" href="{{ course.category.get_absolute_url }}">{{ course.category }}</a>
             </div>
-            <div class="fr">|</div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
             <a class="effect-shine" href="{{ course.get_absolute_url }}">{{ course.title }}</a>
         </nav>
-        <div class="columns-four padding" style="padding-right: 0">
-            <div class="row box">
-                <img src="{{ course.ostad.profile.url }}" alt="{{ course.ostad }}">
+
+        <div class="columns-four padding sticky" style="padding-right: 0">
+            <div class="row box author-box">
+                <div class="avatar-box row">
+                    <img class="row" src="{{ course.ostad.profile.url }}" alt="{{ course.ostad }}">
+                </div>
                 <br style="clear: both">
+                <br style="clear: both">
+                <h3 class="padding">{{ course.ostad }}</h3>
+            </div>
+            <div class="row box">
+                <nav class="row">
+                    <div>تعداد درس ها: {{ course.lesson_count }}</div>
+                    <div>طول کلاس: {{ course.ClassLength }}</div>
+                    <div>روز کلاس حضوری: {{ course.day }}</div>
+                </nav>
             </div>
         </div>
-        <div class="columns-75 padding" style="padding-left: 0">
+        <div class="columns-75 padding sticky" style="padding-left: 0">
             <div class="row box">
+                <img src="{{ course.cover.url }}" class="row br4" alt="{{ course.title }}">
                 <h1>{{ course.title }}</h1>
-                {{ course.lesson_count }}
             </div>
         </div>
     </div>
