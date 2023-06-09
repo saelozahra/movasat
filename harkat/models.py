@@ -13,22 +13,32 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 # Create your models here.
 
 
-class CrowdCat(models.Model):
-    Title = models.CharField(max_length=202, verbose_name="عنوان دسته‌بندی")
+class Category(models.Model):
+    TypeSelect = [
+        (1, "هارمونی بنفش", ),
+        (2, "هارمونی آبی", ),
+        (3, "هارمونی سبز", ),
+    ]
+    name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام دسته بندی")
+    CType = models.PositiveSmallIntegerField(default=1, choices=TypeSelect, blank=False, verbose_name="تم رنگی")
+    icon = models.ImageField(upload_to='files/project/cat/', blank=True, verbose_name="آیکون")
+    color = ColorField(image_field="icon", blank=False, verbose_name="رنگ")
 
     class Meta:
         verbose_name = "دسته‌بندی"
-        verbose_name_plural = "دسته‌بندی کمک‌ها"
+        verbose_name_plural = "دسته‌بندی"
 
     def __str__(self):
-        return self.Title
+        return self.name
 
     def get_absolute_url(self):
         return reverse("harkat_cat", kwargs={"cid": self.id, })
 
     @property
     def statistics(self):
-        result_total_count = CrowdFunding.objects.filter(Category_id=self.id).count()
+        cf_num = CrowdFunding.objects.filter(Category_id=self.id).count()
+        p_num = Project.objects.filter(ProjectCat_id=self.id).count()
+        result_total_count = cf_num + p_num
         return result_total_count
 
 
@@ -43,7 +53,7 @@ class CrowdFunding(models.Model):
     Picture = models.ImageField(upload_to="files/jahad_activity/%Y/%m/", verbose_name="تصویر")
     Description = RichTextField(null=False, blank=False, verbose_name="توضیحات")
     Location = PlainLocationField(based_fields=['Slug'], zoom=9, blank=True, verbose_name='موقعیت مکانی')
-    Category = models.ForeignKey(CrowdCat, on_delete=models.CASCADE, blank=True, null=True, verbose_name="دسته بندی")
+    Category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, verbose_name="دسته بندی")
     MadadKar = models.ForeignKey(MadadKar, on_delete=models.CASCADE, verbose_name="مددکار")
     Amount = models.BigIntegerField(verbose_name="کل مبلغ مورد نیاز")
     State = models.CharField(choices=StateChoices, default="I", max_length=20, verbose_name="وضعیت")
@@ -133,34 +143,9 @@ class Transaction(models.Model):
         return f"واریز {self.Amount} « برای {self.harkat}»"
 
 
-class ProjectCategory(models.Model):
-    COLOR_PALETTE = [
-        ("#E6A50F", "زرد عادی", ),
-        ("#755508", "زرد تیره", ),
-        ("#FAD74E", "زرد روشن", ),
-        ("#FAD74E66", "زرد مخفی", ),
-    ]
-    TypeSelect = [
-        (1, "هارمونی بنفش", ),
-        (2, "هارمونی آبی", ),
-        (3, "هارمونی سبز", ),
-    ]
-    name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام دسته بندی")
-    CType = models.PositiveSmallIntegerField(default=1, choices=TypeSelect, blank=False, verbose_name="تم رنگی")
-    icon = models.ImageField(upload_to='files/project/cat/', blank=True, verbose_name="آیکون")
-    color = ColorField(image_field="icon", blank=False, verbose_name="رنگ")
-
-    class Meta:
-        verbose_name = "نوع پروژه"
-        verbose_name_plural = "نوع پروژه"
-
-    def __str__(self):
-        return self.name
-
-
 class Project(models.Model):
     madadkar = models.ForeignKey(MadadKar, on_delete=models.CASCADE, verbose_name="مددکار")
-    ProjectCat = models.ForeignKey(ProjectCategory, on_delete=models.CASCADE, verbose_name="دسته بندی")
+    ProjectCat = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="دسته بندی")
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام پروژه")
     photo = models.ImageField(upload_to='files/project/', null=False, blank=False, verbose_name="تصویر")
     thumbnail = models.ImageField(upload_to='files/project/thumb', editable=False, blank=True, verbose_name='تصویرک')

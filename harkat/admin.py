@@ -5,7 +5,7 @@ from harkat.models import *
 from unfold.admin import ModelAdmin
 
 
-@admin.register(ProjectCategory)
+@admin.register(Category)
 class ProjectCategoryAdmin(ModelAdmin):
     list_display = ("name", "CType",)
     # list_display_links = ("name", "Slug")
@@ -60,5 +60,5 @@ class HarkatAdmin(ModelAdmin):
         }),
     )
 
+
 admin.site.register(Transaction)
-admin.site.register(CrowdCat)
