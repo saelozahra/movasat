@@ -1,5 +1,12 @@
 {% load saelozahra_tag %}
-<figure class="harkat_item row br4 tooltip" title="{{ h.Description|safe|striptags }}">
+<div id="tooltip{{ h.id }}" style="display: none; width: 555px;height: 202px;float: left" >
+    <div class="taj fl" style="width: 70%; padding-right:14px ">
+        <h3>{{ h.Title }}</h3>
+        {{ h.Description|safe|truncatechars_html:313 }}
+    </div>
+    <img src="{{ h.Picture.url }}" alt="" class="br fr" style="width: 30%;max-height: 100%;">
+</div>
+<figure class="harkat_item row br4 tooltip" data-tipped-options="inline: 'tooltip{{ h.id }}'">
     <img class="img br4" src="{{ h.Picture.url }}"  alt="{{ h.Title }}"/>
     <div class="harkat_left tar">
         <a href="{{ h.get_absolute_url }}" title="{{ h.Title }}">
