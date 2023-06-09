@@ -114,7 +114,7 @@ def get_profile(request, user):
         model = "k"
         data = MadadKar.objects.filter(user__username=user).get()
     harkat = CrowdFunding.objects.filter(MadadKar__user__username=user).all()
-    project = Project.objects.filter(madadkar__user__username=user).all()
+    project = Project.objects.filter(madadkar__user__username=user).order_by("-date").all()
 
     context = {
         'harkat': harkat,
