@@ -17,28 +17,8 @@ class CoursePage(TemplateView):
 
         return render(request, 'course_page.html', context)
 
-    # def post(self, request, **kwargs):
-    #     chat_id = kwargs.get("chat_id")
-    #     print("chat_id: " + chat_id)
-    #     text = request.POST["text"]
-    #     print("text: " + text)
-    #
-    #     try:
-    #
-    #         chm = ChatMessage()
-    #         chm.Text = text
-    #         chm.Tarikh = datetime.now()
-    #         chm.RelatedChat = Chat.objects.filter(Q(id=chat_id)).get()
-    #         chm.Sender = self.request.user
-    #         chm.save()
-    #         return HttpResponse("saved", status.HTTP_200_OK)
-    #
-    #     except NameError:
-    #         print(NameError)
-    #         return HttpResponse(NameError, status=status.HTTP_400_BAD_REQUEST)
 
-
-def course_view(request, slug):
+def course_view(request, cat, slug):
 
     context = {
         'course': lms.models.Course.objects.filter(slug=slug).get(),

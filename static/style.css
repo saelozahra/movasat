@@ -344,7 +344,11 @@ body {
 
 }
 
-
+#bread-crumb a {
+	margin: 0.5rem;
+	display: inline;
+	padding: 0.5rem;
+}
 
 
 .fr{float:right;}
