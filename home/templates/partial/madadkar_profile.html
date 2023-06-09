@@ -41,15 +41,25 @@
         <br style="clear: both">
         <br style="clear: both">
         <br style="clear: both">
-        <h2 class="title_line"><span class="tc">عملکرد گروه جهادی</span></h2>
+        <h2 class="title_line"><span class="tc">خط زمان پروژه ها</span></h2>
         <br style="clear: both">
         <br style="clear: both">
 
         <div class="row" dir="ltr">
 
+            {% for p in project %}
+                <div id="tooltip_p{{ p.id }}" class="fl hide" style="width: 555px;max-height: 188px;" >
+                    <div class="taj fl" style="width: 70%; padding-right:14px ">
+                        <h5 style="margin-top: -20px">{{ p.date|rplc }}  <i class="tcd mdi mdi-hand-heart"></i>  {{ p.ProjectCat }}</h5>
+                        <h3>{{ p.name }}</h3>
+                        {{ p.description|safe|truncatechars_html:202 }}
+                    </div>
+                    <img src="{{ p.thumbnail.url }}" alt="" class="br fr" style="width: 30%;max-height: 100%;">
+                </div>
+            {% endfor %}
             <div class="timeline">
                 {% for p in project %}
-                    <div class="timeline__event animated fadeInUp delay-1s timeline__event--type{{ p.ProjectCat.CType }}">
+                    <div class="timeline__event animated fadeInUp delay-1s tooltip timeline__event--type{{ p.ProjectCat.CType }}" data-tipped-options="inline: 'tooltip_p{{ p.id }}'">
                         <div class="timeline__event__icon">
                             <i class="mdi mdi-charity"></i>
                         </div>
@@ -57,10 +67,10 @@
                             {{ p.date|rplc }}
                         </div>
                         <div class="timeline__event__content">
-                            <div class="timeline__event__title">
+                            <div class="timeline__event__title tar">
                                 {{ p.name }}
                             </div>
-                            <div class="timeline__event__description">
+                            <div class="timeline__event__description tar">
                                 {{ p.description|slice:313|safe|striptags }}...
                             </div>
                         </div>
