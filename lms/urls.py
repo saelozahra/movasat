@@ -4,5 +4,6 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path('course', views.CoursePage.as_view(), name='CoursePage'),
-    path('course/lesson/<slug>', views.course_view, name='LessonView'),
+    path('course/<cat>', views.course_view, name='CourseCatPage'),
+    path('course/<cat>/<slug>', views.course_view, name='LessonView'),
 ]

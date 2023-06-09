@@ -4,6 +4,13 @@ from inline_ordering.admin import OrderableStackedInline
 # Register your models here.
 
 
+@admin.register(Category)
+class CustomCategory(admin.ModelAdmin):
+    list_display = ("name", "slug")
+    list_display_links = ("name", "slug")
+    prepopulated_fields = {"slug": ("name",)}
+
+
 class Lessoninline(OrderableStackedInline):
     model = Lesson
     list_display = ("title", "course",)
@@ -16,7 +23,7 @@ class CourseAdmin(admin.ModelAdmin):
     inlines = [Lessoninline]
     fieldsets = (
         ('اطلاعات کلاس', {
-            'fields': ('title', 'slug', 'content', 'cover', 'ostad', ),
+            'fields': ('title', 'slug', 'content', 'cover', 'category', 'ostad', ),
             'description': 'اطلاعات کلاس',
         }),
         ('جزئیات کلاس', {
@@ -38,5 +45,4 @@ class TeacherAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Course, CourseAdmin)
-# admin.site.register(Lesson)
 admin.site.register(Teacher, TeacherAdmin)
