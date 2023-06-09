@@ -2293,21 +2293,30 @@ figure.content{
     left: -5%;
     top: -60px;
 }
-.course_item .course_foot {
+.course_foot {
     border-top: 1px solid var(--color-very-light);
     margin: auto;
     display: flex;
     padding-top: 4px;
     font-size: 90%;
 }
-.course_item .course_foot li {
+.course_foot li {
     margin: auto;
     display: inline;
 }
-.course_item .course_foot li i {
+.course_foot li i {
     color: var(--color-light);
     font-size: 133%;
 }
+
+.shareItems {
+	font-size: 2rem;
+	color: var(--color-dark);
+}
+.shareItems:hover {
+	color: var(--color);
+}
+
 /*End LMS*/
 /*End LMS*/
 /*End LMS*/
