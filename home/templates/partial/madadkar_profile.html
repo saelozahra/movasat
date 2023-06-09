@@ -36,3 +36,38 @@
 
         </div>
     </div>
+    <div class="container">
+
+        <br style="clear: both">
+        <br style="clear: both">
+        <br style="clear: both">
+        <h2 class="title_line"><span class="tc">عملکرد گروه جهادی</span></h2>
+        <br style="clear: both">
+        <br style="clear: both">
+
+        <div class="row" dir="ltr">
+
+            <div class="timeline">
+                {% for p in project %}
+                    <div class="timeline__event animated fadeInUp delay-1s timeline__event--type{{ p.ProjectCat.CType }}">
+                        <div class="timeline__event__icon">
+                            <i class="mdi mdi-charity"></i>
+                        </div>
+                        <div class="timeline__event__date" style="background-image: url('{% if p.thumbnail %}{{ p.thumbnail.url }}{% endif %}')">
+                            {{ p.date|rplc }}
+                        </div>
+                        <div class="timeline__event__content">
+                            <div class="timeline__event__title">
+                                {{ p.name }}
+                            </div>
+                            <div class="timeline__event__description">
+                                {{ p.description|slice:313|safe|striptags }}...
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
