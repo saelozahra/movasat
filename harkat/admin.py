@@ -5,6 +5,25 @@ from harkat.models import *
 from unfold.admin import ModelAdmin
 
 
+@admin.register(ProjectCategory)
+class ProjectCategoryAdmin(ModelAdmin):
+    list_display = ("name", "CType",)
+    # list_display_links = ("name", "Slug")
+    list_filter = (
+        ('CType',)
+    )
+
+
+@admin.register(Project)
+class ProjectAdmin(ModelAdmin):
+    list_display = ("name", "madadkar", "ProjectCat",)
+    # list_editable = ("name", )
+    list_display_links = ("name", "madadkar", )
+    list_filter = (
+        ('ProjectCat', 'madadkar', 'date',)
+    )
+
+
 @admin.register(CrowdFunding)
 class HarkatAdmin(ModelAdmin):
     list_display = ("Title", "Amount", "pool", "percent", "MadadKar")
@@ -40,7 +59,6 @@ class HarkatAdmin(ModelAdmin):
             # 'classes': ('collapse', ),
         }),
     )
-
 
 admin.site.register(Transaction)
 admin.site.register(CrowdCat)

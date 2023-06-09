@@ -13,7 +13,7 @@ from account.models import *
 
 
 # Create your views here.
-from harkat.models import CrowdFunding
+from harkat.models import CrowdFunding, Project
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -114,9 +114,11 @@ def get_profile(request, user):
         model = "k"
         data = MadadKar.objects.filter(user__username=user).get()
     harkat = CrowdFunding.objects.filter(MadadKar__user__username=user).all()
+    project = Project.objects.filter(madadkar__user__username=user).all()
 
     context = {
         'harkat': harkat,
+        'project': project,
         'data': data,
         'model': model
     }
