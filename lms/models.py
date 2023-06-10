@@ -1,4 +1,3 @@
-import home
 from django.db import models
 from django.urls import reverse
 from inline_ordering.models import Orderable
@@ -87,11 +86,11 @@ class Course(models.Model):
         return jDateTimeField(self.CreatedDate)
 
     def get_absolute_url(self):
-        return reverse("LessonView", kwargs={"slug": self.slug, "cat": self.category.slug, })
+        return reverse("CourseView", kwargs={"slug": self.slug, "cat": self.category.slug, })
 
 
 class Lesson(Orderable):
-    title = models.CharField(max_length=200, null=False, blank=False, verbose_name="نام درس")
+    title = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام درس")
     content = RichTextField(null=False, blank=False, verbose_name="خلاصه توضیحات")
     file = models.FileField(upload_to='files/lesson/', null=False, blank=True, verbose_name="فایل درسی")
     CreatedDate = models.DateTimeField(auto_now_add=True, verbose_name="زمان ثبت")
@@ -102,3 +101,12 @@ class Lesson(Orderable):
     class Meta(Orderable.Meta):
         verbose_name = "درس"
         verbose_name_plural = "درس"
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse(
+            "LessonView",
+            kwargs={"slug": self.Course.slug, "cat": self.Course.category.slug, "lid": self.id, }
+        )

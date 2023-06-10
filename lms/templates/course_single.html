@@ -42,9 +42,8 @@
                     <div>روز کلاس حضوری: {{ course.day }}</div>
                 </nav>
                 <ul class="course_foot container taj">
-                    <li><i class="mdi mdi-video-minus-outline"></i>{{ course.ClassLength }}</li>
-                    <li><i class="mdi mdi-eye-outline"></i>{{ course.view_count }} بازدید</li>
-                    <li><i class="mdi mdi-folder-heart-outline"></i>{{ course.like_count }} پسند</li>
+                    <li><i class="mdi mdi-eye-outline"></i>  {{ course.view_count }}  بازدید</li>
+                    <li><i class="mdi mdi-folder-heart-outline"></i>  {{ course.like_count }}  پسند</li>
                 </ul>
             </div>
 
@@ -77,11 +76,19 @@
             <div class="row box">
                 <img src="{{ course.cover.url }}" class="row br4" alt="{{ course.title }}">
             </div>
-            <div class="row box tar">
-                <h1>{{ course.title }}</h1>
+            <div class="row box padding tar">
+                <div class="row padding tar">
+                    <h1>{{ course.title }}</h1>
+                    <p>{{ course.content|safe }}</p>
+                </div>
+            </div>
 
-                <p>{{ course.content|safe }}</p>
-
+            <div class="row box tar padding lessons">
+                <ol class="row tar">
+                {% for l in lessons %}
+                    <li class="row"><a class="row tar" href="{{ l.get_absolute_url }}">{{ l }}</a></li>
+                {% endfor %}
+                </ol>
             </div>
         </div>
     </div>
