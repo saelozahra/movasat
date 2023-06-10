@@ -56,8 +56,9 @@ class CrowdFunding(models.Model):
     Category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, verbose_name="دسته بندی")
     MadadKar = models.ForeignKey(MadadKar, on_delete=models.CASCADE, verbose_name="مددکار")
     Amount = models.BigIntegerField(verbose_name="کل مبلغ مورد نیاز")
-    date = jmodels.jDateField(blank=True, auto_created=True, verbose_name="تاریخ")
+    date = jmodels.jDateField(blank=True, auto_now=True, verbose_name="تاریخ")
     State = models.CharField(choices=StateChoices, default="I", max_length=20, verbose_name="وضعیت")
+    # @todo: add view count
 
     class Meta:
         verbose_name = "تامین مالی حرکت جهادی"
