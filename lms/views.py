@@ -22,5 +22,19 @@ def course_view(request, cat, slug):
 
     context = {
         'course': lms.models.Course.objects.filter(slug=slug).get(),
+        'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
     }
+    return render(request, 'course_single.html', context)
+
+
+def lesson_view(request, cat, slug, lid):
+
+    course = lms.models.Course.objects.filter(slug=slug).get()
+    lms.models.Lesson.objects.filter(id=lid).update(view_count=int(course.view_count+1))
+
+    context = {
+        'course': course,
+        'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
+    }
+
     return render(request, 'course_single.html', context)
