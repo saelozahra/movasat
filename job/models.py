@@ -76,7 +76,7 @@ class Job(models.Model):
     description = RichTextField(blank=True, verbose_name="توضیحات")
     JobCat = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="دسته بندی")
     need = models.PositiveSmallIntegerField(blank=False, null=False, default=0, verbose_name="تعداد افراد مورد نیاز")
-    skills = models.ManyToManyField(Skills, on_delete=models.CASCADE, verbose_name="تخصص های مورد نیاز")
+    skills = models.ManyToManyField(Skills, verbose_name="تخصص های مورد نیاز")
     owner = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="مدیر این کسب و کار")
     photo = models.ImageField(upload_to='files/job/%Y/%m/', null=False, blank=False, verbose_name="تصویر")
     thumbnail = models.ImageField(upload_to='files/job/%Y/%m/', editable=False, blank=True, verbose_name='تصویرک')
