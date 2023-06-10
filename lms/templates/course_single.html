@@ -41,7 +41,7 @@
                     <div>طول کلاس: {{ course.ClassLength }}</div>
                     <div>روز کلاس حضوری: {{ course.day }}</div>
                 </nav>
-                <div class="row" id="bookmarkme">
+                <div class="row box" id="bookmarkme" style="cursor: cell;">
                     <i class="mdi mdi-bookmark-plus-outline"></i>
                     افزودن به علاقه مندی ها
                 </div>
@@ -97,7 +97,7 @@
                             <small> {{ l.lesson_length }} </small>
                         </a>
                         {% if l.file %}
-                            <a href="{{ l.file.url }}"><i class="mdi mdi-download"></i></a>
+                            <a href="{{ l.file.url }}" download=""><i class="mdi mdi-download"></i></a>
                         {% else %}
                             <a href="{{ l.get_absolute_url }}"><i class="mdi mdi-read"></i></a>
                         {% endif %}
