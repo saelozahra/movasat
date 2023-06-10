@@ -14,6 +14,34 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 # Create your models here.
 
 
+class Skills(models.Model):
+    name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام تخصص")
+    slug = models.SlugField(unique=True, verbose_name="لینک")
+    icon = models.ImageField(upload_to='files/job/skill/', blank=True, verbose_name="آیکون")
+    color = ColorField(image_field="icon", blank=True, verbose_name="رنگ")
+    view_count = models.IntegerField(default=0, editable=False, verbose_name='بازدید ها')
+    like_count = models.IntegerField(default=0, editable=False, verbose_name='پسند ها')
+
+    class Meta:
+        verbose_name = "تخصص ها"
+        verbose_name_plural = "تخصص ها"
+
+    def __str__(self):
+        return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse("harkat_cat", kwargs={"cid": self.id, })
+
+    def save(self, *args, **kwargs):  # new
+        if not self.slug:
+            self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
+
+    @property
+    def statistics(self):
+        return Job.objects.filter(skills=self).count()
+
+
 class Category(models.Model):
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام دسته بندی")
     slug = models.SlugField(unique=True, verbose_name="لینک")
@@ -48,6 +76,7 @@ class Job(models.Model):
     description = RichTextField(blank=True, verbose_name="توضیحات")
     JobCat = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="دسته بندی")
     need = models.PositiveSmallIntegerField(blank=False, null=False, default=0, verbose_name="تعداد افراد مورد نیاز")
+    skills = models.ManyToManyField(Skills, on_delete=models.CASCADE, verbose_name="تخصص های مورد نیاز")
     owner = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="مدیر این کسب و کار")
     photo = models.ImageField(upload_to='files/job/%Y/%m/', null=False, blank=False, verbose_name="تصویر")
     thumbnail = models.ImageField(upload_to='files/job/%Y/%m/', editable=False, blank=True, verbose_name='تصویرک')
