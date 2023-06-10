@@ -32,14 +32,15 @@ def course_view(request, cat, slug):
 
 def lesson_view(request, cat, slug, lid):
 
-    course = lms.models.Course.objects.filter(slug=slug).get()
-    course.update(view_count=int(course.view_count+1))
+    course = lms.models.Course.objects.filter(slug=slug)
+    course.update(view_count=int(course.get().view_count+1))
 
     this_lesson = lms.models.Lesson.objects.filter(id=lid)
     this_lesson.update(view_count=int(this_lesson.get().view_count)+1)
 
     context = {
-        'course': course,
+        'course': course.get(),
+        'this_lesson': this_lesson.all(),
         'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
     }
 

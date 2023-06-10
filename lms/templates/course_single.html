@@ -41,6 +41,10 @@
                     <div>طول کلاس: {{ course.ClassLength }}</div>
                     <div>روز کلاس حضوری: {{ course.day }}</div>
                 </nav>
+                <div class="row" id="bookmarkme">
+                    <i class="mdi mdi-bookmark-plus-outline"></i>
+                    افزودن به علاقه مندی ها
+                </div>
                 <ul class="course_foot container taj">
                     <li><i class="mdi mdi-eye-outline"></i>  {{ course.view_count }}  بازدید</li>
                     <li><i class="mdi mdi-folder-heart-outline"></i>  {{ course.like_count }}  پسند</li>
@@ -84,12 +88,46 @@
             </div>
 
             <div class="row box tar padding lessons">
-                <ol class="row tar">
+                <ol class="row tar tr">
                 {% for l in lessons %}
-                    <li class="row"><a class="row tar" href="{{ l.get_absolute_url }}">{{ l }}</a></li>
+                    <li class="row tar padding">
+                        <i class="mdi mdi-lock licon tac fr"></i>
+                        <a class="" href="{{ l.get_absolute_url }}">
+                            <b>{{ l }}</b>
+                            <small> {{ l.lesson_length }} </small>
+                        </a>
+                        {% if l.file %}
+                            <a href="{{ l.file.url }}"><i class="mdi mdi-download"></i></a>
+                        {% else %}
+                            <a href="{{ l.get_absolute_url }}"><i class="mdi mdi-read"></i></a>
+                        {% endif %}
+                    </li>
                 {% endfor %}
                 </ol>
             </div>
         </div>
     </div>
+    <style>
+        .lessons li {
+            display: flex;
+            justify-content: space-between;
+        }
+        .lessons li:hover {
+            background-color: var(--color-very-light);
+        }
+        .lessons ol li a{
+            font-weight: bolder;
+        }
+        .licon {
+            border: 1px solid var(--color-dark);
+            border-radius: 50%;
+            width: 33px;
+            height: 33px;
+            font-size: 22px;
+            color: var(--color-dark);
+            line-height: 1.4;
+            margin-left: 1rem;
+            margin-top: -0.3rem;
+        }
+    </style>
 {% endblock content %}
