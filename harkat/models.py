@@ -56,6 +56,7 @@ class CrowdFunding(models.Model):
     Category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, verbose_name="دسته بندی")
     MadadKar = models.ForeignKey(MadadKar, on_delete=models.CASCADE, verbose_name="مددکار")
     Amount = models.BigIntegerField(verbose_name="کل مبلغ مورد نیاز")
+    date = jmodels.jDateField(blank=True, auto_created=True, verbose_name="تاریخ")
     State = models.CharField(choices=StateChoices, default="I", max_length=20, verbose_name="وضعیت")
 
     class Meta:
@@ -68,6 +69,14 @@ class CrowdFunding(models.Model):
     def save(self, *args, **kwargs):  # new
         if not self.Slug:
             self.slug = slugify(self.Title)
+        Project.objects.create(
+            madadkar=self.MadadKar,
+            ProjectCat=self.Category,
+            name=self.Title,
+            photo=self.Picture,
+            date=self.date,
+            description=self.Description,
+        )
         return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
