@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'colorfield',
     'rest_framework',
     'home',
+    'challenge',
     'job',
     'ckeditor',
     'account',
