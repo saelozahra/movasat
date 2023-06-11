@@ -29,3 +29,18 @@ class Forum(models.Model):
 
     def get_absolute_url(self):
         return reverse("show_forum", kwargs={"fid": self.id, })
+
+
+class Response(models.Model):
+    description = RichTextField(blank=False, null=False, verbose_name="توضیحات چالش")
+    file = models.FileField(blank=True, upload_to="files/challenge/%Y/%m/", verbose_name="فایل")
+    writer = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="نویسنده")
+    RelatedForum = models.ForeignKey(Project, blank=True, on_delete=models.DO_NOTHING, verbose_name="پروژه مربوطه")
+    date = jmodels.jDateTimeField(auto_now=True, verbose_name="زمان")
+
+    class Meta:
+        verbose_name = "پاسخ"
+        verbose_name_plural = "پاسخ"
+
+    def __str__(self):
+        return f"پاسخ {self.id}، {self.writer.get_full_name()} به {self.RelatedForum}"
