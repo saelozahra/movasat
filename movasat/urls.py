@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('account.urls')),
     path('', include('lms.urls')),
     path('', include('madadyar.urls')),
+    path('', include('challenge.urls')),
     path('', include('harkat.urls')),
     path('api-auth/', include('rest_framework.urls')),
 ]
