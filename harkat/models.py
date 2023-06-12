@@ -178,7 +178,7 @@ class Project(models.Model):
             img.save(output_thumb, format='JPEG', quality=90)
 
         self.thumbnail = InMemoryUploadedFile(output_thumb, 'ImageField', f"{img_name}_thumb.jpg", 'image/jpeg',
-                                               sys.getsizeof(output_thumb), None)
+                                              sys.getsizeof(output_thumb), None)
         return super().save(*args, **kwargs)
 
     def __str__(self):

@@ -27,12 +27,14 @@
                 <div class="row padding">
                     <h4 class="title_line"><span class="tc" style="background-color: #f9f9f9">پاسخ به این چالش</span></h4>
                     <form action="" method="post">
-                        {{ csrf }}
+                        {% csrf_token %}
+                        <input type="hidden" name="fid" value="{{ forum.id }}">
+                        <input type="hidden" name="uid" value="{{ request.user.id }}">
                         <label for="description_input" class="tar tc fr padding">راه حل خودتونو برامون بنویسین</label>
-                        <textarea name="" id="description_input" class="row" rows="7"></textarea>
+                        <textarea name="description" id="description_input" class="row" rows="7"></textarea>
                         <br>
                         <div class="row tar" style="padding-top: 1rem">
-                            <input type="file" placeholder="فایل">
+                            <input type="file" name="file" placeholder="فایل">
                         </div>
                         <div class="row">
                             <button type="submit" class="btn fl br4">
@@ -46,7 +48,7 @@
             </div>
         </div>
 
-        <div class="columns-two padding " style="padding-left: 0">
+        <div class="columns-two padding sticky" style="padding-left: 0">
             <div class="row box padding">
                 <h1 class="row white-space tar padding tcd">{{ forum.title }}</h1>
                 <div class="tar padding" >{{ forum.description|safe }}</div>
