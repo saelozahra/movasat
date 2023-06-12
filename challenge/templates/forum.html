@@ -1,4 +1,55 @@
-{{ forum }}
-{% for r in response %}
-    {{ r }}
-{% endfor %}
+{% extends "base.html" %}
+{% load saelozahra_tag %}
+{% block content %}
+    <div class="container">
+
+        <nav id="bread-crumb" class="row tar box padding">
+            <div class="fr" style="position: relative">
+                <a class="effect-underline" href="{{ home_url }}">صفحه اصلی</a>
+            </div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
+            <div class="fr" style="position: relative">
+                <a class="effect-underline" href="{{ home_url }}/challenge/">چالش ها</a>
+            </div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
+            <div class="fr" style="position: relative">
+                <a class="effect-underline" href="{{ project.get_absolute_url }}">پروژه <i class="mdi mdi-apache-kafka"></i> {{ project }}</a>
+            </div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
+            <a class="effect-shine" href="">{{ forum }}</a>
+        </nav>
+
+        <div class="columns-two padding sticky" style="padding-right: 0">
+            {% include "ProjectItem.html" with p=project %}
+            <div class="row box padding">
+                <br>
+                <div class="row padding">
+                    <h4 class="title_line"><span class="tc" style="background-color: #f9f9f9">پاسخ به این چالش</span></h4>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="columns-two padding " style="padding-left: 0">
+            <div class="row box padding">
+                <h1 class="row white-space tar padding">{{ forum.title }}</h1>
+                <div class="tar padding" >{{ forum.description|safe }}</div>
+            </div>
+            <div class="row tar box padding">
+
+                {% for r in response %}
+                    <b>{{ r.writer.get_full_name }}</b>:
+                    <br>
+                    <div>
+                        {{ r.description|safe }}
+                        {% if r.file %}
+                            <a href="{{ r.file.url }}">دانلود فایل</a>
+                        {% endif %}
+                        <i class="mdi mdi-calendar-range-outline tcd"></i> <b class="tc">{{ r.date.date|rplc }}</b>   <i class="mdi tcd mdi-clock-outline"></i>  <b class="tc">  {{ r.date.time }}</b>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
