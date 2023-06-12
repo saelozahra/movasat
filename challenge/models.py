@@ -1,9 +1,13 @@
+from urllib import request
+
+import requests
 from django.db import models
 from django.contrib.auth.models import User
 from django_jalali.db import models as jmodels
 from django.urls import reverse
 from harkat.models import Project
 from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 
@@ -24,9 +28,6 @@ class Forum(models.Model):
     def __str__(self):
         return self.title
 
-    # def save(self, *args, **kwargs):
-    #     return super().save(*args, **kwargs)
-
     def get_absolute_url(self):
         return reverse("show_forum", kwargs={"fid": self.id, })
 
@@ -35,7 +36,7 @@ class Response(models.Model):
     description = RichTextField(blank=False, null=False, verbose_name="توضیحات چالش")
     file = models.FileField(blank=True, upload_to="files/challenge/%Y/%m/", verbose_name="فایل")
     writer = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="نویسنده")
-    RelatedForum = models.ForeignKey(Project, blank=True, on_delete=models.DO_NOTHING, verbose_name="پروژه مربوطه")
+    RelatedForum = models.ForeignKey(Forum, blank=True, on_delete=models.DO_NOTHING, verbose_name="پروژه مربوطه")
     date = jmodels.jDateTimeField(auto_now=True, verbose_name="زمان")
 
     class Meta:
@@ -44,3 +45,7 @@ class Response(models.Model):
 
     def __str__(self):
         return f"پاسخ {self.id}، {self.writer.get_full_name()} به {self.RelatedForum}"
+
+    # def save(self, *args, **kwargs):
+    #     if self.writer is None:
+    #     return super().save(*args, **kwargs)

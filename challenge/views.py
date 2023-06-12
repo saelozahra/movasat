@@ -6,11 +6,9 @@ from .models import Forum, Response
 
 def show_forum(request, fid):
     try:
-        fdata = Forum.objects.filter(id=fid).get()
-        rdata = Response.objects.filter(RelatedForum_id=fid).all()
         context = {
-            "forum": fdata,
-            "response": rdata,
+            "forum": Forum.objects.filter(id=fid).get(),
+            "response": Response.objects.filter(RelatedForum_id=fid).all(),
         }
     except Forum.DoesNotExist:
         raise Http404
