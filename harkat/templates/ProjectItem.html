@@ -1,0 +1,14 @@
+<figure class="harkat_item row br4">
+    <img class="img br4" src="{{ p.photo.url }}"  alt="{{ p.name }}"/>
+    <div class="harkat_left tar">
+        <a href="#" title="{{ p.name }}">
+            <h2>
+                <figcaption class="white-space">چالش های پروژه {{ p.name }}</figcaption>
+            </h2>
+        </a>
+        <div class="row taj" style="padding-left: 1rem">
+            {{ p.description|safe }}
+            <a href="" class="tag"><i class="mdi mdi-pound"></i>{{ p.ProjectCat }}</a>
+        </div>
+    </div>
+</figure>
