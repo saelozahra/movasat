@@ -1372,7 +1372,17 @@ body:not(.home) footer .fr nav a {
 /*End Podcast*/
 /*End Podcast*/
 /*End Podcast*/
-
+#description_input {
+	background-image: url('/static/assets/striped-paper-texture_1203-1925.avif');
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+    max-width: 100%;
+	width: 100%;
+	border: 1px dashed var(--color-very-light);
+	font-size: 17px;
+	line-height: 33px;
+	height: 313px;
+}
 
 
 /*Start LastContent*/

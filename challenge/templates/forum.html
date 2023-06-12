@@ -23,8 +23,24 @@
             {% include "ProjectItem.html" with p=project %}
             <div class="row box padding">
                 <br>
+
                 <div class="row padding">
                     <h4 class="title_line"><span class="tc" style="background-color: #f9f9f9">پاسخ به این چالش</span></h4>
+                    <form action="" method="post">
+                        {{ csrf }}
+                        <label for="description_input" class="tar tc fr padding">راه حل خودتونو برامون بنویسین</label>
+                        <textarea name="" id="description_input" class="row" rows="7"></textarea>
+                        <br>
+                        <div class="row tar" style="padding-top: 1rem">
+                            <input type="file" placeholder="فایل">
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn fl br4">
+                                <i class="mdi mdi-send fl" style="transform: rotate(180deg);margin-top: -3px;margin-right: 5px;"></i>
+                                <b>ارسال</b>
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
             </div>
@@ -32,20 +48,36 @@
 
         <div class="columns-two padding " style="padding-left: 0">
             <div class="row box padding">
-                <h1 class="row white-space tar padding">{{ forum.title }}</h1>
+                <h1 class="row white-space tar padding tcd">{{ forum.title }}</h1>
                 <div class="tar padding" >{{ forum.description|safe }}</div>
             </div>
             <div class="row tar box padding">
 
                 {% for r in response %}
-                    <b>{{ r.writer.get_full_name }}</b>:
+                    <a id="response{{ r.id }}" href="#response{{ r.id }}">
+                        <b>
+                            <div class=" br4">
+                                <i class="mdi mdi-pound"></i>
+                                <span style="font-size: 20px; padding-left: 20px;">{{ r.id }}</span>
+                            </div>
+                            {{ r.writer.get_full_name }}
+                        </b>
+                        :
+                    </a>
                     <br>
                     <div>
                         {{ r.description|safe }}
                         {% if r.file %}
                             <a href="{{ r.file.url }}">دانلود فایل</a>
                         {% endif %}
-                        <i class="mdi mdi-calendar-range-outline tcd"></i> <b class="tc">{{ r.date.date|rplc }}</b>   <i class="mdi tcd mdi-clock-outline"></i>  <b class="tc">  {{ r.date.time }}</b>
+                        <i class="mdi mdi-calendar-range-outline tcd"></i> <b class="tc">{{ r.date.date|rplc }}</b>
+                        <i class="mdi tcd mdi-clock-outline" style="margin-right: 1rem;"></i>  <b class="tc">  {{ r.date.time }}</b>
+                        <a id="response{{ r.id }}" href="#response{{ r.id }}" style="font-size: 20px; padding-left: 20px;">
+                            <i class="mdi mdi-folder-pound-outline tcd" style="margin-right: 1rem;font-size: 16px;"></i>
+                            <b>
+                                <span class="tc">{{ r.id }}</span>
+                            </b>
+                        </a>
                     </div>
                 {% endfor %}
 
