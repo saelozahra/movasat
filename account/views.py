@@ -1,6 +1,5 @@
 import random
 import account
-from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 import json
 
@@ -10,10 +9,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
 from account.models import *
+from harkat.models import CrowdFunding, Project
+from madadyar.models import MadadJoo
 
 
 # Create your views here.
-from harkat.models import CrowdFunding, Project
 
 
 @method_decorator(csrf_exempt, name='dispatch')
