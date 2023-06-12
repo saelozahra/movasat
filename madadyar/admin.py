@@ -1,8 +1,13 @@
-from madadyar.models import Aghlam, Bohran
+from madadyar.models import *
 from django.contrib import admin
 
 # Register your models here.
 from django.contrib.admin import ModelAdmin
+
+
+@admin.register(MadadJoo)
+class CustomAdminClass(ModelAdmin):
+    pass
 
 
 @admin.register(Aghlam)
