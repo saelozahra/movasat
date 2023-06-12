@@ -32,3 +32,7 @@ class ForumView(TemplateView):
         except Forum.DoesNotExist:
             raise Http404
         return render(request, "forum.html", context=context)
+
+
+def show_challenge_cat(request):
+    return None
