@@ -1,3 +1,4 @@
+from harkat.models import Project
 from django.shortcuts import render
 from django.http import Http404
 from .models import Forum, Response
@@ -7,6 +8,7 @@ from .models import Forum, Response
 def show_forum(request, fid):
     try:
         context = {
+            "project": Project.objects.filter(id=fid).get(),
             "forum": Forum.objects.filter(id=fid).get(),
             "response": Response.objects.filter(RelatedForum_id=fid).all(),
         }
