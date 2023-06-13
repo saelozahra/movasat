@@ -25,7 +25,7 @@
                 <br>
 
                 <div class="row padding">
-                    <h4 class="title_line"><span class="tc" style="background-color: #f9f9f9">پاسخ به این چالش</span></h4>
+                    <h4 class="title_line"><span class="tc" style="background-image: url('/static/assets/double-bubble-outline.webp')">پاسخ به این چالش</span></h4>
                     <form action="" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="fid" value="{{ forum.id }}">
@@ -49,12 +49,12 @@
         </div>
 
         <div class="columns-two padding sticky" style="padding-left: 0">
-            <div class="row box padding">
+            <div class="row box padding" style="background-image: url('/static/assets/fabric_1.webp');background-blend-mode: darken;">
                 <h1 class="row white-space tar padding tcd">{{ forum.title }}</h1>
-                <div class="tar padding" >{{ forum.description|safe }}</div>
+                <div class="taj padding" >{{ forum.description|safe }}</div>
             </div>
             {% for r in response %}
-                <div class="row tar box padding">
+                <div class="row taj box padding_rem" style="padding: 2rem; font-size: 133%">
                     <a id="response{{ r.id }}" href="#response{{ r.id }}">
                         <b>
                             <div class=" fl">
@@ -86,4 +86,13 @@
             {% endfor %}
         </div>
     </div>
+    <style>
+    .box{
+        background-image: url("/static/assets/double-bubble-outline.webp");
+        background-blend-mode: darken;
+    }
+    .title_line .tc {
+        transform: translateY(-14px);
+    }
+    </style>
 {% endblock content %}
