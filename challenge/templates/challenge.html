@@ -1,0 +1,25 @@
+<div class="row" style="margin-top: 4rem">
+    <div class="section fp-section fp-table active fp-completely" id="gozareshtasviri" style=" height: 100vh; background-color: rgb(250, 215, 78);" data-fp-styles="background-image:url()">
+
+        <canvas class="hover-bg" width="1920" height="949"></canvas>
+        <div class="row" style="position: relative">
+
+            <br style="clear: both">
+            <br style="clear: both">
+            <br style="clear: both">
+            <div class="row all_course">
+
+                <div id="challenge" class="faraTitle container">
+                    <div class="title">چالش‌ها و نیازمندی های گروه‌های جهادی</div>
+                </div>
+                <br style="clear: both">
+                <br style="clear: both">
+                <div class="container four-col">
+                    {% for ci in course %}
+                        {% include "course_item.html" with c=ci %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
