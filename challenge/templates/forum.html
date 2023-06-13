@@ -48,17 +48,30 @@
             </div>
         </div>
 
-        <div class="columns-two padding sticky" style="padding-left: 0">
+        <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%">
             <div class="row box padding" style="background-image: url('/static/assets/fabric_1.webp');background-blend-mode: darken;">
-                <h1 class="row white-space tar padding tcd">{{ forum.title }}</h1>
-                <div class="taj padding" >{{ forum.description|safe }}</div>
+                <h1 class="row white-space tar padding tcd" style="font-size: 133%">{{ forum.title }}</h1>
+                <div class="taj padding" >
+                    {{ forum.description|safe }}
+
+                    {% if forum.file %}
+                        <a class="fl effect-shine" href="{{ forum.file.url }}">
+                            <i class="mdi mdi-file"></i>
+                            دانلود فایل
+                        </a>
+                    {% endif %}
+
+                    {% if forum.cover %}
+                        <img src="{{ forum.cover.url }}" alt="{{ forum.title }}" class="row br4" style="margin-bottom: 0.6rem;border: 2px dashed var(--color-light);">
+                    {% endif %}
+                </div>
             </div>
             {% for r in response %}
-                <div class="row taj box padding_rem" style="padding: 2rem; font-size: 133%">
+                <div class="row taj box padding_rem" style="padding: 2rem; font-size: 118%">
                     <a id="response{{ r.id }}" href="#response{{ r.id }}">
                         <b>
                             <div class=" fl">
-                                <i class="mdi mdi-pound"></i>
+                                <i class="mdi mdi-pound" style="font-size: 14px;"></i>
                                 <span style="font-size: 20px; padding-left: 20px;">{{ r.id }}</span>
                             </div>
                             {{ r.writer.get_full_name }}
@@ -94,5 +107,10 @@
     .title_line .tc {
         transform: translateY(-14px);
     }
+     .harkat_item{
+         font-size: 110%;
+         background-image: url('/static/assets/fabric_1.webp');
+         background-blend-mode: darken;
+     }
     </style>
 {% endblock content %}
