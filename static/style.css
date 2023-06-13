@@ -2376,9 +2376,10 @@ figure.content{
 .harkat_item img {
 	float: right;
 	width: 222px;
-	height: 313px;
+	height: auto;
 	object-fit: cover;
 	border: 2px dashed var(--color-very-light);
+	min-height: 313px;
 }
 .single .harkat_item img {
 	width: 444px;
