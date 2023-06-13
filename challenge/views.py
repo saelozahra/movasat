@@ -36,3 +36,13 @@ class ForumView(TemplateView):
 
 def show_challenge_cat(request):
     return None
+
+
+def all_challenges(request):
+    try:
+        context = {
+            "forum": Forum.objects.all(),
+        }
+    except Forum.DoesNotExist:
+        raise Http404
+    return render(request, "challenge_page.html", context=context)
