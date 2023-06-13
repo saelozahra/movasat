@@ -1408,6 +1408,11 @@ body:not(.home) footer .fr nav a {
 	filter: drop-shadow(0 0 5px #fff1);
 }
 
+.title label.dark {
+	background-image: url('./assets/SecTitleDark.png') !important;
+	color: #fff !important;
+}
+
 #lastContent canvas.hover-bg {
 	position: absolute;
 	left: 0;

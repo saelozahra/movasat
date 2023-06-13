@@ -212,7 +212,7 @@ jQuery(document).ready(function(){
 		$lastContent.owlCarousel({
 			loop:true,
 			margin:10,
-			dots:false,
+			dots:true,
 			nav:true,
 			navText:["<i class='mdi mdi-arrow-right-drop-circle'></i>","<i class='mdi mdi-arrow-left-drop-circle'></i>"],
 			autoplay:true,
