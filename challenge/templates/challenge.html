@@ -1,25 +1,74 @@
-<div class="row" style="margin-top: 4rem">
-    <div class="section fp-section fp-table active fp-completely" id="gozareshtasviri" style=" height: 100vh; background-color: rgb(250, 215, 78);" data-fp-styles="background-image:url()">
+<div class="row" style="margin-top: 4rem; background-color: var(--color-very-light); border-top: 5px dotted white; border-bottom: 5px dotted white; padding: 3px 0; outline: 5px dotted var(--color-very-light);">
+    <div class="section fp-section fp-table active fp-completely" id="gozareshtasviri" style=" height: 100vh; background-color: rgb(250, 215, 78); border: none" >
 
         <canvas class="hover-bg" width="1920" height="949"></canvas>
-        <div class="row" style="position: relative">
+        <div class="row" style="position: relative" id="lastContent">
 
             <br style="clear: both">
-            <br style="clear: both">
-            <br style="clear: both">
-            <div class="row all_course">
 
-                <div id="challenge" class="faraTitle container">
-                    <div class="title">چالش‌ها و نیازمندی های گروه‌های جهادی</div>
-                </div>
+            <div class="row all_course" style="z-index: 9;position: relative;">
+
                 <br style="clear: both">
-                <br style="clear: both">
-                <div class="container four-col">
-                    {% for ci in course %}
-                        {% include "course_item.html" with c=ci %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="container"><br>
+
+                    <h1 class="row title tr hide-xs" style="margin-bottom:12px;" id="challenge">
+                        <label class="dark">
+                            <i class="mdi mdi-newspaper" ></i>
+                                کمک به چالش‌ها
+                        </label>
+                    </h1>
+
+                    <div class="row padding">
+
+                        <div class="container tab">
+                            <nav class="row" style="margin: 14px auto 40px;" >
+                                <label class="tab_title" data-id="1" data-active="true" >چالش‌ها</label>
+                                <label class="tab_title" data-id="2" data-active="false" >نیازمندی‌ها</label>
+                                <label class="tab_title" data-id="3" data-active="false" >همکاری‌ها</label>
+                            </nav>
+
+                            <section class="row">
+                                <figure class="tab_content owl-carousel" data-id="1" data-active="true">
+
+                                    {% for challenge in forum %}
+                                        {% include "challenge_item.html" %}
+                                    {% endfor %}
+
+                                </figure>
+
+
+
+                                <figure class="tab_content owl-carousel" data-id="2" data-active="false">
+
+                                    {% for challenge in forum %}
+                                        {% include "challenge_item.html" %}
+                                    {% endfor %}
+
+                                </figure>
+
+                                <figure class="tab_content owl-carousel" data-id="3" data-active="false">
+
+                                    {% for challenge in forum %}
+                                        {% include "challenge_item.html" %}
+                                    {% endfor %}
+
+                                </figure>
+
+                            </section>
+                        </div>
+
+                    </div>
+                </div>{#end container#}
+            </div>{#end all_course#}
+        </div>{#end lastContent#}
+    </div>{#end gozareshtasviri#}
+</div>{#end row#}
+<style>
+    #lastContent .tab_title {
+        color: #111;
+    }
+    #lastContent .tab_title[data-active="true"], #lastContent .tab_title:hover {
+        background-color: var(--color-light);
+    }
+
+</style>
