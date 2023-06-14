@@ -13,6 +13,7 @@ class ForumAdmin(admin.ModelAdmin):
 
 
 class DivarAdmin(admin.ModelAdmin):
+    # raw_id_fields = ('RelatedProject',)
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'Admin', None) is None:
             obj.Admin = request.user
