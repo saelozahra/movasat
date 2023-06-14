@@ -12,5 +12,20 @@ class ForumAdmin(admin.ModelAdmin):
     inlines = [ResponseInline, ]
 
 
+class DivarAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        if getattr(obj, 'Admin', None) is None:
+            obj.Admin = request.user
+            obj.save()
+        else:
+            obj.save()
+
+    list_filter = (
+        ('Admin', 'SubmitDate')
+    )
+    list_display = ("Name", "Status", "Admin")
+
+
 admin.site.register(Response)
 admin.site.register(Forum, ForumAdmin)
+admin.site.register(Divar, DivarAdmin)
