@@ -83,9 +83,9 @@ class Divar(models.Model):
     Picture = models.ImageField(blank=True, upload_to="files/divar/%Y/%m/", verbose_name="تصویر")
     Thumbnail = models.ImageField(upload_to='files/divar/%Y/%m/', editable=False, blank=True, verbose_name='تصویرک')
     SubmitDate = jmodels.jDateTimeField(auto_now=True, verbose_name="زمان ثبت")
-    Status = models.PositiveSmallIntegerField(choices=StatusChoices, verbose_name="وضعیت")
     Warranty = models.CharField(max_length=313, blank=True, help_text="برای ضمانت چی میخواین ؟", verbose_name="ضمانت")
     Admin = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="مالک")
+    Status = models.PositiveSmallIntegerField(choices=StatusChoices,default=1, verbose_name="وضعیت")
 
     def __str__(self):
         return self.Name
