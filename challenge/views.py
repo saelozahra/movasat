@@ -3,7 +3,9 @@ from django.views.generic import TemplateView
 from harkat.models import Project
 from django.shortcuts import render
 from django.http import Http404, HttpResponseRedirect
-from .models import Forum, Response
+from .models import Forum, Response, Divar
+
+
 # Create your views here.
 
 
@@ -52,3 +54,15 @@ def all_challenges(request):
     except Forum.DoesNotExist:
         raise Http404
     return render(request, "challenge_page.html", context=context)
+
+
+class DivarView(TemplateView):
+    def get(self, request, **kwargs):
+        did = kwargs.get("did")
+        try:
+            context = {
+                "divar": Divar.objects.filter(id=did).get(),
+            }
+        except Forum.DoesNotExist:
+            raise Http404
+        return render(request, "DivarSingle.html", context=context)
