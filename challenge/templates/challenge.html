@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 4rem; background-color: var(--color-very-light); border-top: 5px dotted white; border-bottom: 5px dotted white; padding: 3px 0; outline: 5px dotted var(--color-very-light);">
+<div class="row" style="margin-top: 4rem; background-color: #eee; border-top: 5px dotted white; border-bottom: 5px dotted white; padding: 3px 0; outline: 5px dotted #efefef;">
     <div class="section fp-section fp-table active fp-completely" id="gozareshtasviri" style=" height: 100vh; background-color: rgb(250, 215, 78); border: none" >
 
         <canvas class="hover-bg" width="1920" height="949"></canvas>
@@ -24,7 +24,7 @@
                             <nav class="row" style="margin: 14px auto 40px;" >
                                 <label class="tab_title" data-id="1" data-active="true" >چالش‌ها</label>
                                 <label class="tab_title" data-id="2" data-active="false" >نیازمندی‌ها</label>
-                                <label class="tab_title" data-id="3" data-active="false" >همکاری‌ها</label>
+                                <label class="tab_title" data-id="3" data-active="false" >امانت‌ها</label>
                             </nav>
 
                             <section class="row">
@@ -40,16 +40,16 @@
 
                                 <figure class="tab_content owl-carousel" data-id="2" data-active="false">
 
-                                    {% for challenge in forum %}
-                                        {% include "challenge_item.html" %}
+                                    {% for divar in divars %}
+                                        {% include "DivarItem.html" %}
                                     {% endfor %}
 
                                 </figure>
 
                                 <figure class="tab_content owl-carousel" data-id="3" data-active="false">
 
-                                    {% for challenge in forum %}
-                                        {% include "challenge_item.html" %}
+                                    {% for divar in amanat %}
+                                        {% include "DivarItem.html" %}
                                     {% endfor %}
 
                                 </figure>
