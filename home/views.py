@@ -1,4 +1,4 @@
-from challenge.models import Forum
+from challenge.models import Forum, Divar
 from harkat.models import CrowdFunding
 from lms.models import Course
 from madadyar.models import JahadActivity
@@ -13,6 +13,8 @@ def home_view(request):
         'harkat': CrowdFunding.objects.all(),
         'course': Course.objects.all(),
         'forum': Forum.objects.all(),
+        'divars': Divar.objects.filter(Type=0).all(),
+        'amanat': Divar.objects.filter(Type=1).all(),
         'statistics': {
             'lms': f"{Course.objects.all().count():,}",
             'harkat': f"{CrowdFunding.objects.all().count():,}",

@@ -1459,12 +1459,21 @@ body:not(.home) footer .fr nav a {
 }
 
 #lastContent .tab_content .lastContentItem {
-	background-color: #323334aa;
+	background-color: #0003;
 	color: white;
 	direction: rtl;
 	margin-bottom: 22px;
+	backdrop-filter: blur(6px);
 }
-
+#lastContent .tab_content .lastContentItem .tag {
+	top: 6px;
+	position: absolute;
+	left: 7px;
+	padding: 2% 6%;
+	backdrop-filter: blur(5px);
+	background-color: #0004;
+	border-radius: 5px 0 8px 0;
+}
 #lastContent .tab_content .lastContentItem img {
 	border-radius: 5px 5px 0 0;
 }
