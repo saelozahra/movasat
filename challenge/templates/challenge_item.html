@@ -1,7 +1,9 @@
 <a target="_blank" href="{{ challenge.get_absolute_url }}" title="{{ challenge.title }}" class="row fr lastContentItem padding row borderlight br taj tooltip">
-    <img src="{{ challenge.cover.url }}" class="row wp-post-image" alt="{{ challenge.title }}" decoding="async" loading="lazy" width="313" height="202">						<h4 class="white-space row tar">محمد حسین متولد سال ۷۴ و دانشجوی علوم سیاسی بود. او از ۷ سالگی عضو بسیج&nbsp; بود و در مسجد فعالیت می‌کرد. </h4>
+    <img src="{{ challenge.cover.url }}" class="row wp-post-image" alt="{{ challenge.title }}" loading="lazy" width="313" height="202">
+    <h4 class="white-space row tar">{{ challenge.title }}</h4>
     <div class="row taj">
         <i class="mdi mdi-format-quote-open"></i>
         {{ challenge.description|safe|striptags|truncatewords_html:55 }}
+        <i class="mdi mdi-format-quote-close"></i>
     </div>
 </a>
