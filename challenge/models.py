@@ -72,20 +72,20 @@ class Divar(models.Model):
     )
 
     TypeChoices = (
-        (1, 'امانت دادن'),
-        (0, 'نیازمندی'),
+        (True, 'امانت دادن'),
+        (False, 'نیازمندی'),
     )
 
-    Type = models.BooleanField(choices=TypeChoices, verbose_name="نوع آگهی", default=1,
+    Type = models.BooleanField(choices=TypeChoices, verbose_name="نوع آگهی", default=True,
                                help_text="به این کالا برا کار خیرتون نیاز دارید؟ یا میخواید به یکی دیگه امانتش بدید؟")
     Name = models.CharField(max_length=202, null=False, verbose_name="نام")
-    Description = models.TextField(null=False, verbose_name="متن")
+    Description = RichTextField(null=False, verbose_name="متن")
     Picture = models.ImageField(blank=True, upload_to="files/divar/%Y/%m/", verbose_name="تصویر")
     Thumbnail = models.ImageField(upload_to='files/divar/%Y/%m/', editable=False, blank=True, verbose_name='تصویرک')
     SubmitDate = jmodels.jDateTimeField(auto_now=True, verbose_name="زمان ثبت")
     RelatedProject = models.ForeignKey(Project, blank=True, on_delete=models.DO_NOTHING, verbose_name="پروژه مربوطه")
     Warranty = models.CharField(max_length=313, blank=True, help_text="برای ضمانت چی میخواین ؟", verbose_name="ضمانت")
-    Admin = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="مالک")
+    Admin = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="آگهی دهنده")
     Status = models.PositiveSmallIntegerField(choices=StatusChoices,default=1, verbose_name="وضعیت")
 
     def __str__(self):
@@ -109,3 +109,11 @@ class Divar(models.Model):
         self.Thumbnail = InMemoryUploadedFile(output_thumb, 'ImageField', f"{img_name}_thumb.jpg", 'image/jpeg',
                                               sys.getsizeof(output_thumb), None)
         return super().save(*args, **kwargs)
+
+    @property
+    def type_value(self):
+        type_val = dict(self.TypeChoices).get(self.Type)
+        return type_val
+
+    def get_absolute_url(self):
+        return reverse("show_forum", kwargs={"fid": self.id, })
