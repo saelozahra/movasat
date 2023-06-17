@@ -28,7 +28,10 @@ def harkat_page(request):
 
 
 def harkat_single(request, jahadi, slug):
-    cf = CrowdFunding.objects.filter(Slug=slug).get()
+    cf = CrowdFunding.objects.filter(Slug=slug)
+    cf.update(view_count=int(cf.get().view_count+1))
+
+    cf = cf.get()
     tr = Transaction.objects.filter(harkat__Slug=slug).all()
     return render(request, "harkat_single.html", context={"h": cf, "t": tr, })
 

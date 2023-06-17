@@ -58,7 +58,8 @@ class CrowdFunding(models.Model):
     Amount = models.BigIntegerField(verbose_name="کل مبلغ مورد نیاز")
     date = jmodels.jDateField(blank=True, auto_now=True, verbose_name="تاریخ")
     State = models.CharField(choices=StateChoices, default="I", max_length=20, verbose_name="وضعیت")
-    # @todo: add view count
+    view_count = models.IntegerField(default=0, editable=False, verbose_name='بازدید ها')
+    like_count = models.IntegerField(default=0, editable=False, verbose_name='پسند ها')
 
     class Meta:
         verbose_name = "تامین مالی حرکت جهادی"
