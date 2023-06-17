@@ -94,8 +94,8 @@
                         <i class="mdi mdi-lock licon tac fr"></i>
                         <a class="" href="{{ l.get_absolute_url }}">
                             <b>{{ l }}</b>
-                            <small> {{ l.lesson_length }} </small>
                         </a>
+                        <small> {{ l.lesson_length }} </small>
                         {% if l.file %}
                             <a href="{{ l.file.url }}" download=""><i class="mdi mdi-download"></i></a>
                         {% else %}

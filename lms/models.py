@@ -9,6 +9,13 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 
 
+def count_words_in_text(text_list, word_length):
+    total_words = 0
+    for current_text in text_list:
+        total_words += len(current_text) / word_length
+    return total_words
+
+
 class Category(models.Model):
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام دسته بندی")
     slug = models.SlugField(unique=True, null=True, blank=False, verbose_name="لینک دسته بندی")
@@ -103,6 +110,18 @@ class Lesson(Orderable):
         verbose_name = "درس"
         verbose_name_plural = "درس"
 
+    @property
+    def estimate_reading_time(self):
+        total_words = count_words_in_text(self.content, 5)  # 5 is words length
+        # natije_taghsim = total_words / 200  # 200 is wpm (word per min)
+        # natije = "{: .2f}".format(round(natije_taghsim, 2))
+        return round(total_words / 200)
+
+    def save(self, *args, **kwargs):  # new
+        if self.lesson_length is "":
+            self.lesson_length = f"{self.estimate_reading_time} دقیقه"
+        return super().save(*args, **kwargs)
+
     def __str__(self):
         return self.title
 
@@ -111,3 +130,4 @@ class Lesson(Orderable):
             "LessonView",
             kwargs={"slug": self.Course.slug, "cat": self.Course.category.slug, "lid": self.id, }
         )
+        # @todo lesson page
