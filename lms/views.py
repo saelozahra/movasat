@@ -26,6 +26,7 @@ def course_view(request, cat, slug):
     context = {
         'course': course.get(),
         'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
+        'edit_url': course.get().get_edit_url(),
     }
     return render(request, 'course_single.html', context)
 

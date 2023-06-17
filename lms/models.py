@@ -95,6 +95,9 @@ class Course(models.Model):
     def get_absolute_url(self):
         return reverse("CourseView", kwargs={"slug": self.slug, "cat": self.category.slug, })
 
+    def get_edit_url(self):
+        return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
+
 
 class Lesson(Orderable):
     title = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام درس")
