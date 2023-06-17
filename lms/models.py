@@ -134,3 +134,6 @@ class Lesson(Orderable):
             kwargs={"slug": self.Course.slug, "cat": self.Course.category.slug, "lid": self.id, }
         )
         # @todo lesson page
+
+    def get_edit_url(self):
+        return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))

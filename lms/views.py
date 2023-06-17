@@ -43,6 +43,7 @@ def lesson_view(request, cat, slug, lid):
         'course': course.get(),
         'this_lesson': this_lesson.all(),
         'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
+        'edit_url': this_lesson.get().get_edit_url(),
     }
 
     return render(request, 'course_single.html', context)
