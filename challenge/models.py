@@ -96,13 +96,13 @@ class Divar(models.Model):
         verbose_name_plural = "دیوار مهربانی"
 
     def save(self, *args, **kwargs):
-        output_size = (313, 313)
+        output_size = (444, 313)
         output_thumb = BytesIO()
 
         img = Image.open(self.Picture)
         img_name = self.Picture.name.split('.')[0]
 
-        if img.height > 313 or img.width > 313:
+        if img.height > 444 or img.width > 313:
             img.thumbnail(output_size)
             img.save(output_thumb, format='JPEG', quality=90)
 

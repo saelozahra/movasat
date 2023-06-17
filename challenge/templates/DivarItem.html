@@ -1,0 +1,15 @@
+{% load saelozahra_tag %}
+<a target="_blank" href="{{ divar.get_absolute_url }}" title="{{ divar.Name }}" class="row fr lastContentItem padding row borderlight br taj tooltip">
+    <img src="{{ divar.Thumbnail.url }}" class="row wp-post-image" alt="{{ divar.Name }}" loading="lazy" width="313" height="202">
+    <h5 class="tag fl">{{ divar.type_value }}</h5>
+    <h5 class="tag" style="right: 7px; left: auto">
+        <i class="mdi mdi-av-timer"></i>
+        {{ divar.SubmitDate.date|rplc }}
+    </h5>
+    <h4 class="white-space row tar">{{ divar.Name }}</h4>
+    <div class="row taj">
+        <i class="mdi mdi-format-quote-open"></i>
+        {{ divar.Description|safe|striptags|truncatewords_html:55 }}
+        <i class="mdi mdi-format-quote-close"></i>
+    </div>
+</a>
