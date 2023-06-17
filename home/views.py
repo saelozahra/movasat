@@ -13,6 +13,7 @@ def home_view(request):
         'harkat': CrowdFunding.objects.all(),
         'course': Course.objects.all(),
         'forum': Forum.objects.all(),
+        'divar': Divar.objects.filter().all(),
         'divars': Divar.objects.filter(Type=0).all(),
         'amanat': Divar.objects.filter(Type=1).all(),
         'statistics': {
