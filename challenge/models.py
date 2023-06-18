@@ -116,4 +116,4 @@ class Divar(models.Model):
         return type_val
 
     def get_absolute_url(self):
-        return reverse("show_forum", kwargs={"fid": self.id, })
+        return reverse("show_divar", kwargs={"did": self.id, })
