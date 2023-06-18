@@ -1,30 +1,70 @@
 {% extends "base.html" %}
 {% load saelozahra_tag %}
+{% block title %}{{ divar }} | {{ site_name }}{% endblock title %}
 {% block content %}
     <div class="container">
 
         <nav id="bread-crumb" class="row tar box padding">
             <div class="fr" style="position: relative">
-                <a class="effect-underline" href="{{ home_url }}">صفحه اصلی</a>
+                <a class="effect-underline" href="{{ home_url }}">خانه</a>
             </div>
             <i class="fr tcl mdi mdi-chevron-left"></i>
             <div class="fr" style="position: relative">
-                <a class="effect-underline" href="{{ home_url }}/challenge/">چالش ها</a>
+                <a class="effect-underline" href="{{ home_url }}/challenge/">دیوار مهربانی</a>
             </div>
+            {% if divar.RelatedProject %}
+                <i class="fr tcl mdi mdi-chevron-left"></i>
+                <div class="fr" style="position: relative">
+                    <a class="effect-underline" href="{{ project.get_absolute_url }}">
+                        پروژه
+                        <i class="mdi mdi-apache-kafka"></i>
+                        {{ divar.RelatedProject }}</a>
+                </div>
+            {% endif %}
             <i class="fr tcl mdi mdi-chevron-left"></i>
-            <div class="fr" style="position: relative">
-                <a class="effect-underline" href="{{ project.get_absolute_url }}">پروژه <i class="mdi mdi-apache-kafka"></i> {{ project }}</a>
-            </div>
-            <i class="fr tcl mdi mdi-chevron-left"></i>
-            <a class="effect-shine" href="">{{ forum }}</a>
+            <a class="effect-shine" href="">
+                {{ divar.type_value }}
+                <i class="mdi mdi-heart-box-outline" style="color: var(--color-very-light)"></i>
+                {{ divar }}
+            </a>
         </nav>
 
         <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%;">
-            1
+            {% include "ProjectItem.html" with p=divar.RelatedProject %}
+            <div class="row box padding">
+                <h5 class="title_line" style="margin-top: 22px">
+                    <span class="tc" style="background-color: #f9f9f9;margin-top: 7px;">اطلاعات تماس</span>
+                </h5>
+                <div class="padding row">
+                    <i class="mdi mdi-phone"></i>
+                    شماره تماس :
+                    {{ divar.RelatedProject.madadkar.Tel }}
+                </div>
+            </div>
         </div>
 
         <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%">
-            2
+            <div class="row box padding" >
+                <img class="br4 row" src="{{ divar.Picture.url }}" alt="{{ divar }}">
+            </div>
+            <div class="row box padding" style="background-image: url('/static/assets/fabric_1.webp');background-blend-mode: darken;">
+
+                <h6 class="tag fl bg br" style="border: 1px dotted var(--color); position: relative">
+                    <a href="#" class="effect-underline" style=" padding: 0.2rem 0.7rem">
+                        آگهی
+                        <i class="mdi mdi-apache-kafka"></i>
+                        {{ divar.type_value }}
+                    </a>
+                </h6>
+
+                <a href="{{ divar.get_absolute_url }}" class="row">
+                    <h1 class="row white-space tar padding tcd" style="font-size: 133%">{{ divar }}</h1>
+                </a>
+                <div class="taj row padding">
+                    {{ divar.Description|safe }}
+                </div>
+            </div>
         </div>
+
     </div>
 {% endblock content %}
