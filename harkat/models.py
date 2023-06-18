@@ -113,6 +113,13 @@ class CrowdFunding(models.Model):
                        f"</div>"
         return percent_html
 
+    @property
+    def progress_html(self):
+        percent_html = f" <b>{self.percent}% </b> <div class='progress row'>" \
+                       f"<div class='progress-bar pe-none progress-bar-animated progress-bar-striped bg-info' style=' width:{self.percent}%;'></div>" \
+                       f"</div>"
+        return percent_html
+
 
 class Transaction(models.Model):
     StatusChoices = (
