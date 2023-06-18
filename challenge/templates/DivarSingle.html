@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load saelozahra_tag %}
+{% block content %}
+    <div class="container">
+
+        <nav id="bread-crumb" class="row tar box padding">
+            <div class="fr" style="position: relative">
+                <a class="effect-underline" href="{{ home_url }}">صفحه اصلی</a>
+            </div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
+            <div class="fr" style="position: relative">
+                <a class="effect-underline" href="{{ home_url }}/challenge/">چالش ها</a>
+            </div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
+            <div class="fr" style="position: relative">
+                <a class="effect-underline" href="{{ project.get_absolute_url }}">پروژه <i class="mdi mdi-apache-kafka"></i> {{ project }}</a>
+            </div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
+            <a class="effect-shine" href="">{{ forum }}</a>
+        </nav>
+
+        <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%;">
+            1
+        </div>
+
+        <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%">
+            2
+        </div>
+    </div>
+{% endblock content %}
