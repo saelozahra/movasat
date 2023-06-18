@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('account.urls')),
     path('', include('lms.urls')),
+    path('', include('job.urls')),
     path('', include('madadyar.urls')),
     path('', include('challenge.urls')),
     path('', include('harkat.urls')),
