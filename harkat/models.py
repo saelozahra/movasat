@@ -74,6 +74,7 @@ class CrowdFunding(models.Model):
         Project.objects.create(
             madadkar=self.MadadKar,
             ProjectCat=self.Category,
+            location=self.Location,
             name=self.Title,
             photo=self.Picture,
             date=self.date,
@@ -116,7 +117,8 @@ class CrowdFunding(models.Model):
     @property
     def progress_html(self):
         percent_html = f" <b>{self.percent}% </b> <div class='progress row'>" \
-                       f"<div class='progress-bar pe-none progress-bar-animated progress-bar-striped bg-info' style=' width:{self.percent}%;'></div>" \
+                       f"<div class='progress-bar pe-none progress-bar-animated progress-bar-striped bg-info' style='" \
+                       f" width:{self.percent}%;'></div>" \
                        f"</div>"
         return percent_html
 
@@ -165,6 +167,7 @@ class Project(models.Model):
     madadkar = models.ForeignKey(MadadKar, on_delete=models.CASCADE, verbose_name="مددکار")
     ProjectCat = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="دسته بندی")
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام پروژه")
+    location = PlainLocationField(zoom=9, blank=True, verbose_name='موقعیت مکانی')
     photo = models.ImageField(upload_to='files/project/', null=False, blank=False, verbose_name="تصویر")
     thumbnail = models.ImageField(upload_to='files/project/thumb', editable=False, blank=True, verbose_name='تصویرک')
     date = jmodels.jDateField(blank=True, verbose_name="تاریخ")

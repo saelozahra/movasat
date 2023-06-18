@@ -1,7 +1,7 @@
 <figure class="harkat_item row br4">
     <img class="img br4 sticky" src="{{ p.photo.url }}"  alt="{{ p.name }}"/>
     <div class="harkat_left tar">
-        <a href="#" title="{{ p.name }}">
+        <a href="{{ p.get_absolute_url }}" title="{{ p.name }}">
             <h2>
                 <figcaption class="white-space">چالش های پروژه {{ p.name }}</figcaption>
             </h2>
