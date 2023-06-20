@@ -662,6 +662,9 @@ a.effect-shine:hover,button.effect-shine:hover,.menu-item a:hover,#hashtags a:ho
 }
 
 .pngwing a {
+	transform: rotate(-4deg);
+}
+.pngwing a:hover {
 	transform: rotate(-6deg);
 }
 
