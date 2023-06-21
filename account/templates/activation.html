@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}ثبت نام{% endblock title %}
+{% block content %}
+    حساب شما با موفقیت ایجاد شد
+    <form action="" method="post">
+        {% csrf_token %}
+        <b>{{ msg }}</b>
+        <br>
+        <form action="../activation" method="post">
+            <br>
+            <input type="hidden" name="uid" value="{{ user.id }}">
+            <input type="number" placeholder="کد تائید" name="otp" max="9999">
+            <br>
+            <button class="btn" type="submit">تائید حساب کاربری</button>
+        </form>
+    </form>
+{% endblock content %}

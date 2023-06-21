@@ -6,5 +6,6 @@ urlpatterns = [
     # path(r'', views.MainPage.as_view(), name="index"),
     # path('page/<slug>', views.page_view, name='page_view'),
     path('madadkar/<user>', get_profile, name='get_profile'),
-    path('register', UserCreate.as_view(), name='UserCreate')
+    path('register', UserCreate.as_view(), name='UserCreate'),
+    path('register/activation/<uid>', user_active, name='user_active'),
 ]
