@@ -1,13 +1,10 @@
 import random
-import account
-from django.http import HttpResponse, HttpResponseRedirect
-import json
+import requests
+from django.http import HttpResponse
 
-from django.shortcuts import render
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
+from .forms import RegisterUser
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 from account.models import *
 from harkat.models import CrowdFunding, Project
@@ -15,70 +12,6 @@ from madadyar.models import MadadJoo
 
 
 # Create your views here.
-
-
-@method_decorator(csrf_exempt, name='dispatch')
-class OTPStart(TemplateView):
-    def post(self, request, **kwargs):
-        username = kwargs.get("username")
-        print("kwarg: ", username)
-        print("username: ", username)
-        print("first: ", User.objects.first())
-        if username is None:
-            return HttpResponse(json.dumps({'status': "error", 'description': "please enter user", }),
-                                content_type='application/json')
-        otp_user = User.objects.get(username=username)
-        print("otp user: ", otp_user)
-        new_token = random.randint(1000, 9999)
-        phone = otp_user.userdetail.phone
-        name = otp_user.get_full_name()
-        if phone.__len__() > 9:
-            import requests
-            url = "http://rest.payamak-panel.com/api/SendSMS/BaseServiceNumber"
-            payload = f"username=sael&password=6cbc37ef-6273-43ad-85c0-0c8d5feff897&to={phone}&bodyId=108091&text={name};{new_token}"
-            headers = {"Content-Type": "application/x-www-form-urlencoded"}
-
-            response = requests.request("POST", url, data=payload.encode(), headers=headers)
-
-            print(HttpResponse(response))
-            print(response.text)
-
-            otp_data_to_dump = {
-                'status': "success",
-                'name': name,
-                'tel': phone,
-                'response': response.text,
-            }
-        else:
-            otp_data_to_dump = {
-                'status': "error",
-                'description': "user not found",
-            }
-        data = json.dumps(otp_data_to_dump)
-        return HttpResponse(data, content_type='application/json')
-
-
-class OTPValidate(TemplateView):
-    def post(self, request, **kwargs):
-        username = kwargs.get("username")
-        otp_code = kwargs.get("code")
-        otp_user = User.objects.filter(username=username).get()
-        phone = otp_user.userdetail.phone
-        name = otp_user.get_full_name()
-        if otp_user.userdetail.otp == otp_code:
-            otp_data_to_dump = {
-                'status': "success",
-                'name': name,
-                'tel': phone,
-            }
-        else:
-            otp_data_to_dump = {
-                'status': "error",
-                'description': "otp not equal",
-            }
-        data = json.dumps(otp_data_to_dump)
-        return HttpResponse(data, content_type='application/json')
-
 
 class MadadJooHa(TemplateView):
     pass
@@ -100,7 +33,7 @@ def list_madadjooha(request, slug):
 
     context = {
         # 'ForMobile': for_mobile,
-        'madadjooha': account.models.MadadJoo.objects.all(),
+        'madadjooha': MadadJoo.objects.all(),
     }
     return render(request, 'lesson.html', context)
 
@@ -126,7 +59,43 @@ def get_profile(request, user):
     return render(request, 'profile.html', context=context)
 
 
-class UserCreate(LoginRequiredMixin, CreateView):
-    model = UserDetail
-    fields = ["tel", "melli", "City", "birth", "skills", ]
+class UserCreate(CreateView):
+    form_class = RegisterUser
     template_name = "reg_user.html"
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_active = False
+        user.otp = random.randint(1000, 9999)
+        user.save()
+        tel = form.cleaned_data.get("tel")
+
+        #send msg
+        url = "http://rest.payamak-panel.com/api/SendSMS/BaseServiceNumber"
+        payload = f"username=sael&password=6cbc37ef-6273-43ad-85c0-0c8d5feff897&to={tel}&bodyId=108091&text={user.get_full_name()};{user.otp}"
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+
+        response = requests.request("POST", url, data=payload.encode(), headers=headers)
+
+        print(HttpResponse(response))
+        print(response.text)
+
+        return redirect("user_active", uid=user.id)
+
+
+def user_active(request, uid):
+    msg = "کد پیامک شده را در اینجا وارد کنید"
+    if request.POST:
+        otp = request.POST['otp']
+        user = UserDetail.objects.get(id=uid)
+        if int(user.otp) == int(otp):
+            user.is_active = True
+            user.save()
+            return redirect("index")
+        else:
+            msg = "کد وارد شده صحیح نیست"
+    context = {
+        "msg": msg,
+        "user": {"id": uid},
+    }
+    return render(request, "activation.html", context=context)
