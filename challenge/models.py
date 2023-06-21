@@ -1,9 +1,10 @@
 import sys
 from PIL import Image
 from io import BytesIO
+
+from django.conf import settings
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
-from django.contrib.auth.models import User
 from django_jalali.db import models as jmodels
 from django.urls import reverse
 from harkat.models import Project
@@ -20,7 +21,7 @@ class Forum(models.Model):
     thumbnail = models.ImageField(upload_to='files/challenge/%Y/%m/', editable=False, blank=True, verbose_name='تصویرک')
     file = models.FileField(blank=True, upload_to="files/challenge/%Y/%m/", verbose_name="فایل")
     RelatedProject = models.ForeignKey(Project, blank=True, on_delete=models.DO_NOTHING, verbose_name="پروژه مربوطه")
-    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="مطرح کننده")
+    owner = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, verbose_name="مطرح کننده")
     date = jmodels.jDateTimeField(auto_now=True, verbose_name="تاریخ")
 
     class Meta:
@@ -52,7 +53,7 @@ class Forum(models.Model):
 class Response(models.Model):
     description = RichTextField(blank=False, null=False, verbose_name="توضیحات چالش")
     file = models.FileField(blank=True, upload_to="files/challenge/%Y/%m/", verbose_name="فایل")
-    writer = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="نویسنده")
+    writer = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, verbose_name="نویسنده")
     RelatedForum = models.ForeignKey(Forum, blank=True, on_delete=models.DO_NOTHING, verbose_name="پروژه مربوطه")
     date = jmodels.jDateTimeField(auto_now=True, verbose_name="زمان")
 
@@ -85,7 +86,7 @@ class Divar(models.Model):
     SubmitDate = jmodels.jDateTimeField(auto_now=True, verbose_name="زمان ثبت")
     RelatedProject = models.ForeignKey(Project, blank=True, on_delete=models.DO_NOTHING, verbose_name="پروژه مربوطه")
     Warranty = models.CharField(max_length=313, blank=True, help_text="برای ضمانت چی میخواین ؟", verbose_name="ضمانت")
-    Admin = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="آگهی دهنده")
+    Admin = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="آگهی دهنده")
     Status = models.PositiveSmallIntegerField(choices=StatusChoices,default=1, verbose_name="وضعیت")
 
     def __str__(self):
