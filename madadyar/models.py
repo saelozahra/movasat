@@ -1,5 +1,5 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
 from account.models import MadadKar
 from django_jalali.db import models as jmodels
 from Cities.models import City
@@ -10,7 +10,7 @@ from location_field.models.plain import PlainLocationField
 
 
 class MadadJoo(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     tel = models.CharField(max_length=11, null=False, blank=False, verbose_name="شماره تماس")
     melli = models.CharField(max_length=10, unique=True, null=False, blank=False, verbose_name="کد ملی")
     City = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="شهر")
