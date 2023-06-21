@@ -128,5 +128,5 @@ def get_profile(request, user):
 
 class UserCreate(LoginRequiredMixin, CreateView):
     model = UserDetail
-    fields = ["user", "tel", "melli", "City", "birth", "skills", ]
+    fields = ["tel", "melli", "City", "birth", "skills", ]
     template_name = "reg_user.html"
