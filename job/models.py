@@ -1,5 +1,6 @@
 from ckeditor.fields import RichTextField
 from colorfield.fields import ColorField
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -77,7 +78,7 @@ class Job(models.Model):
     JobCat = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="دسته بندی")
     need = models.PositiveSmallIntegerField(blank=False, null=False, default=0, verbose_name="تعداد افراد مورد نیاز")
     skills = models.ManyToManyField(Skills, verbose_name="تخصص های مورد نیاز")
-    owner = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="مدیر این کسب و کار")
+    owner = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="job_owner", verbose_name="مدیر این کسب و کار")
     photo = models.ImageField(upload_to='files/job/%Y/%m/', null=False, blank=False, verbose_name="تصویر")
     thumbnail = models.ImageField(upload_to='files/job/%Y/%m/', editable=False, blank=True, verbose_name='تصویرک')
     date = jmodels.jDateField(blank=True, auto_now_add=True, verbose_name="تاریخ درخواست")
