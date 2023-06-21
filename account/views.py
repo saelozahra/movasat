@@ -71,7 +71,8 @@ class UserCreate(CreateView):
 
         # send msg
         url = "http://rest.payamak-panel.com/api/SendSMS/BaseServiceNumber"
-        payload = f"username=sael&password=6cbc37ef-6273-43ad-85c0-0c8d5feff897&to={tel}&bodyId=108091&text={user.get_full_name()};{user.otp}"
+        payload = f"username=sael&password=6cbc37ef-6273-43ad-85c0-0c8d5feff897&to={tel}&bodyId=146403&" \
+                  f"text={user.get_full_name()};{user.otp}"
         headers = {"Content-Type": "application/x-www-form-urlencoded"}
 
         response = requests.request("POST", url, data=payload.encode(), headers=headers)
