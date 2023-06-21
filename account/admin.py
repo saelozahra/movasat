@@ -1,28 +1,18 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin, UserAdmin
 from django.contrib.auth.models import User
 from .models import *
 from unfold.admin import ModelAdmin
 
-# Define an inline admin descriptor for Employee model
+UserAdmin.fieldsets += (
+    ("حساب کاربری", {"fields": ("is_job_finder", "skills", "City", )}),
+)
+# UserAdmin.fieldsets[2][1]["fields"] += "skills"
+permission_list = list(UserAdmin.fieldsets[1][1]["fields"])
+permission_list.append("tel")
+permission_list.append("melli")
+permission_list.append("birth")
+UserAdmin.fieldsets[1][1]["fields"] = permission_list
 
-
-
-# which acts a bit like a singleton
-# class UserDetailInline(admin.StackedInline):
-#
-#     model = UserDetail
-#     can_delete = False
-#     verbose_name_plural = 'کاربر'
-
-
-# Define a new User admin
-# class UserAdmin(BaseUserAdmin):
-    # inlines = (UserDetailInline,)
-
-
-# Re-register UserAdmin
-# admin.site.register(UserDetail)
 admin.site.register(MadadKar)
-admin.site.unregister(User)
-admin.site.register(User)
+admin.site.register(UserDetail, UserAdmin)

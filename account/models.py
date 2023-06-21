@@ -1,5 +1,6 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.urls import reverse
 from django_jalali.db import models as jmodels
 from job.models import Skills
@@ -7,14 +8,14 @@ from location_field.models.plain import PlainLocationField
 from Cities.models import City
 
 
-class UserDetail(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+class UserDetail(AbstractUser):
     otp = models.SmallIntegerField(default=0, editable=False)
     tel = models.CharField(max_length=11, null=False, blank=False, verbose_name="شماره تماس")
     melli = models.CharField(max_length=10, unique=True, null=False, blank=False, verbose_name="کد ملی")
-    City = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="شهر")
+    City = models.ForeignKey(City, on_delete=models.CASCADE, null=True, verbose_name="شهر")
     birth = jmodels.jDateField(blank=True, null=True, verbose_name="تاریخ تولد")
-    skills = models.ForeignKey(Skills, on_delete=models.CASCADE, verbose_name="تخصص ها")
+    skills = models.ForeignKey(Skills, on_delete=models.CASCADE, blank=True, null=True, verbose_name="تخصص ها")
+    is_job_finder = models.BooleanField(default=False, verbose_name="در جستجوی کار")
 
     class Meta:
         verbose_name = "اطلاعات کاربری"
@@ -22,7 +23,7 @@ class UserDetail(models.Model):
 
 
 class MadadKar(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     TYPE_CHOICES = (
         ('j', 'گروه جهادی'),
         ('k', 'موسسه خیریه'),
