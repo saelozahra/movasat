@@ -30,7 +30,6 @@ class MadadJooHa(TemplateView):
 
 
 def list_madadjooha(request, slug):
-
     context = {
         # 'ForMobile': for_mobile,
         'madadjooha': MadadJoo.objects.all(),
@@ -70,7 +69,7 @@ class UserCreate(CreateView):
         user.save()
         tel = form.cleaned_data.get("tel")
 
-        #send msg
+        # send msg
         url = "http://rest.payamak-panel.com/api/SendSMS/BaseServiceNumber"
         payload = f"username=sael&password=6cbc37ef-6273-43ad-85c0-0c8d5feff897&to={tel}&bodyId=108091&text={user.get_full_name()};{user.otp}"
         headers = {"Content-Type": "application/x-www-form-urlencoded"}
