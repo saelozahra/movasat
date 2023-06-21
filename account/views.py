@@ -6,7 +6,8 @@ import json
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from account.models import *
 from harkat.models import CrowdFunding, Project
@@ -123,3 +124,9 @@ def get_profile(request, user):
         'model': model
     }
     return render(request, 'profile.html', context=context)
+
+
+class UserCreate(LoginRequiredMixin, CreateView):
+    model = UserDetail
+    fields = ["user", "tel", "melli", "City", "birth", "skills", ]
+    template_name = "reg_user.html"
