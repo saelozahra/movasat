@@ -57,7 +57,10 @@
                 </div>
                 <div class="fl">
 
-                    <a href="{{ home_url }}/gallery/" class="liveBtn fl hide-xs"> آلبوم تصاویر و دل‌نوشته ها <i class="mdi mdi-18px mdi-television-classic"></i></a>
+                    <a href="{% if user.is_authenticated %}{% url 'admin:logout' %}{% else %}{% url 'admin:login' %}{% endif %}" class="liveBtn fl hide-xs">
+                        حساب کاربری
+                        <i class="mdi mdi-18px mdi-television-classic"></i>
+                    </a>
 
                     <nav class="header-social hide-xs fl" style="padding:3px 12px 0 12px;">
                         <a href="https://t.me/Mantaghe_Tahavolat" class="effect-shine" title="Telegram"><i class="mdi mdi-telegram"></i></a>
