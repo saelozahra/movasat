@@ -1,7 +1,7 @@
 import random
 import requests
+from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse
-
 from .forms import RegisterUser
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, CreateView
@@ -66,6 +66,7 @@ class UserCreate(CreateView):
         user = form.save(commit=False)
         user.is_active = False
         user.otp = random.randint(1000, 9999)
+        user.password = make_password(form.cleaned_data['password'])
         user.save()
         tel = form.cleaned_data.get("tel")
 
