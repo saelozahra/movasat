@@ -1,5 +1,6 @@
 from challenge.models import Forum, Divar
 from harkat.models import CrowdFunding
+from job.models import Job
 from lms.models import Course
 from madadyar.models import JahadActivity
 from django.shortcuts import render
@@ -16,11 +17,13 @@ def home_view(request):
         'divar': Divar.objects.filter().all(),
         'divars': Divar.objects.filter(Type=0).all(),
         'amanat': Divar.objects.filter(Type=1).all(),
+        'jobs': Job.objects.all(),
         'statistics': {
             'lms': f"{Course.objects.all().count():,}",
             'harkat': f"{CrowdFunding.objects.all().count():,}",
             'madadyar': f"{JahadActivity.objects.all().count():,}",
             'forum': f"{Forum.objects.all().count():,}",
+            'job': f"{Job.objects.all().count():,}",
         },
     }
     return render(request, 'home.html', context)
