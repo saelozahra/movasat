@@ -1,0 +1,17 @@
+{% load saelozahra_tag %}
+<a target="_blank" href="{{ job.get_absolute_url }}" title="{{ job.name }}" class="row fr lastContentItem padding row borderlight br taj tooltip">
+    <img src="{{ job.thumbnail.url }}" class="row wp-post-image" style="max-height: 313px;object-fit: cover;" alt="{{ job.name }}" loading="lazy" width="313" height="202">
+    <h5 class="tag fl">{{ job.JobCat }}</h5>
+    <h5 class="tag" style="right: 7px; left: auto">
+        <i class="mdi mdi-av-timer"></i>
+        {% for s in job.skills.all|slice:1 %}
+            {{ s }}
+        {% endfor %}
+    </h5>
+    <h4 class="white-space row tar">{{ job.name }}</h4>
+    <div class="row taj">
+        <i class="mdi mdi-format-quote-open"></i>
+        {{ job.description|safe|striptags|truncatewords_html:55 }}
+        <i class="mdi mdi-format-quote-close"></i>
+    </div>
+</a>

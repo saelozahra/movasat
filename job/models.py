@@ -102,3 +102,6 @@ class Job(models.Model):
     class Meta:
         verbose_name = "کسب و کار"
         verbose_name_plural = "کسب و کار"
+
+    def __str__(self):
+        return self.name
