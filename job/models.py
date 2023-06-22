@@ -30,9 +30,6 @@ class Skills(models.Model):
     def __str__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #     return reverse("harkat_cat", kwargs={"cid": self.id, })
-
     def save(self, *args, **kwargs):  # new
         if not self.slug:
             self.slug = slugify(self.name)
@@ -81,6 +78,8 @@ class Job(models.Model):
     owner = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="job_owner", verbose_name="مدیر این کسب و کار")
     photo = models.ImageField(upload_to='files/job/%Y/%m/', null=False, blank=False, verbose_name="تصویر")
     thumbnail = models.ImageField(upload_to='files/job/%Y/%m/', editable=False, blank=True, verbose_name='تصویرک')
+    address = models.TextField(blank=True, default="", verbose_name="نام کسب و کار")
+    location = PlainLocationField(default='29.5,52.5', zoom=4, blank=True, verbose_name='موقعیت مکانی')
     date = jmodels.jDateField(blank=True, auto_now_add=True, verbose_name="تاریخ درخواست")
     view_count = models.IntegerField(default=0, editable=False, verbose_name='بازدید ها')
     like_count = models.IntegerField(default=0, editable=False, verbose_name='پسند ها')
@@ -105,3 +104,6 @@ class Job(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("harkat_cat", kwargs={"cid": self.id, })
