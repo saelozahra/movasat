@@ -24,8 +24,9 @@
                             <nav class="row" style="margin: 14px auto 40px;" >
                                 <label class="tab_title" data-id="1" data-active="true" >چالش‌ها</label>
                                 <label class="tab_title" data-id="2" data-active="false" >کل آگهی‌ها</label>
-                                <label class="tab_title" data-id="3" data-active="false" >نیازمندی‌ها</label>
-                                <label class="tab_title" data-id="4" data-active="false" >امانت‌ها</label>
+                                <label class="tab_title" data-id="3" data-active="false" >کسب و کارها</label>
+                                <label class="tab_title" data-id="4" data-active="false" >نیازمندی‌ها</label>
+                                <label class="tab_title" data-id="5" data-active="false" >امانت‌ها</label>
                             </nav>
 
                             <section class="row">
@@ -49,13 +50,21 @@
 
                                 <figure class="tab_content owl-carousel" data-id="3" data-active="false">
 
+                                    {% for job in jobs %}
+                                        {% include "JobItem.html" %}
+                                    {% endfor %}
+
+                                </figure>
+
+                                <figure class="tab_content owl-carousel" data-id="4" data-active="false">
+
                                     {% for divar in divars %}
                                         {% include "DivarItem.html" %}
                                     {% endfor %}
 
                                 </figure>
 
-                                <figure class="tab_content owl-carousel" data-id="4" data-active="false">
+                                <figure class="tab_content owl-carousel" data-id="5" data-active="false">
 
                                     {% for divar in amanat %}
                                         {% include "DivarItem.html" %}
