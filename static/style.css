@@ -527,7 +527,23 @@ a.effect-shine:hover,button.effect-shine:hover,.menu-item a:hover,#hashtags a:ho
 }
 
 
-
+#fab {
+	width: 3.5rem;
+	height: 3.5rem;
+	font-size: 2.8rem;
+	position: fixed;
+	right: 16%;
+	bottom: 3rem;
+	background-color: var(--color);
+	color: whitesmoke;
+	border-radius: 50%;
+	box-shadow: -3px 3px 7px #999;
+	cursor: pointer;
+}
+#fab:hover {
+	background-color: var(--color-light);
+	color: var(--color-dark);
+}
 
 
 
