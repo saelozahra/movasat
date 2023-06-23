@@ -14,5 +14,29 @@ permission_list.append("melli")
 permission_list.append("birth")
 UserAdmin.fieldsets[1][1]["fields"] = permission_list
 
-admin.site.register(MadadKar)
+
 admin.site.register(UserDetail, UserAdmin)
+
+
+@admin.register(MadadKar)
+class MadadkarAdmin(ModelAdmin):
+    list_display = ("Name", "user", "GroupType", "City",)
+    list_filter = (
+        ('GroupType', 'City')
+    )
+
+    fieldsets = (
+        ('اطلاعات مددکار', {
+            'fields': ('user', 'Name', 'RegisterCode', 'Bio', 'City', 'Location', 'Address', ),
+            'description': 'مشخصات مددکار را وارد کنید',
+        }),
+        ('تصاویر', {
+            'fields': ('Avatar', 'Cover',),
+            'description': 'تصاویر گروه جهادی',
+        }),
+        ('شبکه های اجتماعی', {
+            'fields': ('Url', 'Tel', 'Eita', 'Rubika', 'Bale', ),
+            'description': 'لینک تشکیلات شما در شبکه های اجتماعی',
+            # 'classes': ('collapse', ),
+        }),
+    )

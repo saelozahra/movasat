@@ -23,7 +23,7 @@ class UserDetail(AbstractUser):
 
 
 class MadadKar(models.Model):
-    user = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="حساب کاربری")
     TYPE_CHOICES = (
         ('j', 'گروه جهادی'),
         ('k', 'موسسه خیریه'),
@@ -36,14 +36,14 @@ class MadadKar(models.Model):
     Cover = models.ImageField(upload_to="files/cover/", verbose_name="کاور")
     Avatar = models.ImageField(upload_to="files/avatar/", verbose_name="آواتار")
     Bio = models.TextField(verbose_name="توضیحات")
+    City = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="شهر")
+    Location = PlainLocationField(default='29.5,52.5', zoom=4, blank=True, verbose_name='موقعیت مکانی')
+    Address = models.TextField(verbose_name="آدرس")
     Url = models.URLField(verbose_name="وبسایت", blank=True)
     Tel = models.CharField(max_length=11, verbose_name="شماره تلفن")
     Eita = models.URLField(verbose_name="لینک صفحه در ایتا", blank=True)
     Rubika = models.URLField(verbose_name="لینک صفحه در روبیکا", blank=True)
     Bale = models.URLField(verbose_name="لینک صفحه در بله", blank=True)
-    City = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="شهر")
-    Location = PlainLocationField(default='29.5,52.5', zoom=4, blank=True, verbose_name='موقعیت مکانی')
-    Address = models.TextField(verbose_name="آدرس")
 
     class Meta:
         verbose_name = "مددکار"

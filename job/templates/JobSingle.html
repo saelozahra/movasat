@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load saelozahra_tag %}
+{% block title %}{{ divar }} | {{ site_name }}{% endblock title %}
+{% block content %}
+    <div class="container">
+
+        <nav id="bread-crumb" class="row tar box padding">
+            <div class="fr" style="position: relative">
+                <a class="effect-underline" href="{{ home_url }}">خانه</a>
+            </div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
+            <div class="fr" style="position: relative">
+                <a class="effect-underline" href="{% url 'all_job' %}">مشاغل</a>
+            </div>
+            <i class="fr tcl mdi mdi-chevron-left"></i>
+            <a class="effect-shine" href="">
+                <i class="mdi mdi-engine-outline" style="color: var(--color-very-light)"></i>
+                {{ job }}
+            </a>
+        </nav>
+
+        <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%;">
+            {% include "JobItem.html" %}
+            <div class="row box padding">
+                <h5 class="title_line" style="margin-top: 22px">
+                    <span class="tc" style="background-color: #f9f9f9;margin-top: 7px;">اطلاعات تماس</span>
+                </h5>
+                <div class="padding row">
+                    <a href="tel:{{ job.owner.Tel }}" class="padding row">
+                        <i class="mdi mdi-phone"></i>
+                        شماره تماس :
+                        {{ job.owner.Tel }}
+                        {{ job.owner.Madadkar }}
+                    </a>
+                    <a href="tel:{{ job.owner.Eita }}" class="padding row">
+                        <i class="mdi mdi-phone"></i>
+                        حساب ایتا :
+                        {{ job.owner.Eita }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%">
+            <div class="row box padding" style="position: relative" >
+                <img class="br4 row" src="{{ job.photo.url }}" alt="{{ job }}">
+                <h6 class="tag fl bg br" style="border: 1px dotted var(--color); position: absolute; left: 14px; top: 14px">
+                    <a href="#" class="effect-underline" style=" padding: 0.2rem 0.7rem">
+                        آگهی
+                        <i class="mdi mdi-apache-kafka"></i>
+                        {{ job.JobCat }}
+                    </a>
+                </h6>
+            </div>
+            <div class="row box padding" style="background-image: url('/static/assets/fabric_1.webp');background-blend-mode: darken;">
+
+
+                <a href="{{ divar.get_absolute_url }}" class="row">
+                    <h1 class="row white-space tar padding tcd" style="font-size: 133%">{{ divar }}</h1>
+                </a>
+                <div class="taj row padding" style="position: relative">
+                    {{ divar.RelatedProject.madadkar.Address }}
+                    {% if job.location %}
+                        <iframe width="313" height="313" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                class="br4 row" src="https://maps.google.com/maps?q={{ job.location }}&hl=fa&z=14&output=embed" >
+                         </iframe>
+                         <small style="position: absolute; top: 20px; right: 20px;">
+                           <a href="https://maps.google.com/maps?q={{ job.location }}&hl=fa;z=14&output=embed" target="_blank" >
+                             <i class="mdi mdi-window-maximize"></i>
+                           </a>
+                         </small>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}
