@@ -20,41 +20,67 @@
         </nav>
 
         <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%;">
-            {% include "JobItem.html" %}
+
+            <a target="_blank" href="{{ job.get_absolute_url }}" title="{{ job.name }}" class="row fr lastContentItem padding row br taj box">
+                <div class="row padding tar">
+                    <h5 class="tag fl">{{ job.JobCat }}</h5>
+                    <h5 class="tag" style="right: 7px; left: auto">
+                        {% for s in job.skills.all %}
+                            <i class="mdi mdi-av-timer"></i>
+                            {{ s }}
+                        {% endfor %}
+                    </h5>
+                    <h4 class="white-space row tar">{{ job.name }}</h4>
+                    <div class="row taj">
+                        <i class="mdi mdi-format-quote-open"></i>
+                        {{ job.description|safe|striptags }}
+                        <i class="mdi mdi-format-quote-close"></i>
+                    </div>
+                </div>
+            </a>
+
             <div class="row box padding">
                 <h5 class="title_line" style="margin-top: 22px">
                     <span class="tc" style="background-color: #f9f9f9;margin-top: 7px;">اطلاعات تماس</span>
                 </h5>
-                <div class="padding row">
-                    <a href="tel:{{ job.owner.Tel }}" class="padding row">
+                <div class="padding row tar">
+                    <a href="tel:{{ job.owner.Tel }}" class="padding row tar">
                         <i class="mdi mdi-phone"></i>
                         شماره تماس :
                         {{ job.owner.tel }}
                     </a>
 
+                    {% if job.address %}
+                        <div class="padding row tar">
+                            <i class="mdi mdi-location-enter"></i>
+                            آدرس:
+                            {{ job.address }}
+                        </div>
+                    {% endif %}
+
                     {% if job.owner.Url %}
-                        <a href="{{ job.owner.Url }}" class="padding row">
+                        <a href="{{ job.owner.Url }}" class="padding tar row">
                             <i class="mdi mdi-phone"></i>
                             وب سایت :
                             {{ job.owner.Url }}
                         </a>
                     {% endif %}
                     {% if job.owner.Eita %}
-                        <a href="{{ job.owner.Eita }}" class="padding row">
+                        <a href="{{ job.owner.Eita }}" class="padding row tar">
                             <i class="mdi mdi-phone"></i>
                             حساب ایتا :
                             {{ job.owner.Eita }}
                         </a>
                     {% endif %}
                     {% if job.owner.Rubika %}
-                        <a href="{{ job.owner.Rubika }}" class="padding row">
+                        <a href="{{ job.owner.Rubika }}" class="padding row tar">
                             <i class="mdi mdi-phone"></i>
                             حساب روبیکا :
                             {{ job.owner.Rubika }}
                         </a>
                     {% endif %}
                     {% if job.owner.Bale %}
-                        <a href="{{ job.owner.Bale }}" class="padding row">
+                        <a href="{{ job.owner.Bale }}" class="padding row tar">
                             <i class="mdi mdi-phone"></i>
                             حساب بله :
                             {{ job.owner.Bale }}
@@ -64,11 +90,11 @@
             </div>
         </div>
 
-        <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%">
+        <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%;">
             <div class="row box padding" style="position: relative" >
                 <img class="br4 row" src="{{ job.photo.url }}" alt="{{ job }}">
                 <h6 class="tag fl bg br" style="border: 1px dotted var(--color); position: absolute; left: 14px; top: 14px">
-                    <a href="#" class="effect-underline" style=" padding: 0.2rem 0.7rem">
+                    <a href="{{ job.JobCat.get_absolute_url }}" class="effect-underline" style=" padding: 0.2rem 0.7rem">
                         آگهی
                         <i class="mdi mdi-apache-kafka"></i>
                         {{ job.JobCat }}
@@ -91,6 +117,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 {% endblock content %}
