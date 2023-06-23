@@ -106,4 +106,4 @@ class Job(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("harkat_cat", kwargs={"cid": self.id, })
+        return reverse("single_job", kwargs={"jowner": self.owner, "jid": self.id, })
