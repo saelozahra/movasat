@@ -29,14 +29,37 @@
                     <a href="tel:{{ job.owner.Tel }}" class="padding row">
                         <i class="mdi mdi-phone"></i>
                         شماره تماس :
-                        {{ job.owner.Tel }}
-                        {{ job.owner.Madadkar }}
+                        {{ job.owner.tel }}
                     </a>
-                    <a href="tel:{{ job.owner.Eita }}" class="padding row">
-                        <i class="mdi mdi-phone"></i>
-                        حساب ایتا :
-                        {{ job.owner.Eita }}
-                    </a>
+
+                    {% if job.owner.Url %}
+                        <a href="{{ job.owner.Url }}" class="padding row">
+                            <i class="mdi mdi-phone"></i>
+                            وب سایت :
+                            {{ job.owner.Url }}
+                        </a>
+                    {% endif %}
+                    {% if job.owner.Eita %}
+                        <a href="{{ job.owner.Eita }}" class="padding row">
+                            <i class="mdi mdi-phone"></i>
+                            حساب ایتا :
+                            {{ job.owner.Eita }}
+                        </a>
+                    {% endif %}
+                    {% if job.owner.Rubika %}
+                        <a href="{{ job.owner.Rubika }}" class="padding row">
+                            <i class="mdi mdi-phone"></i>
+                            حساب روبیکا :
+                            {{ job.owner.Rubika }}
+                        </a>
+                    {% endif %}
+                    {% if job.owner.Bale %}
+                        <a href="{{ job.owner.Bale }}" class="padding row">
+                            <i class="mdi mdi-phone"></i>
+                            حساب بله :
+                            {{ job.owner.Bale }}
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -53,11 +76,6 @@
                 </h6>
             </div>
             <div class="row box padding" style="background-image: url('/static/assets/fabric_1.webp');background-blend-mode: darken;">
-
-
-                <a href="{{ divar.get_absolute_url }}" class="row">
-                    <h1 class="row white-space tar padding tcd" style="font-size: 133%">{{ divar }}</h1>
-                </a>
                 <div class="taj row padding" style="position: relative">
                     {{ divar.RelatedProject.madadkar.Address }}
                     {% if job.location %}
