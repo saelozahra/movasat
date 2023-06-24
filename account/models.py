@@ -11,6 +11,7 @@ from Cities.models import City
 class UserDetail(AbstractUser):
     otp = models.SmallIntegerField(default=0, editable=False)
     tel = models.CharField(max_length=11, null=False, blank=False, verbose_name="شماره تماس")
+    Avatar = models.ImageField(upload_to="files/avatar/", verbose_name="آواتار")
     melli = models.CharField(max_length=10, unique=True, null=False, blank=False, verbose_name="کد ملی")
     City = models.ForeignKey(City, on_delete=models.CASCADE, null=True, verbose_name="شهر")
     birth = jmodels.jDateField(blank=True, null=True, verbose_name="تاریخ تولد")
