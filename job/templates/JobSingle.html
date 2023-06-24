@@ -88,7 +88,7 @@
                     {% endif %}
                     <br style="clear: both">
                     <br >
-                    <div class="row tar box">
+                    <a href="{{ job.owner.get_absolute_url }}" class="row tar box">
                         <img class="br4 row avatar little fr" style="object-fit: cover;height: 20vh;width: 20vh;" src="{{ job.owner.Avatar.url }}" alt="{{ job }}">
                         <div class="fr" style="padding-right: 1.5rem">
                             <b>{{ job.owner.get_full_name }}</b>
@@ -96,7 +96,7 @@
                             <div>{{ job.owner.skills }}</div>
                             <div>{{ job.owner.City }}</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
