@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load saelozahra_tag %}
-{% block title %}{{ divar }} | {{ site_name }}{% endblock title %}
+{% block title %}{{ job }} | {{ site_name }}{% endblock title %}
 {% block content %}
     <div class="container">
 
@@ -44,17 +44,17 @@
                     <span class="tc" style="background-color: #f9f9f9;margin-top: 7px;">اطلاعات تماس</span>
                 </h5>
                 <div class="padding row tar">
-                    <a href="tel:{{ job.owner.Tel }}" class="padding row tar">
+                    <a href="tel:{{ job.owner.tel }}" class="padding row tar">
                         <i class="mdi mdi-phone"></i>
                         شماره تماس :
-                        {{ job.owner.tel }}
+                        <b>{{ job.owner.tel }}</b>
                     </a>
 
                     {% if job.address %}
                         <div class="padding row tar">
                             <i class="mdi mdi-location-enter"></i>
                             آدرس:
-                            {{ job.address }}
+                            <b>{{ job.address }}</b>
                         </div>
                     {% endif %}
 
@@ -101,10 +101,9 @@
                     </a>
                 </h6>
             </div>
-            <div class="row box padding" style="background-image: url('/static/assets/fabric_1.webp');background-blend-mode: darken;">
-                <div class="taj row padding" style="position: relative">
-                    {{ divar.RelatedProject.madadkar.Address }}
-                    {% if job.location %}
+            {% if job.location %}
+                <div class="row box padding" style="background-image: url('/static/assets/fabric_1.webp');background-blend-mode: darken;">
+                    <div class="taj row padding" style="position: relative">
                         <iframe width="313" height="313" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
                                 class="br4 row" src="https://maps.google.com/maps?q={{ job.location }}&hl=fa&z=14&output=embed" >
                          </iframe>
@@ -113,9 +112,9 @@
                              <i class="mdi mdi-window-maximize"></i>
                            </a>
                          </small>
-                    {% endif %}
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
         <a id="fab" class="tr" href="tel:{{ job.owner.tel }}">
             <i class="mdi mdi-pulse"></i>
