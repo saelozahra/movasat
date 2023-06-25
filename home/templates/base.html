@@ -113,10 +113,11 @@
 
                 <div class="fr">
                     <ul class="menu">
-                        <li class="menu-item"><a href="https://hajghasem.ir">صفحه اصلی</a></li>
-                        <li class="menu-item"><a href="{{ home_url }}/course">کلاس درس</a></li>
-                        <li class="menu-item"><a href="{{ home_url }}/jahad">حرکت های جهادی</a></li>
-                        <li class="menu-item"><a href="https://hajghasem.ir/category/haj-ghasem">حاج قاسم</a></li>
+                        <li class="menu-item"><a href="{% url 'index' %}">خانه</a></li>
+                        <li class="menu-item"><a href="https://hajghasem.ir">حاج قاسم سلیمانی</a></li>
+                        <li class="menu-item"><a href="{% url 'CoursePage' %}">کلاس درس</a></li>
+                        <li class="menu-item"><a href="{% url 'harkat_page' %}">حرکت‌های جهادی</a></li>
+                        <li class="menu-item"><a href="{% url 'all_challenges' %}">چالش‌ها</a></li>
                         <li class="menu-item"><a href="https://hajghasem.ir/category/news">اخبار منطقه</a></li>
                         {% if request.user.is_superuser and edit_url %}
                             <li class="menu-item"><a href="{{ edit_url }}">ویرایش</a></li>
