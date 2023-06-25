@@ -4,7 +4,7 @@
 {% block content %}
     <div class="container">
 
-        {% include "bread_crumb.html" with app_url='all_job' app_title="مشاغل" item=job %}
+        {% include "bread_crumb.html" with app_url='all_job' app_title="مشـــاغل"  sec_url=job.JobCat.get_absolute_url sec_name=job.JobCat item=job %}
 
         <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%;">
 
