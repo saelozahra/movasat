@@ -53,7 +53,8 @@ def get_profile(request, user):
         'harkat': harkat,
         'project': project,
         'data': data,
-        'model': model
+        'model': model,
+        "edit_url": data.get_edit_url(),
     }
     return render(request, 'profile.html', context=context)
 
