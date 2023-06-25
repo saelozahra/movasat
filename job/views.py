@@ -4,12 +4,12 @@ from .models import *
 
 def all_job(request):
     get_jobs = Job.objects.all()
-    return render(request, "", context={'data': get_jobs})
+    return render(request, "JobPage.html", context={'jobs': get_jobs})
 
 
 def job_cat(request, jcat):
     get_jobs = Job.objects.filter(JobCat__slug=jcat).all()
-    return render(request, "", context={'data': get_jobs})
+    return render(request, "JobPage.html", context={'jobs': get_jobs})
 
 
 def job(request, jowner, jcat, jid):
