@@ -56,7 +56,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("harkat_cat", kwargs={"cid": self.id, })
+        return reverse("job_cat", kwargs={"jcat": self.slug, })
 
     def get_edit_url(self):
         return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
