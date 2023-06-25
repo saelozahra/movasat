@@ -8,5 +8,8 @@ def all_job(request):
 
 
 def job(request, jowner, jid):
-    job = Job.objects.filter(id=jid).get()
-    return render(request, "JobSingle.html", context={'job': job})
+    j1 = Job.objects.filter(id=jid).get()
+    return render(request, "JobSingle.html", context={
+        'job': j1,
+        "edit_url": j1.get_edit_url(),
+    })

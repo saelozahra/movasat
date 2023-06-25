@@ -58,6 +58,9 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse("harkat_cat", kwargs={"cid": self.id, })
 
+    def get_edit_url(self):
+        return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
+
     def save(self, *args, **kwargs):  # new
         if not self.slug:
             self.slug = slugify(self.name)
@@ -107,3 +110,6 @@ class Job(models.Model):
 
     def get_absolute_url(self):
         return reverse("single_job", kwargs={"jowner": self.owner, "jid": self.id, })
+
+    def get_edit_url(self):
+        return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
