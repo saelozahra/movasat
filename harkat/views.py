@@ -33,7 +33,14 @@ def harkat_single(request, jahadi, slug):
 
     cf = cf.get()
     tr = Transaction.objects.filter(harkat__Slug=slug).all()
-    return render(request, "harkat_single.html", context={"h": cf, "t": tr, })
+
+    context = {
+        "h": cf,
+        "t": tr,
+        "edit_url": cf.get_edit_url(),
+    }
+
+    return render(request, "harkat_single.html", context=context)
 
 
 def send_pay_request(request):

@@ -85,6 +85,9 @@ class CrowdFunding(models.Model):
     def get_absolute_url(self):
         return reverse("harkat_single", kwargs={"slug": self.Slug, "jahadi": self.MadadKar.user.username, })
 
+    def get_edit_url(self):
+        return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
+    
     @property
     def total_amount(self):
         result_total_amount = sum(
