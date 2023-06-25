@@ -7,7 +7,7 @@ def all_job(request):
     return render(request, "", context={'data': get_jobs})
 
 
-def job(request, jowner, jid):
+def job(request, jowner, jcat, jid):
     j1 = Job.objects.filter(id=jid).get()
     return render(request, "JobSingle.html", context={
         'job': j1,
