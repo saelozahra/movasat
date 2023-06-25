@@ -4,21 +4,7 @@
 {% block content %}
     <div class="container">
 
-        <nav id="bread-crumb" class="row tar box padding">
-            <div class="fr" style="position: relative">
-                <a class="effect-underline" href="{{ home_url }}">صفحه اصلی</a>
-            </div>
-            <i class="fr tcl mdi mdi-chevron-left"></i>
-            <div class="fr" style="position: relative">
-                <a class="effect-underline" href="{{ home_url }}/challenge/">چالش ها</a>
-            </div>
-            <i class="fr tcl mdi mdi-chevron-left"></i>
-            <div class="fr" style="position: relative">
-                <a class="effect-underline" href="{{ project.get_absolute_url }}">پروژه <i class="mdi mdi-apache-kafka"></i> {{ project }}</a>
-            </div>
-            <i class="fr tcl mdi mdi-chevron-left"></i>
-            <a class="effect-shine" href="">{{ forum }}</a>
-        </nav>
+        {% include "bread_crumb.html" with app_url='all_challenges' app_title="چالش ها" sec_url=project.get_absolute_url sec_name="پروژه <i class='mdi mdi-apache-kafka'></i>"|add:project.name|safe item=forum.title %}
 
         <div class="columns-two padding sticky" style="padding-right: 0">
             {% include "ProjectItem.html" with p=project %}

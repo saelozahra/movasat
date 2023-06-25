@@ -4,30 +4,7 @@
 {% block content %}
     <div class="container">
 
-        <nav id="bread-crumb" class="row tar box padding">
-            <div class="fr" style="position: relative">
-                <a class="effect-underline" href="{{ home_url }}">خانه</a>
-            </div>
-            <i class="fr tcl mdi mdi-chevron-left"></i>
-            <div class="fr" style="position: relative">
-                <a class="effect-underline" href="{{ home_url }}/challenge/">دیوار مهربانی</a>
-            </div>
-            {% if divar.RelatedProject %}
-                <i class="fr tcl mdi mdi-chevron-left"></i>
-                <div class="fr" style="position: relative">
-                    <a class="effect-underline" href="{{ project.get_absolute_url }}">
-                        پروژه
-                        <i class="mdi mdi-apache-kafka"></i>
-                        {{ divar.RelatedProject }}</a>
-                </div>
-            {% endif %}
-            <i class="fr tcl mdi mdi-chevron-left"></i>
-            <a class="effect-shine" href="">
-                {{ divar.type_value }}
-                <i class="mdi mdi-heart-box-outline" style="color: var(--color-very-light)"></i>
-                {{ divar }}
-            </a>
-        </nav>
+        {% include "bread_crumb.html" with app_url='all_challenges' app_title="دیوار مهربانی" sec_url=project.get_absolute_url sec_name="پروژه <i class='mdi mdi-apache-kafka'></i>"|add:divar.RelatedProject.name|safe item=divar.type_value|add:'<i class="mdi mdi-heart-box-outline" style="color: var(--color-very-light)"></i>'|add:divar.Name|safe %}
 
         <div class="columns-two padding sticky" style="padding-left: 0; font-size: 133%;">
             {% include "ProjectItem.html" with p=divar.RelatedProject %}
