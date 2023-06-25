@@ -30,6 +30,7 @@ class ForumView(TemplateView):
                 "project": Project.objects.filter(id=fid).get(),
                 "forum": Forum.objects.filter(id=fid).get(),
                 "response": Response.objects.filter(RelatedForum_id=fid).all(),
+                "edit_url": Forum.objects.filter(id=fid).get().get_edit_url(),
             }
         except Forum.DoesNotExist:
             raise Http404
@@ -62,6 +63,7 @@ class DivarView(TemplateView):
         try:
             context = {
                 "divar": Divar.objects.filter(id=did).get(),
+                "edit_url": Divar.objects.filter(id=did).get().get_edit_url(),
             }
         except Forum.DoesNotExist:
             raise Http404

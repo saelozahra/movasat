@@ -34,6 +34,9 @@ class Forum(models.Model):
     def get_absolute_url(self):
         return reverse("show_forum", kwargs={"fid": self.id, })
 
+    def get_edit_url(self):
+        return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
+
     def save(self, *args, **kwargs):
         output_size = (313, 313)
         output_thumb = BytesIO()
@@ -118,3 +121,6 @@ class Divar(models.Model):
 
     def get_absolute_url(self):
         return reverse("show_divar", kwargs={"did": self.id, })
+
+    def get_edit_url(self):
+        return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
