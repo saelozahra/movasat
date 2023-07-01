@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView
+from job.forms import RegisterJob
+
 from .models import *
 
 
@@ -18,3 +21,15 @@ def job(request, jowner, jcat, jid):
         'job': j1,
         "edit_url": j1.get_edit_url(),
     })
+
+
+class JobCreate(CreateView):
+    form_class = RegisterJob
+    template_name = "JobRegister.html"
+
+    def form_valid(self, form):
+        j = form.save(commit=False)
+        j.owner = self.request.user.id
+        j.save()
+        return redirect("all_job")
+

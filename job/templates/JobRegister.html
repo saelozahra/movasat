@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load saelozahra_tag %}
+{% block title %}ثبت مشاغل | {{ site_name }}{% endblock title %}
+{% block content %}
+    <div class="row" style="padding: 2rem 0; margin: 2rem auto">
+        <div class="container">
+            <h2 class="title_line"><span class="tc">معرفی مشاغل</span></h2>
+            <div class="row" >
+                <div class="columns-two">
+                    <img src="/static/assets/harekat.jpg" alt="حرکت" draggable="false" class="img">
+                </div>
+                <div class="columns-two">
+                    <div class="row taj" style="font-size: 122%">
+                        <p style="text-align: justify;">اینجا کسب و کارها رو معرفی میکنیم تا بر اساس نیازتون کسب و کاری که دنبالشین رو پیدا کنین</p>
+                        <p style="text-align: justify;">و ارزون ترین و با کیفیت ترین محصولات رو نزدیک خودتون پیدا کنین</p>
+                        <p style="text-align: justify;">ما فکر همه جاشو کردیم </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br style="clear: both">
+    <br style="clear: both">
+    <div class="row crowd_funding">
+        <div class="container tar">
+            {{form.media}}
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn">ثبت نام</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
