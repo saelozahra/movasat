@@ -192,6 +192,8 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 LOCATION_FIELD = {
     'map.provider': 'openstreetmap',
+    # 'search.provider': 'nominatim',
+    'provider.openstreetmap.max_zoom': 18,
 }
 
 # media settings

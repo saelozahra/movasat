@@ -248,6 +248,12 @@ p{margin: 4px auto;}
     overflow: hidden;
 }
 
+.helptext {
+    width: 100%;
+    display: inline-block;
+    font-size: 72%;
+    opacity: 0.4;
+}
 
 body {
   font-family: YekiFaNum,vazir;
