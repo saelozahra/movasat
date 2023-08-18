@@ -46,4 +46,4 @@ def lesson_view(request, cat, slug, lid):
         'edit_url': this_lesson.get().get_edit_url(),
     }
 
-    return render(request, 'course_single.html', context)
+    return render(request, 'lesson_single.html', context)

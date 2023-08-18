@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+
+        {% include "bread_crumb.html" with app_url='CoursePage' app_title="آمــــوزش‌ها" sec_url=course.category.get_absolute_url sec_name=course.category.name item=course.title %}
+
+        <div class="columns-four padding sticky" style="padding-right: 0">
+            <div class="row box author-box">
+                <div class="avatar-box row">
+                    <img class="row" src="{{ course.cover.url }}" alt="{{ course.title }}">
+                </div>
+                <br style="clear: both">
+                <br style="clear: both">
+                <br style="clear: both">
+                <h3 class="padding">{{ course.title }}</h3>
+                <h5 class="title_line" style="margin-top: 22px">
+                    <span class="tc" style="background-color: #f9f9f9;margin-top: 7px;">درباره دوره</span>
+                </h5>
+                <h4 class="padding">{{ course.content|safe }}</h4>
+            </div>
+
+            <div class="row box tar padding lessons">
+                <ol class="row tar tr padding">
+                {% for l in lessons %}
+                    <li class="row tar padding {% if this_lesson.id == l.id %}active br{% endif %}">
+                        <i class="mdi mdi-lock licon tac fr"></i>
+                        <a class="" href="{{ l.get_absolute_url }}">
+                            <b>{{ l }}</b>
+                        </a>
+                        <small> {{ l.lesson_length }} </small>
+                        {% if l.file %}
+                            <a href="{{ l.file.url }}" download=""><i class="mdi mdi-download"></i></a>
+                        {% else %}
+                            <a href="{{ l.get_absolute_url }}"><i class="mdi mdi-read"></i></a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ol>
+            </div>
+
+
+
+        </div>
+        <div class="columns-75 padding sticky" style="padding-left: 0">
+            <div class="row box">
+                {% if this_lesson.file.url.lower|slice:"-3:" == "jpg" or this_lesson.file.url.lower|slice:"-4:" == "jpeg" %}
+                    <img src="{{ this_lesson.file.url }}" class="row br4" alt="">
+                {% elif this_lesson.file.url.lower|slice:"-3:" == "mp4" %}
+                    <video class="row" controls poster="{{ course.cover.url }}" data-link="{{ this_lesson.get_absolute_url }}" data-title="{{ this_lesson.title }}"  src="{{ this_lesson.file.url }}">
+                      <source src="{{ this_lesson.file.url }}" type="video/mp4">
+                      مرورگر شما از این پلیر پشتیبانی نمیکند
+                    </video>
+                {% else %}
+                     <object data="{{ this_lesson.file.url }}" class="row" height="313"></object>
+                     <a href="{{ this_lesson.file.url }}" class="fl bold">لینک دانلود فایل</a>
+                {% endif %}
+            </div>
+            <div class="row box padding tar">
+                <div class="row padding tar">
+                    <h1>{{ this_lesson.title }}</h1>
+                    <p>{{ this_lesson.content|safe }}</p>
+                    <div class="row fl tal">
+                        <label for="">
+                            <i class="mdi mdi-eye"></i>
+                            {{ this_lesson.view_count }}
+                        </label>
+
+                        <label for="">   <i class="mdi mdi-drag-vertical tcl"></i>  </label>
+
+                        <label for="" style="cursor: pointer">
+                            <i class="mdi mdi-heart"></i>
+                            {{ this_lesson.like_count }}
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <style>
+        body {
+            background-image: url('/static/assets/fabric_1.webp');
+        }
+        .lessons li {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--color-very-light);
+        }
+        .lessons li:hover, .lessons li.active {
+            background-color: var(--color-very-light);
+        }
+        .lessons ol li a{
+            font-weight: bolder;
+        }
+        .licon {
+            border: 1px solid var(--color-dark);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 18px;
+            color: var(--color-dark);
+            line-height: 1.4;
+            margin-left: 1rem;
+        }
+
+    </style>
+{% endblock content %}
