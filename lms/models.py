@@ -99,10 +99,15 @@ class Course(models.Model):
         return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
 
 
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return "files/lesson/{0}/{1}".format(instance.Course.slug, filename)
+
+
 class Lesson(Orderable):
     title = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام درس")
     content = RichTextField(null=False, blank=False, verbose_name="خلاصه توضیحات")
-    file = models.FileField(upload_to='files/lesson/', null=False, blank=True, verbose_name="فایل درسی")
+    file = models.FileField(upload_to=user_directory_path, null=False, blank=True, verbose_name="فایل درسی")
     lesson_length = models.CharField(max_length=202, blank=True, verbose_name="طول درس")
     CreatedDate = models.DateTimeField(auto_now_add=True, verbose_name="زمان ثبت")
     Course = models.ForeignKey(Course, null=False, blank=False, on_delete=models.CASCADE, verbose_name="کلاس")
@@ -136,4 +141,4 @@ class Lesson(Orderable):
         # @todo lesson page
 
     def get_edit_url(self):
-        return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
+        return self.get_absolute_url()
