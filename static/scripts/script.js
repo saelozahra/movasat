@@ -233,14 +233,14 @@ jQuery(document).ready(function(){
 		});
 		
 
-		$lastContent.on('mousewheel', '.owl-stage', function (e) {
-			if (e.deltaY>0) {
-				$timeline_archive.trigger('next.owl');
-			} else {
-				$timeline_archive.trigger('prev.owl');
-			}
-			e.preventDefault();
-		});
+		// $lastContent.on('mousewheel', '.owl-stage', function (e) {
+		// 	if (e.deltaY>0) {
+		// 		$timeline_archive.trigger('next.owl');
+		// 	} else {
+		// 		$timeline_archive.trigger('prev.owl');
+		// 	}
+		// 	e.preventDefault();
+		// });
 
 	}
 	
