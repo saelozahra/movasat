@@ -24,19 +24,14 @@
 <br style="clear: both">
 <div class="row all_course">
     <div class="faraTitle container">
-        <div class="title">دوره های آموزشی اشتغال زایی</div>
+        <div class="title">
+            دوره های آموزشی
+            <i class="mdi mdi-slash-forward-box tcl"></i>
+            اشتغال زایی
+        </div>
     </div>
     <br style="clear: both">
     <div class="container four-col">
-        {% for ci in course %}
-            {% include "course_item.html" with c=ci %}
-        {% endfor %}
-        {% for ci in course %}
-            {% include "course_item.html" with c=ci %}
-        {% endfor %}
-        {% for ci in course %}
-            {% include "course_item.html" with c=ci %}
-        {% endfor %}
         {% for ci in course %}
             {% include "course_item.html" with c=ci %}
         {% endfor %}
