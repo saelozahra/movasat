@@ -16,7 +16,6 @@ docker volume rm movasat_static_volume
 docker volume create movasat_files_volume
 docker volume create movasat_static_volume
 docker volume create movasat_postgresql
-docker network create nginx_network
 docker network create movasat_network
 
 docker-compose up -d
