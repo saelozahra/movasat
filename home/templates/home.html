@@ -41,6 +41,11 @@
         </div>
     </div>
 
+    <div id="popup" title="myproject" class="ol-popup">
+          <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+          <div id="popup-content"></div>
+    </div>
+
 {% endblock content %}
 
 
@@ -48,6 +53,7 @@
 {% block scripts %}
 <script>
 
+    var content = document.getElementById('popup-content');
     var center = ol.proj.transform([52.5640869140625, 29.591371238663804], 'EPSG:4326', 'EPSG:3857'); //initial position of map
     var view = new ol.View({
         center: center,
@@ -83,6 +89,32 @@
     map.addOverlay(popup);
 
 
+    map.on('click', function (evt) {
+        var feature = map.forEachFeatureAtPixel(evt.pixel, function (feat, layer) {
+            return feat;
+        });
+        {#alert(feature.get('url'));#}
+        window.location.href=window.location.href+feature.get('url');
+    });
+
+
+
+  /* Add a pointermove handler to the map to render the popup.*/
+        map.on('pointermove', function (evt) {
+            let feature = map.forEachFeatureAtPixel(evt.pixel, function (feat, layer) {
+                return feat;
+            });
+            console.log(evt);
+            if (feature && feature.get('type') === 'Point') {
+                var coordinate = evt.coordinate;    //default projection is EPSG:3857 you may want to use ol.proj.transform
+                content.innerHTML = feature.get("desc");
+                popup.setPosition(coordinate);
+            } else {
+                popup.setPosition(undefined);
+
+            }
+        });
+
 var data=[
     {% for mi in map %}
         {
@@ -100,14 +132,15 @@ function addPointGeom(data) {
     data.forEach(function(item) {
         var title = item.title,
         iconFeature = new ol.Feature({
-            geometry: new ol.geom.Point(ol.proj.transform([item.lng, item.lat], 'EPSG:4326',
-                'EPSG:3857')),
+            geometry: new ol.geom.Point(ol.proj.transform([item.lng, item.lat], 'EPSG:4326', 'EPSG:3857')),
             type: 'Point',
             url: item.url,
-            desc: '<div style="font-family: var(--font);direction: rtl;"> <p style="float: right;"><b>' + title + ' </b> ' + '</p>  <img style="max-width: 162px;display: inline-block;border-radius: 5px;margin-bottom: -5px" src="'+item.photo+'" > </div>'}),
+            desc: '<div style="font-family: var(--font);direction: rtl;"> <p class="fr">' +
+                '<b>' + title + ' </b> </p>  ' +
+                '<img class="br" style="max-width: 162px;display: inline-block;margin-bottom: -5px" src="'+item.photo+'" > </div>'}),
         iconStyle = new ol.style.Style({
             image: new ol.style.Icon({
-                scale: 0.4,
+                scale: 0.6,
                 anchor: [0.5, 1],
 {#                  src: '/static/img/social_media_network_online_maps-64.webp'#}
                 src: item.icon,
