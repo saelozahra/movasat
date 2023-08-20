@@ -2,6 +2,46 @@ version: '3'
 
 services:
 
+  movasat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/movasat
+      - movasat_static_volume:/movasat/static
+      - movasat_files_volume:/movasat/files
+    restart: always
+    ports:
+      - "8004:8004"
+    networks:
+      - movasat_network
+      - nginx_network
+    depends_on:
+      - movasat_postgresql
+  movasat_postgresql:
+    image: postgres:12
+    container_name: movasat_postgresql
+    volumes:
+      - movasat_postgresql:/var/lib/postgresql/data
+    restart: always
+    env_file: .env
+    ports:
+      - "5434:5432"
+    networks:
+      - movasat_network
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: saelozahra14@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: Yaheydar110
+    ports:
+      - "5050:80"
+    networks:
+      - movasat_network
+      - nginx_network
+
   mongo:
     image: mongo
     container_name: mongo
@@ -33,6 +73,12 @@ services:
       - movasat_network
 
 volumes:
+  movasat_postgresql:
+    external: true
+  movasat_static_volume:
+    external: true
+  movasat_files_volume:
+    external: true
   movasat_mongo:
     external: true
   mongo:
