@@ -18,6 +18,10 @@ docker volume create movasat_static_volume
 docker volume create movasat_postgresql
 docker network create movasat_network
 
+
+docker volume create movasat_mongo
+
+
 docker-compose up -d
 
 sed -i -e 's/DEBUG = False/DEBUG = True/g' movasat/settings.py
