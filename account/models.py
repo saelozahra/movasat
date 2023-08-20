@@ -55,7 +55,8 @@ class MadadKar(models.Model):
         return f"{name_val}  «{self.Name}»"
 
     def get_absolute_url(self):
-        return reverse("get_profile", kwargs={"user": self.user.username, })
+        # return reverse("get_profile", kwargs={"user": self.user.username, })
+        return reverse("get_profile", kwargs={"user": UserDetail.objects.get(id=self.user_id).username, })
 
     def get_edit_url(self):
         return reverse("admin:%s_%s_change" % (self._meta.app_label, self._meta.model_name), args=(self.id,))
