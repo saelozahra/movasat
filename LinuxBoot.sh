@@ -20,6 +20,7 @@ docker network create movasat_network
 
 
 docker volume create movasat_mongo
+docker volume create mongo
 
 
 docker-compose up -d
