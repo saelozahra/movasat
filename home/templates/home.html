@@ -27,8 +27,8 @@
 
 
 
-    <div class="row" style="padding: 2rem 0; margin: 2rem auto">
-        <div class="container">
+    <div class="row padding_rem" style="padding: 2rem 0; margin: 2rem auto">
+        <div class="row padding_rem">
             <h2 class="title_line"><span class="tc">
                 نقشه پراکندگی
                 <i class="mdi mdi-moon-first-quarter"></i>
@@ -46,6 +46,10 @@
           <div id="popup-content"></div>
     </div>
 
+
+
+
+
 {% endblock content %}
 
 
@@ -57,7 +61,7 @@
     var center = ol.proj.transform([52.5640869140625, 29.591371238663804], 'EPSG:4326', 'EPSG:3857'); //initial position of map
     var view = new ol.View({
         center: center,
-        zoom: 8
+        zoom: 8,
     });
 
 //raster layer on map
@@ -65,17 +69,46 @@
         source: new ol.source.OSM()
     });
 
- straitSource = new ol.source.Vector({ wrapX: true });
+    straitSource = new ol.source.Vector({ wrapX: true });
     var straitsLayer = new ol.layer.Vector({
         source: straitSource
     });
 
- map = new ol.Map({
-        layers: [OSMBaseLayer, straitsLayer],
+    var layers = [OSMBaseLayer, straitsLayer];
+
+    map = new ol.Map({
+        layers: layers,
         target: 'map',
         view: view,
-        controls: [new ol.control.FullScreen(), new ol.control.Zoom()]
+        controls: [new ol.control.FullScreen(), new ol.control.Zoom()],
     });
+
+
+
+
+
+
+
+
+    // Enhance filter
+    var enhance = new ol.filter.Colorize({ operation:'enhance', value: 1 });
+    OSMBaseLayer.addFilter(enhance);
+
+    // Custom filter
+    var filter = new ol.filter.Colorize();
+    OSMBaseLayer.addFilter(filter);
+
+    enhance.setActive(false);
+    filter.setActive(true);
+
+    filter.setFilter({ operation:"sepia", red:255, green: 202, blue: 25, value: 1,});
+
+    map.addControl(new ol.control.Permalink({ visible: false }));
+
+
+
+
+
 
    // Popup showing the position the user clicked
     var container = document.getElementById('popup');
@@ -123,7 +156,7 @@ var data=[
             "icon":"{{ mi.icon }}",
             "lng":{{ mi.lng }},
             "lat":{{ mi.lat }},
-            "url":"{{ mi.get_absolute_url }}"
+            "url":"{{ mi.url }}"
         },
     {% endfor %}
 ];
@@ -140,7 +173,7 @@ function addPointGeom(data) {
                 '<img class="br" style="max-width: 162px;display: inline-block;margin-bottom: -5px" src="'+item.photo+'" > </div>'}),
         iconStyle = new ol.style.Style({
             image: new ol.style.Icon({
-                scale: 0.6,
+                scale: 0.3,
                 anchor: [0.5, 1],
 {#                  src: '/static/img/social_media_network_online_maps-64.webp'#}
                 src: item.icon,
