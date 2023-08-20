@@ -86,4 +86,6 @@ volumes:
 networks:
   movasat_network:
     external: true
+  nginx_network:
+    external: true
   default:
