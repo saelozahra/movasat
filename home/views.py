@@ -19,7 +19,7 @@ def home_view(request):
             'lng': jad.location.split(",")[1],
             'photo': jad.MadadKar.Avatar.url,
             'icon': jad.MadadKar.Avatar.url,
-            # 'icon': "https://cdn4.iconfinder.com/data/icons/charity-and-donation-10/64/Untitled-1-05-64.png",
+            # 'icon': "static/assets/icons/heart_marker.png",
             'type': "JahadActivity",
             'date': jad.MadadJoo.RegisterDate,
             'url': jad.MadadKar.get_absolute_url(),#@todo jad.get_absolute_url,
