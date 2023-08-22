@@ -11,9 +11,6 @@ from location_field.models.plain import PlainLocationField
 
 class MadadJoo(models.Model):
     user = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    tel = models.CharField(max_length=11, null=False, blank=False, verbose_name="شماره تماس")
-    melli = models.CharField(max_length=10, unique=True, null=False, blank=False, verbose_name="کد ملی")
-    City = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="شهر")
     address = models.CharField(max_length=444, null=False, blank=False, verbose_name="نشانی منزل")
     postalcode = models.CharField(max_length=12, unique=True, null=False, blank=False, verbose_name="کد پستی")
     Location = PlainLocationField(default='29.5,52.5', zoom=4, blank=True, verbose_name='موقعیت مکانی')
@@ -25,10 +22,12 @@ class MadadJoo(models.Model):
     submitbyapp = models.BooleanField(default=True, verbose_name="ثبت شده توسط اپلیکیشن")
 
     class Meta:
-        unique_together = ('melli', 'postalcode')
+        # unique_together = ('melli', 'postalcode')
         verbose_name = "مددجو"
         verbose_name_plural = "مددجو"
 
+    def __str__(self):
+        return self.user.get_full_name()
 
 class Bohran(models.Model):
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام بحران")
