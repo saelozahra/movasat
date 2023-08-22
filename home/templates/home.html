@@ -35,7 +35,7 @@
                 پروژه‌های جهادی
                 <i class="mdi mdi-moon-last-quarter"></i>
             </span></h2>
-            <div class="row br" style="box-shadow: -5px 5px 13px darkgray;overflow: hidden;" >
+            <div class="row br" style="overflow: hidden;" >
                 <div id="map" class="map"></div>
             </div>
         </div>
@@ -190,3 +190,31 @@ addPointGeom(data);
 
 </script>
 {% endblock scripts %}
+
+{% block style %}
+<style>
+    .ol-overlaycontainer-stopevent {
+        box-shadow: inset 0 0 18px 18px #fff;
+    }
+    .ol-zoom {
+        top: 1.5em !important;
+        left: 1.5em !important;;
+        box-shadow: 0px 0 10px 2px var(--color-very-light);
+    }
+    .ol-zoom * {
+        background-color: var(--color-very-light) !important;
+    }
+    .ol-zoom *:hover {
+        opacity: 0.9;
+    }
+
+    .ol-full-screen.ol-unselectable.ol-control{
+        box-shadow: inset 0 0 18px 18px var(--color-very-light);
+        right: 1.5em !important;
+        top: 1.5em !important;
+    }
+    .ol-full-screen-false {
+        background-color: var(--color-very-light) !important;
+    }
+</style>
+{% endblock style %}
