@@ -30,6 +30,7 @@ SECRET_KEY = 'django-insecure-gb@ti)$-g6j%w(t0jkbhyavkzjl4gcohx_mnd0!h^4t2xo=%om
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://jahadi.hajghasem.ir", "https://www.jahadi.hajghasem.ir"]
 
 HOMEURL = "http://jahadi.hajghasem.ir"
 MERCHANT = "952e3a82-85fe-11ea-8257-000c295eb8fc"
