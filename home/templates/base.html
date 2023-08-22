@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa-ir"><head>
 
@@ -7,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#E6A50F" />
-    <script src="/static/scripts/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'scripts/jquery-3.3.1.min.js' %}"></script>
 {#	<meta property="og:site_name" content="{% block title %} {{ block.super }} قرارگاه جهادی شهید حاج قاسم سلیمانی{% endblock title %}" />#}
 	<meta property="og:locale" content="fa_IR" />
 
@@ -30,9 +31,9 @@
 
 
 
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 
-    <link rel="icon" type="image/png" href="/static/assets/logo.png">
+    <link rel="icon" type="image/png" href="{% static 'assets/logo.png' %}">
 
 
 </head>
@@ -83,7 +84,7 @@
             <div class="container">
                 <div class="fr" style="position: relative;z-index: 9;margin-left: 133px;">
                     <a class="logo hide-xs" href="{{ home_url }}">
-                        <img class="fr tr" src="/static/assets/logo.svg#svg_logo" alt="{{ site_name }}">
+                        <img class="fr tr" src="{% static 'assets/logo.svg#svg_logo' %}" alt="{{ site_name }}">
                         <div class="fr tar" style="margin-top: 27px;margin-right: 5px;">
                             <strong>سامانه مواسات</strong>
                             <div class="enAddress">قرارگاه جهادی شهید حاج قاسم سلیمانی</div>
@@ -161,20 +162,20 @@
 
 
 
-<script src="/static/bower_components/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
-<script src="/static/scripts/tipped.js"></script>
-<script src="/static/scripts/ol.js"></script>
-<script src="/static/scripts/mediastyler.js"></script>
-<script src="/static/bower_components/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/static/bower_components/granim/dist/granim.min.js"></script>
+<script src="{% static 'bower_components/OwlCarousel2-2.3.4/dist/owl.carousel.min.js' %}"></script>
+<script src="{% static 'scripts/tipped.js' %}"></script>
+<script src="{% static 'scripts/ol.js' %}"></script>
+<script src="{% static 'scripts/mediastyler.js' %}"></script>
+<script src="{% static 'bower_components/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'bower_components/granim/dist/granim.min.js' %}"></script>
 
-<script src="/static/scripts/script.js"></script>
+<script src="{% static 'scripts/script.js' %}"></script>
 
-<link rel="stylesheet" href="/static/css/MaterialDesign-Webfont-master/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="/static/css/ol.css">
+<link rel="stylesheet" href="{% static 'css/MaterialDesign-Webfont-master/css/materialdesignicons.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/ol.css' %}">
 
-<link rel="stylesheet" href="/static/css/ol-ext.min.css">
-<script src="/static/scripts/ol-ext.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/ol-ext.min.css' %}">
+<script src="{% static 'scripts/ol-ext.min.js' %}"></script>
 
 {% block scripts %}{% endblock scripts %}
 
