@@ -35,7 +35,7 @@
 
     <link rel="icon" type="image/png" href="{% static 'assets/logo.png' %}">
 
-
+    {% block style %}{% endblock style %}
 </head>
 
 
@@ -84,7 +84,7 @@
             <div class="container">
                 <div class="fr" style="position: relative;z-index: 9;margin-left: 133px;">
                     <a class="logo hide-xs" href="{{ home_url }}">
-                        <img class="fr tr" src="{% static 'assets/logo.svg#svg_logo' %}" alt="{{ site_name }}">
+                        <img class="fr tr" src="{% static 'assets/logo.svg' %}" alt="{{ site_name }}">
                         <div class="fr tar" style="margin-top: 27px;margin-right: 5px;">
                             <strong>سامانه مواسات</strong>
                             <div class="enAddress">قرارگاه جهادی شهید حاج قاسم سلیمانی</div>
