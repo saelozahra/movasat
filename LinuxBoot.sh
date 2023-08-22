@@ -38,4 +38,4 @@ python manage.py makemigrations
 python manage.py migrate
 #docker exec movasat_movasat_1 python manage.py migrate
 
-#docker system prune -a -f
+docker system prune -a -f
