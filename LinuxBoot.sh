@@ -22,13 +22,20 @@ docker network create movasat_network
 docker volume create movasat_mongo
 docker volume create mongo
 
-
+#
+#
+#
 docker-compose up -d
+#
+#
+#
 
 sed -i -e 's/DEBUG = False/DEBUG = True/g' movasat/settings.py
 
 python .\manage.py collectstatic --no-input
 python manage.py makemigrations
+#docker exec movasat_movasat_1 python manage.py makemigrations
 python manage.py migrate
+#docker exec movasat_movasat_1 python manage.py migrate
 
 #docker system prune -a -f
