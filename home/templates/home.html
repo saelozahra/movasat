@@ -27,9 +27,9 @@
 
 
 
-    <div class="row padding_rem" style="padding: 2rem 0; margin: 2rem auto">
+    <div class="row padding_rem" style="padding: 2rem 0; margin: 2rem auto -2rem">
         <div class="row padding_rem">
-            <h2 class="title_line"><span class="tc">
+            <h2 class="title_line1"><span class="tc">
                 نقشه پراکندگی
                 <i class="mdi mdi-moon-first-quarter"></i>
                 پروژه‌های جهادی
@@ -193,6 +193,13 @@ addPointGeom(data);
 
 {% block style %}
 <style>
+    .title_line1 {
+        text-shadow: -2px 2px 1px white;
+        text-indent: 4rem;
+        transform: translateY(1.5rem);
+        position: absolute;
+        z-index: 2;
+    }
     .ol-overlaycontainer-stopevent {
         box-shadow: inset 0 0 18px 18px #fff;
     }
