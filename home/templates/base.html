@@ -59,10 +59,20 @@
                 <div class="fl">
 
                     <a href="{% if user.is_authenticated %}{% url 'admin:logout' %}{% else %}{% url 'admin:login' %}{% endif %}" class="liveBtn fl hide-xs">
-                        حساب کاربری
-                        <i class="mdi mdi-18px mdi-television-classic"></i>
+                        {% if user.is_authenticated %}
+                            خروج از حساب
+                            <i class="mdi mdi-18px mdi-logout-variant"></i>
+                        {% else %}
+                            ورود به حساب کاربری
+                            <i class="mdi mdi-18px mdi-login"></i>
+                        {% endif %}
                     </a>
-
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'admin:index' %}" class="liveBtn fl hide-xs">
+                            پنل ادمین
+                            <i class="mdi mdi-18px mdi-solar-panel"></i>
+                        </a>
+                    {% endif %}
                     <nav class="header-social hide-xs fl" style="padding:3px 12px 0 12px;">
                         <a href="https://t.me/Mantaghe_Tahavolat" class="effect-shine" title="Telegram"><i class="mdi mdi-telegram"></i></a>
                         <a href="https://wa.me/989366208105" class="effect-shine" title="WhatsApp"><i class="mdi mdi-whatsapp"></i></a>
