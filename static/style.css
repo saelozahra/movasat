@@ -471,7 +471,9 @@ a.effect-shine:hover,button.effect-shine:hover,.menu-item a:hover,#hashtags a:ho
 
 
 
-
+.hover-dark:hover{
+    color: var(--color-dark);
+}
 
 
 

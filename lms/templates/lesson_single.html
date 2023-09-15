@@ -78,14 +78,20 @@
                 </div>
             </div>
 
-            <div class="row box">
+            <small class="row box">
                 {% if next_lesson %}
-                    <a href="{{ next_lesson.get_absolute_url }}" class="fr bold">
-                        <i class="mdi mdi-page-next-outline"></i>
+                    <a href="{{ next_lesson.get_absolute_url }}" class="fr tar bold columns-two white-space hover-dark tr">
+                        <i class="mdi mdi-page-next-outline fr"></i>
                         {{ next_lesson }}
                     </a>
                 {% endif %}
-            </div>
+                {% if previous_lesson %}
+                    <a href="{{ previous_lesson.get_absolute_url }}" class="fl tal bold columns-two white-space hover-dark tr">
+                        <i class="mdi mdi-page-previous-outline fl"></i>
+                        {{ previous_lesson }}
+                    </a>
+                {% endif %}
+            </small>
         </div>
     </div>
     <style>
