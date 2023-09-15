@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os.path
 from pathlib import Path
+
+from django.templatetags.static import static
+from django.urls import reverse_lazy
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -216,4 +219,36 @@ CKEDITOR_CONFIGS = {
             ['Styles', 'Format', 'Font', 'FontSize'],
         ]
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+UNFOLD = {
+    "SITE_TITLE": None,
+    "SITE_HEADER": None,
+    "SITE_URL": "/",
+    "SITE_ICON": lambda request: static("assets/logo.svg"),
+    "SITE_SYMBOL": "speed",  # symbol from icon set
+    "LOGIN": {
+        "image": lambda r: static("assets/logo.svg"),
+        "redirect_after": lambda r: reverse_lazy("index"),
+    },
+    "STYLES": [
+        lambda request: static("css/unfold-rtl.css"),
+    ],
+    "COLORS": {
+        "primary": {
+            "500": "255 172 1",
+            "600": "230 165 15",
+        },
+    },
 }
