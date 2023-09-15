@@ -149,16 +149,16 @@ jQuery(document).ready(function(){
 		});
 	}
  	
-	if( jQuery('.newsTickerContainer .newsTicker').length ){
-		jQuery(".newsTickerContainer .newsTicker").owlCarousel({
-			loop:true,
-			margin:10,
-			dots:false,
-			nav:false,
-			autoplay:true,
-			items:1,
-		});
-	}
+	// if( jQuery('.newsTickerContainer .newsTicker').length ){
+	// 	jQuery(".newsTickerContainer .newsTicker").owlCarousel({
+	// 		loop:true,
+	// 		margin:10,
+	// 		dots:false,
+	// 		nav:false,
+	// 		autoplay:true,
+	// 		items:1,
+	// 	});
+	// }
 	
 	
 	if( jQuery('.home-slider,.row-slider').length ){
@@ -405,6 +405,36 @@ jQuery(document).ready(function(){
 	function isFunction(functionToCheck) {
 		return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 	}
-	
+
+
+
+
+
+    const settings = {
+      "async": true,
+      "crossDomain": true,
+      // "url": "https://jahadgaran.org/wp-json/wp/v2/posts",
+      "url": "http://hajghasem.ir/wp-json/wp/v2/posts",
+      "method": "GET",
+      "headers": {}
+    };
+
+    $.ajax(settings).done(function (response) {
+        $.each(response, function(i, item) {
+            $(".newsTickerContainer .newsTicker").append("<a class='row' href='"+response[i].link+"'><h4 class='row white-space'>"+response[i].title.rendered+"</h4></a>");
+        });
+
+		jQuery(".newsTickerContainer .newsTicker").owlCarousel({
+			loop:true,
+			margin:10,
+			dots:false,
+			nav:false,
+			autoplay:true,
+			items:1,
+		});
+    });
+
+
+
 	
 });
