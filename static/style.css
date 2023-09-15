@@ -1028,6 +1028,8 @@ header .navLogo .newsTicker .owl-nav button:hover{
 }
 header .navLogo .newsTicker h4 {
 	text-align: right;
+	color: var(--color-tip);
+	font-weight: lighter;
 }
 
 /*End Header NewsTicker*/
