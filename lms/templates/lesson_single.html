@@ -62,6 +62,17 @@
                     <h1>{{ this_lesson.title }}</h1>
                     <div class="padding_rem">{{ this_lesson.content|safe }}</div>
                     <div class="row fl tal">
+
+                        {% if next_lesson %}
+
+                            <a href="{{ next_lesson.get_absolute_url }}" style="cursor: pointer">
+                                <i class="mdi mdi-page-next-outline"></i>
+                            </a>
+
+                            <label for="">   <i class="mdi mdi-drag-vertical tcl"></i>  </label>
+
+                        {% endif %}
+
                         <label for="">
                             <i class="mdi mdi-eye"></i>
                             {{ this_lesson.view_count }}
