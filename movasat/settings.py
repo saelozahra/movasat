@@ -233,13 +233,9 @@ CKEDITOR_CONFIGS = {
 
 
 UNFOLD = {
-    "SITE_TITLE": None,
-    "SITE_HEADER": None,
-    "SITE_URL": "/",
     "SITE_ICON": lambda request: static("assets/logo.svg"),
-    "SITE_SYMBOL": "speed",  # symbol from icon set
     "LOGIN": {
-        "image": lambda r: static("assets/logo.svg"),
+        "image": lambda r: static("assets/logo.jpg"),
         "redirect_after": lambda r: reverse_lazy("index"),
     },
     "STYLES": [
