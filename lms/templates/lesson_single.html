@@ -42,6 +42,7 @@
 
         </div>
         <div class="columns-75 padding sticky" style="padding-left: 0">
+            {% if this_lesson.file %}
             <div class="row box">
                 {% if this_lesson.file.url.lower|slice:"-3:" == "jpg" or this_lesson.file.url.lower|slice:"-4:" == "jpeg" %}
                     <img src="{{ this_lesson.file.url }}" class="row br4" alt="">
@@ -55,10 +56,11 @@
                      <a href="{{ this_lesson.file.url }}" class="fl bold">لینک دانلود فایل</a>
                 {% endif %}
             </div>
+            {% endif %}
             <div class="row box padding tar">
                 <div class="row padding tar">
                     <h1>{{ this_lesson.title }}</h1>
-                    <p>{{ this_lesson.content|safe }}</p>
+                    <div class="padding_rem">{{ this_lesson.content|safe }}</div>
                     <div class="row fl tal">
                         <label for="">
                             <i class="mdi mdi-eye"></i>
