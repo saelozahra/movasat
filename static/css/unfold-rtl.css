@@ -4,3 +4,5 @@
 .material-symbols-outlined.pl-4{padding-left:0;padding-right:1rem;}
 select:not([class*="bg-none"]):not([multiple]){background-position:left center;padding:0.6rem;}
 [type="checkbox"]{margin-left:6px;}
+[dir="rtl"] .module .text-left { text-align: right; }
+[dir="rtl"] .module .text-right { text-align: left; }

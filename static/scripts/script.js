@@ -148,18 +148,7 @@ jQuery(document).ready(function(){
 			}
 		});
 	}
- 	
-	// if( jQuery('.newsTickerContainer .newsTicker').length ){
-	// 	jQuery(".newsTickerContainer .newsTicker").owlCarousel({
-	// 		loop:true,
-	// 		margin:10,
-	// 		dots:false,
-	// 		nav:false,
-	// 		autoplay:true,
-	// 		items:1,
-	// 	});
-	// }
-	
+
 	
 	if( jQuery('.home-slider,.row-slider').length ){
 		jQuery(".home-slider,.row-slider").owlCarousel({
