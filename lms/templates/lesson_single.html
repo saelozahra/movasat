@@ -4,7 +4,7 @@
 
         {% include "bread_crumb.html" with app_url='CoursePage' app_title="آمــــوزش‌ها" sec_url=course.category.get_absolute_url sec_name=course.category.name item=course.title %}
 
-        <div class="columns-four padding sticky" style="padding-right: 0">
+        <div class="columns-30 padding sticky" style="padding-right: 0">
             <div class="row box author-box">
                 <div class="avatar-box row">
                     <img class="row" src="{{ course.cover.url }}" alt="{{ course.title }}">
@@ -41,7 +41,7 @@
 
 
         </div>
-        <div class="columns-75 padding sticky" style="padding-left: 0">
+        <div class="columns-70 padding sticky" style="padding-left: 0">
             {% if this_lesson.file %}
             <div class="row box">
                 {% if this_lesson.file.url.lower|slice:"-3:" == "jpg" or this_lesson.file.url.lower|slice:"-4:" == "jpeg" %}

@@ -327,6 +327,12 @@ body {
 .columns-25{
     width: 25%;
 }
+.columns-30{
+    width: 30%;
+}
+.columns-70{
+    width: 70%;
+}
 .columns-75{
     width: 75%;
 }
