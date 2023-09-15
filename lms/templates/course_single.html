@@ -81,11 +81,18 @@
                         <a class="" href="{{ l.get_absolute_url }}">
                             <b>{{ l }}</b>
                         </a>
-                        <small> {{ l.lesson_length }} </small>
                         {% if l.file %}
-                            <a href="{{ l.file.url }}" download=""><i class="mdi mdi-download"></i></a>
+                            <a href="{{ l.file.url }}" download="">
+                                <small> {{ l.lesson_length }} </small>
+                                <i class="mdi mdi-minus-circle-outline" style="visibility: hidden"></i>
+                                <i class="mdi mdi-download"></i>
+                            </a>
                         {% else %}
-                            <a href="{{ l.get_absolute_url }}"><i class="mdi mdi-read"></i></a>
+                            <a href="{{ l.get_absolute_url }}">
+                                <small> {{ l.lesson_length }} </small>
+                                <i class="mdi mdi-store-24-hour" style="visibility: hidden"></i>
+                                <i class="mdi mdi-read"></i>
+                            </a>
                         {% endif %}
                     </li>
                 {% endfor %}
