@@ -964,6 +964,7 @@ header .NavHeader input[type="search"] {
 header .NavHeader input[type="search"]:hover,header .NavHeader input[type="search"]:focus,header .NavHeader .searchbox:hover input[type="search"] {
 	border: 1px solid #ccc4;
 	font-size: 90%;
+    outline: 0;
 }
 
 header .NavHeader .searchbox input[type="submit"] {
@@ -2404,6 +2405,7 @@ figure.content{
 	backdrop-filter: blur(9px);
 	background-color: #fff3;
     color: #efefef;
+    transform: translateX(-20px);
 }
 #course_search input[type="search"]:focus {
     text-indent: 24px;
@@ -2416,7 +2418,7 @@ figure.content{
 	border: 0;
 	background-color: var(--color);
 	color: white;
-	transform: translate(70px, 4px);
+	transform: translate(50px, 4px);
 	border-radius: 3px 0 0 3px;
 	padding: 12px 17px 5px;
 	cursor: pointer;
