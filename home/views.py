@@ -1,3 +1,4 @@
+import home.models
 import madadyar.models
 from challenge.models import Forum, Divar
 from harkat.models import CrowdFunding, Project
@@ -63,6 +64,9 @@ def home_view(request):
         'amanat': Divar.objects.filter(Type=1).all(),
         'jobs': Job.objects.all(),
         'map': projects_data,
+        'box': {
+            'harkat': home.models.Box.objects.filter(location="harkat").get(),
+        },
         'statistics': {
             'lms': f"{Course.objects.all().count():,}",
             'harkat': f"{CrowdFunding.objects.all().count():,}",
