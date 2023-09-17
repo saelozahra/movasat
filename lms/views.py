@@ -12,7 +12,7 @@ class CoursePage(TemplateView):
             return HttpResponseRedirect('../../')
 
         context = {
-            'Course': all_course,
+            'course': all_course,
         }
 
         return render(request, 'course_page.html', context)
