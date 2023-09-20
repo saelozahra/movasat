@@ -170,12 +170,12 @@ class Project(models.Model):
     madadkar = models.ForeignKey(MadadKar, on_delete=models.CASCADE, verbose_name="مددکار")
     ProjectCat = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="دسته بندی")
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام پروژه")
-    entefa = models.PositiveIntegerField(blank=True, null=False, help_text="چند نفر از این پروژه منتفع میشن؟",
+    entefa = models.PositiveIntegerField(blank=True, null=False, default=1, help_text="چند نفر از این پروژه منتفع میشن؟",
                                          verbose_name="انتفاء نفرات")
     location = PlainLocationField(zoom=9, blank=True, verbose_name='موقعیت مکانی')
     photo = models.ImageField(upload_to='files/project/', null=False, blank=False, verbose_name="تصویر")
     thumbnail = models.ImageField(upload_to='files/project/thumb', editable=False, blank=True, verbose_name='تصویرک')
-    date = jmodels.jDateField(blank=True, verbose_name="تاریخ")
+    date = jmodels.jDateField(blank=True, auto_now=True, verbose_name="تاریخ")
     description = RichTextField(blank=True, verbose_name="توضیحات")
 
     class Meta:
