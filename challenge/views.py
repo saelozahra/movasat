@@ -25,13 +25,16 @@ class ForumView(TemplateView):
 
     def get(self, request, **kwargs):
         fid = kwargs.get("fid")
+        forum = Forum.objects.filter(id=fid).get()
         try:
             context = {
-                "project": Project.objects.filter(id=fid).get(),
-                "forum": Forum.objects.filter(id=fid).get(),
+                "project": Project.objects.filter(id=forum.RelatedProject_id).get(),
+                "forum": forum,
                 "response": Response.objects.filter(RelatedForum_id=fid).all(),
                 "edit_url": Forum.objects.filter(id=fid).get().get_edit_url(),
             }
+        except Project.DoesNotExist:
+            raise Http404
         except Forum.DoesNotExist:
             raise Http404
         return render(request, "forum.html", context=context)
