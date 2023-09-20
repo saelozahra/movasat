@@ -59,6 +59,7 @@ class Response(models.Model):
     writer = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, verbose_name="نویسنده")
     RelatedForum = models.ForeignKey(Forum, blank=True, on_delete=models.DO_NOTHING, verbose_name="پروژه مربوطه")
     date = jmodels.jDateTimeField(auto_now=True, verbose_name="زمان")
+    true = models.BooleanField(default=False, verbose_name="این پاسخ مشکل چالش شما رو حل کرد ؟")
 
     class Meta:
         verbose_name = "پاسخ"
