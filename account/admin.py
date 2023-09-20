@@ -27,7 +27,7 @@ class MadadkarAdmin(ModelAdmin):
 
     fieldsets = (
         ('اطلاعات مددکار', {
-            'fields': ('user', 'Name', 'RegisterCode', 'Bio', 'City', 'Location', 'Address', ),
+            'fields': ('GroupType', 'user', 'Name', 'RegisterCode', 'Bio', 'City', 'Location', 'Address', ),
             'description': 'مشخصات مددکار را وارد کنید',
         }),
         ('تصاویر', {

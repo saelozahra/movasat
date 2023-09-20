@@ -32,7 +32,7 @@ class MadadKar(models.Model):
     )
     GroupType = models.CharField(choices=TYPE_CHOICES, max_length=1, verbose_name="نوع")
     Name = models.CharField(max_length=110, verbose_name="نام موسسه")
-    RegisterCode = models.PositiveIntegerField(verbose_name="کد ثبت موسسه",
+    RegisterCode = models.PositiveBigIntegerField(verbose_name="کد ثبت موسسه",
                     help_text="توجه کنید که تمامی حقوق مربوط به حرکت های ثبتی توسط شما متوجه این موسسه خواهد بود")
     Cover = models.ImageField(upload_to="files/cover/", verbose_name="کاور")
     Avatar = models.ImageField(upload_to="files/avatar/", verbose_name="آواتار")
