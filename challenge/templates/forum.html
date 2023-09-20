@@ -68,8 +68,9 @@
                     <br>
                     <div>
                         {{ r.description|safe }}
+                        <br>
                         {% if r.file %}
-                            <a href="{{ r.file.url }}">دانلود فایل</a>
+                            <a class="effect-shine" href="{{ r.file.url }}">دانلود فایل</a>
                         {% endif %}
                         <div class="row tar">
                             <i class="mdi mdi-calendar-range-outline tcd"></i> <b class="tc">{{ r.date.date|rplc }}</b>
