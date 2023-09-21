@@ -24,7 +24,7 @@ class DivarAdmin(admin.ModelAdmin):
     list_filter = (
         ('Admin', 'SubmitDate')
     )
-    list_display = ("Name", "Status", "Admin")
+    list_display = ("Name", "Status", "Type", "Admin")
 
 
 admin.site.register(Response)
