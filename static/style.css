@@ -1666,6 +1666,8 @@ body:not(.home) footer .fr nav a {
 }
 #lastContent .tab_content .lastContentItem img {
 	border-radius: 5px 5px 0 0;
+    max-height: 202px;
+    object-fit: cover;
 }
 
 #lastContent .tab_content .lastContentItem h4 {
