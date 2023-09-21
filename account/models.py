@@ -22,6 +22,9 @@ class UserDetail(AbstractUser):
         verbose_name = "اطلاعات کاربری"
         verbose_name_plural = "اطلاعات کاربری"
 
+    def __str__(self):
+        return f"{self.get_full_name()}  «{self.username}»"
+
 
 class MadadKar(models.Model):
     user = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="حساب کاربری")
