@@ -12,11 +12,11 @@
 
     </div>
     <div class="container site_statistics">
-        <div class="li"><img src="/static/assets/lms/minutes.png" alt=""><h6>{{ statistics.harkat }}</h6> <small>تامین مالی</small> </div>
-        <div class="li"><img src="/static/assets/lms/registered.png" alt=""><h6>{{ statistics.lms }}</h6> <small>کلاس آموزشی</small></div>
-        <div class="li"><img src="/static/assets/lms/courses.png" alt=""><h6>{{ statistics.madadyar }}</h6> <small>کار جهادی</small></div>
-        <div class="li"><img src="/static/assets/lms/registered.png" alt=""><h6>{{ statistics.forum }}</h6> <small>چالش ها</small></div>
-        <div class="li"><img src="/static/assets/lms/courses.png" alt=""><h6>{{ statistics.job }}</h6> <small>مشاغل</small></div>
+        <div class="li"><img src="/static/assets/lms/minutes.png" alt=""><h6><span class="countfect" data-num="{{ statistics.harkat }}"></span></h6> <small>حرکت جهادی</small> </div>
+        <div class="li"><img src="/static/assets/lms/registered.png" alt=""><h6><span class="countfect" data-num="{{ statistics.lms }}"></span></h6> <small>کلاس آموزشی</small></div>
+        <div class="li"><img src="/static/assets/lms/courses.png" alt=""><h6><span class="countfect" data-num="{{ statistics.madadyar }}"></span></h6> <small>کار جهادی</small></div>
+        <div class="li"><img src="/static/assets/lms/registered.png" alt=""><h6><span class="countfect" data-num="{{ statistics.forum }}"></span></h6> <small>چالش ها</small></div>
+        <div class="li"><img src="/static/assets/lms/courses.png" alt=""><h6><span class="countfect" data-num="{{ statistics.job }}"></span></h6> <small>مشاغل</small></div>
     </div>
 </div>
 
@@ -37,3 +37,4 @@
         {% endfor %}
     </div>
 </div>
+<script src="/static/scripts/countfect.min.js"></script>
