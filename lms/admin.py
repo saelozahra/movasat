@@ -11,7 +11,7 @@ class CustomCategory(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 
-class Lessoninline(OrderableStackedInline):
+class LessonInline(OrderableStackedInline):
     model = Lesson
     list_display = ("title", "course",)
 
@@ -20,7 +20,7 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ("title", "slug", "CreatedDate", "view_count", "like_count")
     list_display_links = ("title", "slug")
     prepopulated_fields = {"slug": ("title",)}
-    inlines = [Lessoninline]
+    inlines = [LessonInline]
     fieldsets = (
         ('اطلاعات کلاس', {
             'fields': ('title', 'slug', 'content', 'cover', 'category', 'ostad', ),
