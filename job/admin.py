@@ -9,5 +9,8 @@ from unfold.admin import ModelAdmin
 class SkillsAdmin(ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
+@admin.register(Category)
+class CategoryAdmin(ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
+
 admin.site.register(Job)
-admin.site.register(Category)
