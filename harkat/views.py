@@ -25,10 +25,16 @@ def get_client_ip(request):
 def harkat_page(request):
 
     data = CrowdFunding.objects.filter().all()
+
+    try:
+        box = home.models.Box.objects.filter(location="harkat").get()
+    except home.models.Box.DoesNotExist:
+        box = ""
+
     context = {
         "harkat": data,
         'box': {
-            'harkat': home.models.Box.objects.filter(location="harkat").get(),
+            'harkat': box,
         },
     }
     return render(request, "harkat_page.html", context=context)
