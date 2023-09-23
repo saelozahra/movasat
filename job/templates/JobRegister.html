@@ -6,6 +6,12 @@
     <div class="row crowd_funding padding">
         <div class="container tar reg_form padding" style="background-image: url('/static/assets/slide1.jpg'); background-size: cover">
 
+            <div class="row taj padding_rem" style="font-size: 122%; color: white; text-shadow: 0 0 3px #111;">
+                <br>
+                {{ form.register_job.content|safe }}
+                <br>
+            </div>
+
             <div class="padding fr columns-two" style="background-color: #fffa; backdrop-filter: blur(2px)">
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -13,13 +19,11 @@
                     <button class="btn">ثبت نام</button>
                 </form>
             </div>
-            <div class="columns-two padding_rem">
+            <div class="columns-two fl padding_rem" style="padding-top:0; " >
 
-                    <div class="row taj padding_rem" style="font-size: 122%; color: white; text-shadow: 0 0 3px #111;">
-                        <p style="text-align: justify;">اینجا کسب و کارها رو معرفی میکنیم تا بر اساس نیازتون کسب و کاری که دنبالشین رو پیدا کنین</p>
-                        <p style="text-align: justify;">و ارزون ترین و با کیفیت ترین محصولات رو نزدیک خودتون پیدا کنین</p>
-                        <p style="text-align: justify;">ما فکر همه جاشو کردیم </p>
-                    </div>
+                <div class="row taj padding" style="font-size: 122%; color: white; text-shadow: 0 0 3px #111; background-color: #fffa; backdrop-filter: blur(2px)">
+
+                </div>
             </div>
 
         </div>
