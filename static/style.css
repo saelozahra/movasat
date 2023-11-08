@@ -610,7 +610,7 @@ a.effect-shine:hover,button.effect-shine:hover,.menu-item a:hover,#hashtags a:ho
 		padding: 18px 12px !important;
 		display: inline-flex !important;
 		color: #000 !important;
-		text-shadow: 0px 0px 1px #fff !important;
+		text-shadow: 0 0 1px #fff !important;
 	}
 
 	#myVideo{
@@ -636,7 +636,6 @@ a.effect-shine:hover,button.effect-shine:hover,.menu-item a:hover,#hashtags a:ho
 	* --------------------------------------- */
 	#podcast .layer{
 		position: absolute;
-		z-index: 4;
 		width: 100%;
 		left: 0;
 		top: 43%;
@@ -2593,6 +2592,7 @@ figure.content{
 	object-fit: cover;
 	border: 2px dashed var(--color-very-light);
 	min-height: 313px;
+    max-height: 404px;
 }
 .single .harkat_item img {
 	width: 444px;
