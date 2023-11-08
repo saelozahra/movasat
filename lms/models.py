@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from django_jalali.db.models import jDateTimeField
 from django_jalali.db import models as jmodels
 from ckeditor.fields import RichTextField
+from django.conf import settings
 # Create your models here.
 
 
@@ -126,7 +127,7 @@ class Lesson(Orderable):
         return round(total_words / 200)
 
     def save(self, *args, **kwargs):  # new
-        if self.lesson_length is "":
+        if self.lesson_length == "":
             self.lesson_length = f"{self.estimate_reading_time} دقیقه"
         return super().save(*args, **kwargs)
 
@@ -142,3 +143,15 @@ class Lesson(Orderable):
 
     def get_edit_url(self):
         return self.get_absolute_url()
+
+class CourseRegister(models.Model):
+    CreatedDate = models.DateTimeField(auto_now_add=True, verbose_name="زمان ثبت")
+    Course = models.OneToOneField(Course, null=False, blank=False, on_delete=models.CASCADE, verbose_name="کلاس")
+    Student = models.OneToOneField(to=settings.AUTH_USER_MODEL, null=False, blank=False, on_delete=models.CASCADE, verbose_name="دانشجو")
+
+    class Meta:
+        verbose_name = "ثبت نام کلاس"
+        verbose_name_plural = "ثبت نام کلاس"
+
+    def __str__(self):
+        return f"عضویت {self.Student} در {self.Course}"
