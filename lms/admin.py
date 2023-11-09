@@ -46,3 +46,4 @@ class TeacherAdmin(admin.ModelAdmin):
 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Teacher, TeacherAdmin)
+admin.site.register(CourseRegister)
