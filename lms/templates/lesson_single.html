@@ -44,7 +44,7 @@
         <div class="columns-70 padding sticky" style="padding-left: 0">
             {% if this_lesson.file %}
             <div class="row box">
-                {% if this_lesson.file.url.lower|slice:"-3:" == "jpg" or this_lesson.file.url.lower|slice:"-4:" == "jpeg" %}
+                {% if this_lesson.file.url.lower|slice:"-3:" == "jpg" or this_lesson.file.url.lower|slice:"-4:" == "jpeg" or this_lesson.file.url.lower|slice:"-4:" == "png" or this_lesson.file.url.lower|slice:"-4:" == "webp" %}
                     <img src="{{ this_lesson.file.url }}" class="row br4" alt="">
                 {% elif this_lesson.file.url.lower|slice:"-3:" == "mp4" %}
                     <video class="row" controls poster="{{ course.cover.url }}" data-link="{{ this_lesson.get_absolute_url }}" data-title="{{ this_lesson.title }}"  src="{{ this_lesson.file.url }}">
