@@ -68,7 +68,7 @@ class Course(models.Model):
     ostad = models.ForeignKey(Teacher, null=False, blank=False, on_delete=models.CASCADE, verbose_name="استاد")
     #
     CreatedDate = jmodels.jDateTimeField(auto_now_add=True, verbose_name="زمان ساخت")
-    day = models.CharField(max_length=202, null=True, blank=True, verbose_name="روز کلاس")
+    day = models.CharField(max_length=202, null=True, blank=True, verbose_name="تاریخ امتحان")
     ClassLength = models.CharField(max_length=110, default="10 هفته", null=True, blank=True, verbose_name="طول کلاس")
     #
     view_count = models.IntegerField(default=0, editable=False, verbose_name='بازدید ها')
@@ -150,8 +150,8 @@ class CourseRegister(models.Model):
     Student = models.OneToOneField(to=settings.AUTH_USER_MODEL, null=False, blank=False, on_delete=models.CASCADE, verbose_name="دانشجو")
 
     class Meta:
-        verbose_name = "ثبت نام کلاس"
-        verbose_name_plural = "ثبت نام کلاس"
+        verbose_name = "ثبت نام در کلاس‌ها"
+        verbose_name_plural = "ثبت نام در کلاس‌ها"
 
     def __str__(self):
         return f"عضویت {self.Student} در {self.Course}"
