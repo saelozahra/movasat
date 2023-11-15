@@ -23,6 +23,15 @@ class ProjectAdmin(ModelAdmin):
         ('ProjectCat', 'madadkar', 'date',)
     )
 
+@admin.register(PrisonerRelease)
+class PrisonerReleaseAdmin(ModelAdmin):
+
+    exclude = ("Location", )
+    prepopulated_fields = {"Slug": ("Title",)}
+    list_filter = (
+        ('MadadKar', 'State')
+    )
+
 
 @admin.register(CrowdFunding)
 class HarkatAdmin(ModelAdmin):
