@@ -126,6 +126,39 @@ class CrowdFunding(models.Model):
         return percent_html
 
 
+class PrisonerRelease(CrowdFunding):
+    CrimeChoices = (
+        ('مالی', 'مالی'),
+        ('مهریه', 'مهریه'),
+        ('مهریه، نفقه', 'مهریه، نفقه'),
+        ('نفقه', 'نفقه'),
+        ('تصادف', 'تصادف'),
+        ('دیه غیر عمد', 'دیه غیر عمد'),
+    )
+    ImprisonmentDate = jmodels.jDateField(blank=True, auto_now=True, verbose_name="تاریخ زندانی شدن")
+    Age = models.PositiveSmallIntegerField(verbose_name="سن")
+    Child = models.PositiveSmallIntegerField(verbose_name="تعداد فرزندان")
+    Job = models.CharField(verbose_name="شغل", blank=True)
+    CrimeType = models.CharField(verbose_name="نوع جرم", choices=CrimeChoices, default="مالی")
+    class Meta:
+        verbose_name = "زندانی"
+        verbose_name_plural = "آزادسازی زندانی"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        title_field = self._meta.get_field('Title')
+        title_field.verbose_name = 'نام زندانی'
+
+    def save(self, *args, **kwargs):  # new
+        if not self.Slug:
+            self.slug = slugify(self.Title)
+        obj, created = Category.objects.get_or_create(name="آزادسازی زندانی")
+        self.Category_id = obj.id
+        return super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"تامین {self.Amount:,} تومان ، برای آزادی {self.Title} از زندان"
+
 class Transaction(models.Model):
     StatusChoices = (
         ('X', 'نا موفق 🚫'),
