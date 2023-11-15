@@ -142,6 +142,7 @@ class PrisonerRelease(CrowdFunding):
     CrimeType = models.CharField(verbose_name="نوع جرم", choices=CrimeChoices, default="مالی")
     PrimaryProvided = models.PositiveBigIntegerField(verbose_name="تامین شده توسط زندانی", default=0)
     Provided = models.PositiveBigIntegerField(verbose_name="تامین شده", default=0, help_text="مبلغ تامین شده توسط ستاد دیه و خیرین")
+    Forgiveness = models.PositiveBigIntegerField(verbose_name="گذشت", default=0, help_text="مبلغ گذشت شده توسط شاکی")
     class Meta:
         verbose_name = "زندانی"
         verbose_name_plural = "آزادسازی زندانی"
@@ -165,6 +166,13 @@ class PrisonerRelease(CrowdFunding):
                 harkat_id=self.id,
                 Purchaser="تامین شده توسط ستاد دیه و خیرین",
                 Description="مبلغ تامین شده توسط ستاد دیه و خیرین",
+            )
+        if self.Forgiveness>0:
+            Transaction.objects.create(
+                Status="S",
+                harkat_id=self.id,
+                Purchaser="مبلغ گذشت کرده توسط شاکی",
+                Description="مبلغ گذشت کرده توسط شاکی",
             )
         if not self.Slug:
             self.slug = slugify(self.Title)
