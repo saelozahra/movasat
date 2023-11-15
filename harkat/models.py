@@ -140,6 +140,7 @@ class PrisonerRelease(CrowdFunding):
     Child = models.PositiveSmallIntegerField(verbose_name="تعداد فرزندان")
     Job = models.CharField(verbose_name="شغل", blank=True)
     CrimeType = models.CharField(verbose_name="نوع جرم", choices=CrimeChoices, default="مالی")
+    PrimaryProvided = models.PositiveBigIntegerField(verbose_name="تامین شده توسط زندانی", default=0)
     class Meta:
         verbose_name = "زندانی"
         verbose_name_plural = "آزادسازی زندانی"
@@ -150,6 +151,13 @@ class PrisonerRelease(CrowdFunding):
         title_field.verbose_name = 'نام زندانی'
 
     def save(self, *args, **kwargs):  # new
+        if self.PrimaryProvided>0:
+            Transaction.objects.create(
+                Status="S",
+                harkat_id=self.id,
+                Purchaser="تامین شده توسط زندانی",
+                Description="مبلغ تامین شده توسط زندانی",
+            )
         if not self.Slug:
             self.slug = slugify(self.Title)
         obj, created = Category.objects.get_or_create(name="آزادسازی زندانی")
@@ -184,7 +192,7 @@ class Transaction(models.Model):
 
     Description = models.TextField(blank=True, verbose_name="توضیحات")
 
-    Status = models.CharField(max_length=33, choices=StatusChoices, verbose_name="وضعیت")
+    Status = models.CharField(max_length=2, choices=StatusChoices, verbose_name="وضعیت")
 
     class Meta:
         verbose_name = "مشارکت"
