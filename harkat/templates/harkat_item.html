@@ -11,16 +11,18 @@
     <div class="harkat_left tar">
         <a href="{{ h.get_absolute_url }}" title="{{ h.Title }}">
             <h2>
-                <figcaption class="white-space">{{ h.Title }}</figcaption>
+                <figcaption class="white-space">
+                    {{ h.Title }}
+                </figcaption>
             </h2>
         </a>
         <h6 class="harkat_field_box row br4">
             <div class="harkat_field_title">
                 <i class="mdi mdi-hand-heart"></i>
-                مددکار:
+                {{ h.MadadKar.group_name }}:
             </div>
             <a href="{{ h.MadadKar.get_absolute_url }}" title="{{ h.MadadKar }}">
-                {{ h.MadadKar }}
+                {{ h.MadadKar.Name }}
             </a>
         </h6>
         <h6 class="harkat_field_box row br4">
