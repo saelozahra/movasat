@@ -153,24 +153,27 @@ class PrisonerRelease(CrowdFunding):
         title_field.verbose_name = 'نام زندانی'
 
     def save(self, *args, **kwargs):  # new
-        if self.PrimaryProvided>0:
+        if self.PrimaryProvided > 0 and not Transaction.objects.filter(Purchaser="تامین شده توسط زندانی", harkat_id=self.id, Amount=self.PrimaryProvided).exists():
             Transaction.objects.create(
                 Status="S",
                 harkat_id=self.id,
+                Amount=self.PrimaryProvided,
                 Purchaser="تامین شده توسط زندانی",
                 Description="مبلغ تامین شده توسط زندانی",
             )
-        if self.Provided>0:
+        if self.Provided > 0 and not Transaction.objects.filter(Purchaser="تامین شده توسط ستاد دیه و خیرین", harkat_id=self.id, Amount=self.Provided).exists():
             Transaction.objects.create(
                 Status="S",
                 harkat_id=self.id,
+                Amount=self.Provided,
                 Purchaser="تامین شده توسط ستاد دیه و خیرین",
                 Description="مبلغ تامین شده توسط ستاد دیه و خیرین",
             )
-        if self.Forgiveness>0:
+        if self.Forgiveness > 0 and not Transaction.objects.filter(Purchaser="مبلغ گذشت کرده توسط شاکی", harkat_id=self.id, Amount=self.Forgiveness).exists():
             Transaction.objects.create(
                 Status="S",
                 harkat_id=self.id,
+                Amount=self.Forgiveness,
                 Purchaser="مبلغ گذشت کرده توسط شاکی",
                 Description="مبلغ گذشت کرده توسط شاکی",
             )
