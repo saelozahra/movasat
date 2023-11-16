@@ -48,7 +48,7 @@ class CrowdFunding(models.Model):
         ('E', 'به نتیجه رسیده'),
         ('S', 'متوقف شده'),
     )
-    Title = models.CharField(max_length=110, verbose_name="عنوان حرکت")
+    Title = models.CharField(max_length=110, verbose_name="عنوان حرکت / نام زندانی", help_text="عنوان حرکت جهادی یا نام زندانی را وارد کنید")
     Slug = models.SlugField(unique=True, verbose_name="لینک")
     Picture = models.ImageField(upload_to="files/jahad_activity/%Y/%m/", verbose_name="تصویر")
     Description = RichTextField(null=False, blank=False, verbose_name="توضیحات")
@@ -135,7 +135,7 @@ class PrisonerRelease(CrowdFunding):
         ('تصادف', 'تصادف'),
         ('دیه غیر عمد', 'دیه غیر عمد'),
     )
-    ImprisonmentDate = jmodels.jDateField(blank=True, auto_now=True, verbose_name="تاریخ زندانی شدن")
+    ImprisonmentDate = jmodels.jDateField(blank=True, verbose_name="تاریخ زندانی شدن")
     Age = models.PositiveSmallIntegerField(verbose_name="سن")
     Child = models.PositiveSmallIntegerField(verbose_name="تعداد فرزندان")
     Job = models.CharField(verbose_name="شغل", blank=True)
