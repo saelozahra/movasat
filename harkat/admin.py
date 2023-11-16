@@ -26,6 +26,26 @@ class ProjectAdmin(ModelAdmin):
 @admin.register(PrisonerRelease)
 class PrisonerReleaseAdmin(ModelAdmin):
 
+    fieldsets = (
+        ('اطلاعات حرکت جهادی', {
+            'fields': ('Title', 'Slug', 'Picture', 'MadadKar', 'Description',),
+            'description': 'اطلاعات حرکت جهادی را وارد کنید',
+        }),
+        ('اطلاعات زندانی', {
+            'fields': ('Age', 'ImprisonmentDate', 'Child', 'Job', ),
+            'description': 'مشخصات زندانی را وارد کنید',
+        }),
+        ('تامین هزینه', {
+            'fields': ('Amount', 'PrimaryProvided', 'Provided', 'Forgiveness', ),
+            'description': 'جزئیات هزینه ها',
+        }),
+        ('جزئیات', {
+            'fields': ('State', 'CrimeType', ),
+            'description': 'اطلاعات بیشتر و جزئیات حرکت',
+            'classes': ('collapse', ),
+        }),
+    )
+
     def pool(self, obj):
         return f"{obj.total_amount:,} تومان"
     pool.allow_tags = True
