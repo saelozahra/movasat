@@ -57,6 +57,10 @@ class MadadKar(models.Model):
         name_val = dict(self.TYPE_CHOICES).get(self.GroupType)
         return f"{name_val}  «{self.Name}»"
 
+    def group_name(self):
+        name_val = dict(self.TYPE_CHOICES).get(self.GroupType)
+        return name_val
+
     def get_absolute_url(self):
         # return reverse("get_profile", kwargs={"user": self.user.username, })
         return reverse("get_profile", kwargs={"user": UserDetail.objects.get(id=self.user_id).username, })
