@@ -54,6 +54,9 @@ def home_view(request):
 
     # for p in projects_data:
     #     print(p.get("title"))
+    harkat_box = ""
+    if home.models.Box.objects.filter(location="harkat").exists():
+        harkat_box = home.models.Box.objects.filter(location="harkat").get()
 
     context = {
         'harkat': CrowdFunding.objects.all(),
@@ -65,14 +68,14 @@ def home_view(request):
         'jobs': Job.objects.all(),
         'map': projects_data,
         'box': {
-            'harkat': home.models.Box.objects.filter(location="harkat").get(),
+            'harkat': harkat_box,
         },
         'statistics': {
             'lms': f"{Course.objects.all().count():,}",
             'harkat': f"{CrowdFunding.objects.all().count():,}",
             'madadyar': f"{JahadActivity.objects.all().count():,}",
             'forum': f"{Forum.objects.all().count():,}",
-            'job': f"{Job.objects.all().count():,}",
+            # 'job': f"{Job.objects.all().count():,}",
         },
     }
     return render(request, 'home.html', context)
