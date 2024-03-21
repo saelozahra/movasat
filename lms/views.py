@@ -26,6 +26,7 @@ def course_view(request, cat, slug):
     course.update(view_count=int(course.get().view_count + 1))
 
     context = {
+        'registered': reg_in_this_course(request.user.id, course),
         'course': course.get(),
         'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
         'edit_url': course.get().get_edit_url(),
@@ -41,6 +42,7 @@ def lesson_view(request, cat, slug, lid: int):
     this_lesson.update(view_count=int(this_lesson.get().view_count) + 1)
 
     context = {
+        'registered': reg_in_this_course(request.user.id, course),
         'course': course.get(),
         'this_lesson': this_lesson.get(),
         'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
