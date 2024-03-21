@@ -33,7 +33,7 @@ def course_view(request, cat, slug):
     return render(request, 'course_single.html', context)
 
 
-def lesson_view(request, cat, slug, lid):
+def lesson_view(request, cat, slug, lid: int):
     course = lms.models.Course.objects.filter(slug=slug)
     course.update(view_count=int(course.get().view_count + 1))
 
@@ -52,6 +52,6 @@ def lesson_view(request, cat, slug, lid):
     return render(request, 'lesson_single.html', context)
 
 
-def reg_in_this_course(uid, cid):
+def reg_in_this_course(uid: int, cid: int):
     urc = lms.models.CourseRegister.objects.filter(Student_id=uid, Course_id=cid)
     return urc.exists()
