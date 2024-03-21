@@ -1,7 +1,10 @@
+import account.models
 import lms.models
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView
+
+
 # Create your views here.
 
 
@@ -19,9 +22,8 @@ class CoursePage(TemplateView):
 
 
 def course_view(request, cat, slug):
-
     course = lms.models.Course.objects.filter(slug=slug)
-    course.update(view_count=int(course.get().view_count+1))
+    course.update(view_count=int(course.get().view_count + 1))
 
     context = {
         'course': course.get(),
@@ -32,20 +34,24 @@ def course_view(request, cat, slug):
 
 
 def lesson_view(request, cat, slug, lid):
-
     course = lms.models.Course.objects.filter(slug=slug)
-    course.update(view_count=int(course.get().view_count+1))
+    course.update(view_count=int(course.get().view_count + 1))
 
     this_lesson = lms.models.Lesson.objects.filter(id=lid)
-    this_lesson.update(view_count=int(this_lesson.get().view_count)+1)
+    this_lesson.update(view_count=int(this_lesson.get().view_count) + 1)
 
     context = {
         'course': course.get(),
         'this_lesson': this_lesson.get(),
         'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
-        'next_lesson' : lms.models.Lesson.objects.filter(Course__slug=slug, id__gt=lid).order_by('id').first(),
-        'previous_lesson' : lms.models.Lesson.objects.filter(Course__slug=slug, id__lt=lid).order_by('-id').first(),
+        'next_lesson': lms.models.Lesson.objects.filter(Course__slug=slug, id__gt=lid).order_by('id').first(),
+        'previous_lesson': lms.models.Lesson.objects.filter(Course__slug=slug, id__lt=lid).order_by('-id').first(),
         'edit_url': this_lesson.get().get_edit_url(),
     }
 
     return render(request, 'lesson_single.html', context)
+
+
+def reg_in_this_course(uid, cid):
+    urc = lms.models.CourseRegister.objects.filter(Student_id=uid, Course_id=cid)
+    return urc.exists()

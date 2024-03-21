@@ -144,6 +144,7 @@ class Lesson(Orderable):
     def get_edit_url(self):
         return self.get_absolute_url()
 
+
 class CourseRegister(models.Model):
     CreatedDate = models.DateTimeField(auto_now_add=True, verbose_name="زمان ثبت")
     Course = models.OneToOneField(Course, null=False, blank=False, on_delete=models.CASCADE, verbose_name="کلاس")
