@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os.path
 from pathlib import Path
-
 from django.templatetags.static import static
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
@@ -106,12 +105,12 @@ WSGI_APPLICATION = 'movasat.wsgi.application'
 load_dotenv()  # take environment variables from .env.
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # DATABASES = {
@@ -121,28 +120,28 @@ load_dotenv()  # take environment variables from .env.
 #     }
 # }
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.getenv('POSTGRES_DB'),
-            'USER': os.getenv('POSTGRES_USER'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-            'HOST': 'localhost',
-            'PORT': '5434',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.getenv('POSTGRES_DB'),
-            'USER': os.getenv('POSTGRES_USER'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-            'HOST': 'movasat_postgresql',
-            'PORT': '5432',
-        }
-    }
+# if DEBUG:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': os.getenv('POSTGRES_DB'),
+#             'USER': os.getenv('POSTGRES_USER'),
+#             'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+#             'HOST': 'localhost',
+#             'PORT': '5434',
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': os.getenv('POSTGRES_DB'),
+#             'USER': os.getenv('POSTGRES_USER'),
+#             'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+#             'HOST': 'movasat_postgresql',
+#             'PORT': '5432',
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
