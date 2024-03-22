@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-
 # Create your views here.
 
 
@@ -26,7 +25,7 @@ def course_view(request, cat, slug):
     course.update(view_count=int(course.get().view_count + 1))
 
     context = {
-        'registered': reg_in_this_course(request.user.id, course),
+        'registered': reg_in_this_course(request.user.id, course.first().id),
         'course': course.get(),
         'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
         'edit_url': course.get().get_edit_url(),
@@ -42,7 +41,7 @@ def lesson_view(request, cat, slug, lid: int):
     this_lesson.update(view_count=int(this_lesson.get().view_count) + 1)
 
     context = {
-        'registered': reg_in_this_course(request.user.id, course),
+        'registered': reg_in_this_course(request.user.id, course.get().id),
         'course': course.get(),
         'this_lesson': this_lesson.get(),
         'lessons': lms.models.Lesson.objects.filter(Course__slug=slug).all(),
@@ -54,6 +53,9 @@ def lesson_view(request, cat, slug, lid: int):
     return render(request, 'lesson_single.html', context)
 
 
-def reg_in_this_course(uid: int, cid: int):
-    urc = lms.models.CourseRegister.objects.filter(Student_id=uid, Course_id=cid)
+def reg_in_this_course(uid: int, coid):
+    if uid and coid:
+        urc = lms.models.CourseRegister.objects.filter(Student_id=uid, Course_id=coid)
+    else:
+        return False
     return urc.exists()
