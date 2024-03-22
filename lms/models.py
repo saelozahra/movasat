@@ -40,7 +40,7 @@ class Category(models.Model):
 class Teacher(models.Model):
     name = models.CharField(max_length=202, null=False, blank=False, verbose_name="نام استاد")
     profile = models.ImageField(upload_to='files/avatar/teacher/', null=False, blank=False, verbose_name="تصویر استاد")
-    birth = jmodels.jDateField(blank=True, verbose_name="تاریخ تولد")
+    birth = jmodels.jDateField(blank=True, default="", null=False, verbose_name="تاریخ تولد")
     resume = RichTextField(blank=True, verbose_name="رزومه")
 
     class Meta:
