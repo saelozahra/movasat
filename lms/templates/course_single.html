@@ -27,6 +27,14 @@
                     <div>طول کلاس: {{ course.ClassLength }}</div>
                     <div>روز کلاس حضوری: {{ course.day }}</div>
                 </nav>
+                <a href="{% url "CourseRegister" course.id request.user.id %}" class="row effect-shine btn_archive_style tr box" style="cursor: zoom-in;">
+                    <i class="mdi mdi-cash-register"></i>
+                    {% if registered %}
+                        شما عضو کلاس هستید
+                    {% else %}
+                        برای عضویت کلیک کنید
+                    {% endif %}
+                </a>
                 <div class="row box" id="bookmarkme" style="cursor: cell;">
                     <i class="mdi mdi-bookmark-plus-outline"></i>
                     افزودن به علاقه مندی ها
@@ -39,12 +47,12 @@
 
 
             <div class="row box">
-                
+
                 <h5 class="title_line" style="margin-top: 22px">
                     <span class="tc" style="background-color: #f9f9f9;margin-top: 7px;">اشتراک گذاری</span>
                 </h5>
                 <div class="flex-row al-center tr" style="display: flex;justify-content: space-around;">
-                    
+
                     <a class="shareItems telegramShare effect-shine" target="_blank" href="tg://msg?text={{ course.get_absolute_url }}@shahid_hajghasem_soleimani">
                         <i class="mdi mdi-telegram"></i>
                     </a>
