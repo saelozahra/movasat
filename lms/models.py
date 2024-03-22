@@ -153,6 +153,7 @@ class CourseRegister(models.Model):
     class Meta:
         verbose_name = "ثبت نام در کلاس‌ها"
         verbose_name_plural = "ثبت نام در کلاس‌ها"
+        unique_together = ("Course", "Student")
 
     def __str__(self):
         return f"عضویت {self.Student} در {self.Course}"
