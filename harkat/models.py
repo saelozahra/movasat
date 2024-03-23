@@ -154,7 +154,7 @@ class PrisonerRelease(CrowdFunding):
         title_field.verbose_name = 'نام زندانی'
 
     def save(self, *args, **kwargs):  # new
-        if self.PrimaryProvided > 0 and not Transaction.objects.filter(Purchaser="تامین شده توسط زندانی", harkat_id=self.id, Amount=self.PrimaryProvided).exists():
+        if self.id and self.PrimaryProvided > 0 and not Transaction.objects.filter(Purchaser="تامین شده توسط زندانی", harkat_id=self.id, Amount=self.PrimaryProvided).exists():
             Transaction.objects.create(
                 Status="S",
                 harkat_id=self.id,
@@ -162,7 +162,7 @@ class PrisonerRelease(CrowdFunding):
                 Purchaser="تامین شده توسط زندانی",
                 Description="مبلغ تامین شده توسط زندانی",
             )
-        if self.Provided > 0 and not Transaction.objects.filter(Purchaser="تامین شده توسط ستاد دیه و خیرین", harkat_id=self.id, Amount=self.Provided).exists():
+        if self.id and self.Provided > 0 and not Transaction.objects.filter(Purchaser="تامین شده توسط ستاد دیه و خیرین", harkat_id=self.id, Amount=self.Provided).exists():
             Transaction.objects.create(
                 Status="S",
                 harkat_id=self.id,
@@ -170,7 +170,7 @@ class PrisonerRelease(CrowdFunding):
                 Purchaser="تامین شده توسط ستاد دیه و خیرین",
                 Description="مبلغ تامین شده توسط ستاد دیه و خیرین",
             )
-        if self.Forgiveness > 0 and not Transaction.objects.filter(Purchaser="مبلغ گذشت کرده توسط شاکی", harkat_id=self.id, Amount=self.Forgiveness).exists():
+        if self.id and self.Forgiveness > 0 and not Transaction.objects.filter(Purchaser="مبلغ گذشت کرده توسط شاکی", harkat_id=self.id, Amount=self.Forgiveness).exists():
             Transaction.objects.create(
                 Status="S",
                 harkat_id=self.id,
@@ -180,12 +180,15 @@ class PrisonerRelease(CrowdFunding):
             )
         if not self.Slug:
             self.slug = slugify(self.Title)
+
         obj, created = Category.objects.get_or_create(name="آزادسازی زندانی")
         self.Category_id = obj.id
+
         return super().save(*args, **kwargs)
 
     def __str__(self):
         return f"تامین {self.Amount:,} تومان ، برای آزادی {self.Title} از زندان"
+
 
 class Transaction(models.Model):
     StatusChoices = (
