@@ -42,6 +42,11 @@ def lesson_view(request, cat, slug, lid: int):
     this_lesson = lms.models.Lesson.objects.filter(id=lid)
     this_lesson.update(view_count=int(this_lesson.get().view_count) + 1)
 
+    if not reg_in_this_course(request.user.id, course.get().id):
+        red_url = redirect("CourseView", cat=cat, slug=slug)
+        red_url['Location'] += '?res=first_register'
+        return red_url
+
     context = {
         'registered': reg_in_this_course(request.user.id, course.get().id),
         'course': course.get(),
