@@ -2577,6 +2577,7 @@ figure.content{
 	padding: 0.5rem;
 	box-shadow: 0 0 9px #ddd;
 	margin: 1rem auto;
+    overflow: hidden;
 }
 
 .harkat_desc.taj {
@@ -2645,6 +2646,10 @@ figure.content{
 }
 .harkat_item .harkat_left .btn {
 	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-right: 4px;
+	padding-left: 4px;
 }
 .harkat_item .harkat_left .btn_percent {
 	position: absolute;

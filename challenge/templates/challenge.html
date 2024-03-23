@@ -22,8 +22,8 @@
 
                         <div class="container tab">
                             <nav class="row" style="margin: 14px auto 40px;" >
-                                <label class="tab_title" data-id="1" data-active="true" >چالش‌ها</label>
-                                <label class="tab_title" data-id="3" data-active="false" >کسب و کارها</label>
+                                <label class="tab_title" data-id="3" data-active="true" >کسب و کارها</label>
+                                <label class="tab_title" data-id="1" data-active="false" >چالش‌ها</label>
                                 <span style="border: 2px dashed var(--color-very-light)" class="padding">
                                     <label class="tab_title" data-id="2" data-active="false" >کل آگهی‌ها</label>
                                     <label class="tab_title" data-id="4" data-active="false" >نیازمندی‌ها</label>
@@ -32,7 +32,7 @@
                             </nav>
 
                             <section class="row">
-                                <figure class="tab_content owl-carousel" data-id="1" data-active="true">
+                                <figure class="tab_content owl-carousel" data-id="1" data-active="false">
 
                                     {% for challenge in forum %}
                                         {% include "challenge_item.html" %}
@@ -50,7 +50,7 @@
 
                                 </figure>
 
-                                <figure class="tab_content owl-carousel" data-id="3" data-active="false">
+                                <figure class="tab_content owl-carousel" data-id="3" data-active="true">
 
                                     {% for job in jobs %}
                                         {% include "JobItem.html" %}
