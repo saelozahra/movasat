@@ -13,6 +13,11 @@ class RegisterJob(forms.ModelForm):
         except home.models.Box.DoesNotExist:
             self.register_job = ""
 
+        try:
+            self.register_job2 = home.models.Box.objects.filter(location="register_job2").get()
+        except home.models.Box.DoesNotExist:
+            self.register_job2 = ""
+
         super().__init__(*args, **kwargs)
 
     class Meta:
