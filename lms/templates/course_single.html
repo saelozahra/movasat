@@ -87,13 +87,16 @@
                     <li class="row tar padding">
                         {% if registered %}
                             <i class="mdi mdi-lock-open licon tac fr"></i>
+                            <a class="" href="{{ course.get_absolute_url }}">
+                                <b>{{ l }}</b>
+                            </a>
                         {% else %}
                             <i class="mdi mdi-lock licon tac fr"></i>
+                            <a class="" href="{{ l.get_absolute_url }}">
+                                <b>{{ l }}</b>
+                            </a>
                         {% endif %}
-                        <a class="" href="{{ l.get_absolute_url }}">
-                            <b>{{ l }}</b>
-                        </a>
-                        {% if l.file %}
+                        {% if l.file and registered %}
                             <a href="{{ l.file.url }}" download="">
                                 <small> {{ l.lesson_length }} </small>
                                 <i class="mdi mdi-minus-circle-outline" style="visibility: hidden"></i>
