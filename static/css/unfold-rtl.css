@@ -1,8 +1,42 @@
+
+@font-face {
+  font-family: "YekiFaNum";
+  src: url("./css/YekiFaNum/YekiFaNum-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "YekiFaNum";
+  src: url("./YekiFaNum/YekiFaNum-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "YekiFaNumBold";
+  src: url("./YekiFaNum/YekiFaNum-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "YekiFaNumHeavy";
+  src: url("./YekiFaNum/YekiFaNum-Heavy.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "YekiFaNum";
+  src: url("./YekiFaNum/YekiFaNum-Light.ttf") format("truetype");
+  font-weight: light;
+}
+
+body, h1, h2, h3, h4, h5, label, button, div{
+    font-family: "YekiFaNum";
+}
 .text-left {text-align: right;}[dir="rtl"] .text-right{text-align: left;}
 #site-name {  text-indent: 4px; }
 .sortoptions a{padding-right:3px;padding-left:3px;}
 .material-symbols-outlined.pl-4{padding-left:0;padding-right:1rem;}
-select:not([class*="bg-none"]):not([multiple]){background-position:left center;padding:0.6rem;}
+select:not([class*="bg-none"]):not([multiple]){background-position:left center !important;padding:0.6rem;}
 [type="checkbox"]{margin-left:6px;}
 [dir="rtl"] .module .text-left { text-align: right; }
 [dir="rtl"] .module .text-right { text-align: left; }
+

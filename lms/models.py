@@ -139,7 +139,6 @@ class Lesson(Orderable):
             "LessonView",
             kwargs={"slug": self.Course.slug, "cat": self.Course.category.slug, "lid": self.id, }
         )
-        # @todo lesson page
 
     def get_edit_url(self):
         return self.get_absolute_url()
