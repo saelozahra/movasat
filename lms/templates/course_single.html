@@ -85,7 +85,11 @@
                 <ol class="row tar tr">
                 {% for l in lessons %}
                     <li class="row tar padding">
-                        <i class="mdi mdi-lock licon tac fr"></i>
+                        {% if registered %}
+                            <i class="mdi mdi-lock-open licon tac fr"></i>
+                        {% else %}
+                            <i class="mdi mdi-lock licon tac fr"></i>
+                        {% endif %}
                         <a class="" href="{{ l.get_absolute_url }}">
                             <b>{{ l }}</b>
                         </a>
